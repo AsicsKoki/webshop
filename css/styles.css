@@ -95,3 +95,9 @@
     	float: right;
     	position: relative;
     }
+    .more{
+    	width: 50%;
+    	text-align: center;
+    	padding-top: 240px;
+		padding-left: 150px;
+    }

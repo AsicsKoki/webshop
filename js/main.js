@@ -7,7 +7,7 @@
 	var	alert = document.getElementById("alert");
 
 	buyBtn.onclick = function(){
-		if (buyInput.value > 10){
+		if (buyInput.value > 10 || buyInput.value == 0){
 			$(document.getElementById("alert")).modal();
 		} else{
 			buyBtn.innerHTML = "purchased";

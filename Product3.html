@@ -15,7 +15,7 @@
 			<div class="side" >BANNER</div>
 				<div id="central">
 					<div class="columnLeft">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, adipisci, voluptate reiciendis quaerat sit porro earum consequatur magnam commodi asperiores quod ducimus est sequi explicabo in voluptatem ad neque ut.
-						<footer><button class="btn btn-primary" type="button" style="float: left">Purchase item</button><input style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
+						<footer><button id="buyBtn" class="btn btn-primary" type="button" style="float: left">Purchase item</button><input id="buyInput" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
 						</footer>
 					</div>
 						<div class="columnRight">
@@ -25,7 +25,7 @@
 						</div>
 							<button id="previous">previous</button><button id="next">Next</button>
 					<div class="more" style="display: none">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, porro deb	itis amet modi consequuntur odit culpa recusandae vel aut eum possimus quia quidem iusto illo cupiditate volup	tatem 	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, ullam, labore, inventore commodi similique numquam iste corporis obcaecati rem beatae voluptates facilis nesciunt quidem atque ea dolorem quam molestiae illum.	
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, porro deb	itis amet modi consequuntur odit culpa recusandae vel aut eum possimus quia quidem iusto illo cupiditate volup	tatem 	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, ullam, labore, inventore commodi similique numquam iste corporis obcaecati rem beatae voluptates facilis nesciunt quidem atque ea dolorem quam molestiae illum.
 					</div>
 			</div>
 			<div class="side">BANNER</div>
@@ -45,13 +45,15 @@
     </div>
     <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/javaShop.js"></script>
+	<script src="js/main.js"></script>
 	</div>
 <script>
-		
+
 jQuery(document).ready(function($) {
-		$("div.columnLeft > footer").prepend("<button id=\"btn\">Read more</button>").on('click', function(){
-			var btn = $(this).children("button:eq(0)");
+		$("div.columnLeft > footer").prepend("<button id=\"readMoreBtn\">Read more</button>");
+
+		$("div.columnLeft > footer > button#readMoreBtn").on('click', function(){
+			var btn = $(this);
 
 			if (btn.text() == "Read more") {
 
@@ -71,10 +73,8 @@ jQuery(document).ready(function($) {
 				var imgNext = img.next();
 				if (!imgNext.length) imgNext =  $("div.columnRight > img").first();
 				imgNext.show();
-				
+
 			})
-
-
 			$("button#previous").on('click', function(){
 				var img = $("div.columnRight > img:visible");
 				img.hide();
@@ -82,8 +82,6 @@ jQuery(document).ready(function($) {
 				if (!imgPrevious.length) imgPrevious =  $("div.columnRight > img").last();
 				imgPrevious.show();
 			});
-
-
 });
 
 

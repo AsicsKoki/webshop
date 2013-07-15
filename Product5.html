@@ -1,5 +1,27 @@
 <!doctype html>
 <html>
+<style>
+	.blue {
+		background-color: blue;
+		width: 20px;
+		height: 20px;
+	}
+	.yellow {
+		background-color: yellow;
+		width: 20px;
+		height: 20px;
+	}
+	.green{
+		background-color: green;
+		width: 20px;
+		height: 20px;
+	}
+	.red {
+		background-color: red;
+		width: 20px;
+		height: 20px;
+	}
+</style>
 <head>
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -14,8 +36,17 @@
 			<div class="side" >BANNER</div>
 			<div id="central">
 				<div class="columnLeft">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, odit, consequuntur voluptatem a illum minima hic beatae voluptatibus at illo explicabo nulla dolorum id distinctio exercitationem ducimus ipsum laudantium iusto.
-				<footer><button class="btn btn-primary" type="button" style="float: left">Purchase item</button><input style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
-				</footer></div>
+					<footer><button class="btn btn-primary" type="button" style="float: left">Purchase item</button><input style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
+						<select id="menu">
+						  <option value="blue">Blue</option>
+						  <option value="yellow">Yellow</option>
+						  <option value="green">Green</option>
+						  <option value="red">Red</option>
+						</select>
+						<div id="boja" class="blue">
+						</div>
+					</footer>
+				</div>
 				<div class="columnRight"><img class="img-polaroid" src="images/sports-q-c-250-200-3.jpg"/></div>
 			</div>
 			<div class="side">BANNER</div>
@@ -35,7 +66,15 @@
     </div>
     <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/javaShop.js"></script>
+	<script src="js/main.js"></script>
 	</div>
+	<script>
+		jQuery(document).ready(function($) {
+			$("select#menu > option").click(function(){
+				$("div#boja").css("background-color",$(this).val());
+			})
+		});
+	</script>
 </body>
 </html>
+select > option- za selektovanje bilo koje opcije

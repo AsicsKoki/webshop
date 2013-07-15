@@ -1,33 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<style>
-	.blue {
-		background-color: blue;
-		width: 20px;
-		height: 20px;
-	}
-	.yellow {
-		background-color: yellow;
-		width: 20px;
-		height: 20px;
-	}
-	.green{
-		background-color: green;
-		width: 20px;
-		height: 20px;
-	}
-	.red {
-		background-color: red;
-		width: 20px;
-		height: 20px;
-	}
-</style>
 <head>
+	<style>
+		.square {
+			width: 20px;
+			height: 20px;
+		}
+	</style>
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		jQuery(document).ready(function($) {
+			$("footer").on('click', 'select#menu > option', function(){
+				$("div#boja").css("background-color",$(this).val());
+			})
+			$("div#boja").css("background-color",'blue');
+		});
+	</script>
 </head>
 <body id="background">
 	<div id="mainElement">
@@ -43,7 +38,7 @@
 						  <option value="green">Green</option>
 						  <option value="red">Red</option>
 						</select>
-						<div id="boja" class="blue">
+						<div id="boja" class="square">
 						</div>
 					</footer>
 				</div>
@@ -64,17 +59,7 @@
 	   	 <a href="#" class="btn" data-dismiss="modal">Close</a>
 	    </div>
     </div>
-    <script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
 	</div>
-	<script>
-		jQuery(document).ready(function($) {
-			$("select#menu > option").click(function(){
-				$("div#boja").css("background-color",$(this).val());
-			})
-		});
-	</script>
 </body>
 </html>
 select > option- za selektovanje bilo koje opcije

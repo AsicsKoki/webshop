@@ -1,3 +1,4 @@
+//BUY BUTTONS
 (function(){
 
 
@@ -20,7 +21,7 @@
 
 
 }())
-
+//READ MORE BUTTON
 jQuery(document).ready(function($) {
 		$("div.columnLeft > footer").prepend("<button id=\"readMoreBtn\">Read more</button>");
 
@@ -54,7 +55,7 @@ jQuery(document).ready(function($) {
 });
 
 
-
+//COLOR INPUT
 		function toTitleCase(str)
 		{
 			return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -73,7 +74,7 @@ jQuery(document).ready(function($) {
 
 			})	
 		});
-
+//RIGHT SIDE BANNER!
 jQuery(document).ready(function($) {
 				var i = 0;
 				var i2 = 0;
@@ -87,7 +88,7 @@ jQuery(document).ready(function($) {
     				$("img#banner").attr("src", banners[i])
     			}
 		}, 2000);
-
+//LEFT SIDE BANNER!
 		setInterval(function() {
 				if($("input#checkbox").is(':checked'))
 				{

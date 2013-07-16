@@ -53,3 +53,47 @@ jQuery(document).ready(function($) {
 			});
 });
 
+
+
+		function toTitleCase(str)
+		{
+			return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+		}
+		jQuery(document).ready(function($) {
+			$("footer").on('click', 'select#menu > option', function(){
+				$("div#boja").css("background-color",$(this).val());
+			})
+			$("div#boja").css("background-color",'blue');
+
+			$("#ok").click(function(){
+				var color = $("#colorInput").val();
+				if ($("option[value="+color+"]").length == 0) {
+					$("select#menu").append("<option value='"+color+"'>"+ toTitleCase(color) + "</option>");
+				};
+
+			})	
+		});
+
+jQuery(document).ready(function($) {
+				var i = 0;
+				var i2 = 0;
+				var banners = ["images/side1.jpg","images/side2.jpg","images/side3.jpg", "images/side4.jpg"];
+				var banners2 = ["images/side21.jpg","images/side22.jpg","images/side23.jpg", "images/side24.jpg"];
+		setInterval(function() {
+				if($("input#checkbox").is(':checked'))
+				{
+					i = i + 1;
+					i = i % 4;
+    				$("img#banner").attr("src", banners[i])
+    			}
+		}, 2000);
+
+		setInterval(function() {
+				if($("input#checkbox").is(':checked'))
+				{
+					i2 = i2 - 1;
+					i2 = i2 % 4;
+					$("img#banner2").attr("src", banners2[i2*-1])
+				}
+		}, 2000);
+});

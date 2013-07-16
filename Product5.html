@@ -16,31 +16,16 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
 	<script>
-		function toTitleCase(str)
-		{
-			return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-		}
-		jQuery(document).ready(function($) {
-			$("footer").on('click', 'select#menu > option', function(){
-				$("div#boja").css("background-color",$(this).val());
-			})
-			$("div#boja").css("background-color",'blue');
 
-			$("#ok").click(function(){
-				var color = $("#colorInput").val();
-				if ($("option[value="+color+"]").length == 0) {
-					$("select#menu").append("<option value='"+color+"'>"+ toTitleCase(color) + "</option>");
-				};
-
-			})	
-		});
 	</script>
 </head>
 <body id="background">
 	<div id="mainElement">
 		<header id="header">Konstantin's web shop</header>
 		<div id="elementOne">
-			<div class="side" >BANNER</div>
+			<div class="side">
+				<img id="banner2" src="images/image21.jpg" alt="">
+			</div>
 			<div id="central">
 				<div class="columnLeft">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, odit, consequuntur voluptatem a illum minima hic beatae voluptatibus at illo explicabo nulla dolorum id distinctio exercitationem ducimus ipsum laudantium iusto.	
 					<input id="colorInput" type="text" placeholder="Enter custom color">
@@ -57,9 +42,20 @@
 						</div>
 					</footer>
 				</div>
-				<div class="columnRight"><img class="img-polaroid" src="images/sports-q-c-250-200-3.jpg"/></div>
+				<div class="columnRight"><img class="img-polaroid" src="images/sports-q-c-250-200-3.jpg"/>
+					<footer>    <form class="form-inline">
+					    <input type="text" class="input-small" placeholder="Enter color">
+					    <input type="password" class="input-small" placeholder="Enter quantity">
+					    <label class="checkbox">
+					    <input type="checkbox" id="checkbox"> Banners
+					    </label>
+					    <button type="submit" class="btn">Sign in</button>
+					</form></footer>
+				</div>
 			</div>
-			<div class="side">BANNER</div>
+			<div class="side">
+				<img id="banner" src="images/side1.jpg" alt="">
+			</div>
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>
 		    <div id="alert" class="modal hide fade">

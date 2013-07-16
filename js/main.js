@@ -53,7 +53,7 @@ jQuery(document).ready(function($) {
 		imgPrevious.show();
 	});
 
-//COLOR INPUT
+	//COLOR INPUT
 
 	$("footer").on('click', 'select#menu > option', function(){
 		$("div#boja").css("background-color",$(this).val());

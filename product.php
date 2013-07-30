@@ -10,8 +10,8 @@
 	$result= mysql_query("SELECT COUNT(*) FROM products WHERE id='$id'",$conn);
 	$row = mysql_fetch_assoc($result);
 	if (!$row["COUNT(*)"]) {
-		echo "ne moze";
-		exit();
+		header("Location: http://localhost/webshop/index.php");
+		die();
 	}
 
 	$sql = "SELECT * FROM products where id= '$id'";

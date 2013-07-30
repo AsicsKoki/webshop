@@ -22,6 +22,9 @@
 
 	//var_dump($arr);
 	$arr[0]["name"];
+
+	$boje = ARRAY('Red','Green','Blue','Orange');//spisak boja u nizu
+
  ?>
 <!doctype html>
 <html>
@@ -39,7 +42,12 @@
 			<div class="side" >BANNER</div>
 			<div id="central">
 				<div class="columnLeft">
-					<?php echo $arr[0]["description"]; ?>
+					<?php echo $arr[0]["description"]; 
+					FOREACH($boje AS $boja){
+					echo '<select name="color"></select>';
+				    echo '<option value="'.$color.'">'.$boja.'</option>';//nesto idk sta radim... smesan rezultat.
+				}
+					?>
 				<footer><button class="btn btn-primary" type="button" style="float: left">Purchase item</button><input style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
 				</footer></div>
 				<div class="columnRight"><img class="img-polaroid" src="images/<?php echo $arr[0]['image']; ?>"/></div>

@@ -1,31 +1,43 @@
-<?php
+<?php 
 	$conn = mysql_connect("localhost","root","","webshop");
-	//$query = "SELECT * FROM products where id= '1'";
-	//var_dump($query);
 	if(! $conn )
 	{
 	  	die('Could not connect: ' . mysql_error());
 	}
-	$id = $_GET["id"];
-	$sql = "SELECT * FROM products where id= '$id'";
-	
-	$sqlColors = "SELECT color FROM products where id= '$id'";
 
+	$id = $_GET["id"];
 	mysql_select_db('webshop');
+	$result= mysql_query("SELECT COUNT(*) FROM products WHERE id='$id'",$conn);
+	$row = mysql_fetch_assoc($result);
+	if (!$row["COUNT(*)"]) {
+		echo "ne moze";
+		exit();
+	}
+
+	$sql = "SELECT * FROM products where id= '$id'";
+
 	$retval = mysql_query( $sql, $conn );
-	if(! $retval )
+		if(! $retval )
 	{
 		die('Could not get data: ' . mysql_error());
 	}
-	$arr = []; // array();
+	$arr = [];
 
-	while($row = mysql_fetch_assoc($retval))
-		$arr[] = $row;
-
+		while($row = mysql_fetch_assoc($retval))
+	$arr[] = $row;
 	//var_dump($arr);
 	$arr[0]["name"];
 
-	$boje = ['Red','Green','Blue','Orange'];//spisak boja u nizu
+	// $boje = ['Red','Green','Blue','Orange'];
+	$boje= "SELECT DISTINCT color FROM products";
+
+	mysql_select_db('webshop');
+	$retval = mysql_query( $boje, $conn );
+	if(! $retval )
+	{
+	  die('Could not get data: ' . mysql_error());
+	}
+
 
  ?>
 <!doctype html>
@@ -44,13 +56,21 @@
 			<div class="side" >BANNER</div>
 			<div id="central">
 				<div class="columnLeft">
-					<?php echo $arr[0]["description"]; 
-					echo '<select name="color">';
-					foreach($boje AS $boja){
-					    echo '<option value="'.$color.'">'.$boja.'</option>';//nesto idk sta radim... smesan rezultat.
+					<?php echo $arr[0]["description"]; //PRODUCT INFO
+					//RADI, URADJENO PREKO NIZA.
+				// 	echo '<select name="color">';
+				// foreach($boje AS $boja){
+				//     echo '<option value="'.$color.'">'.$boja.'</option>';
+				// }
+				// 	echo"</select>";
+				echo "<select>";
+				while ($color= mysql_fetch_assoc($retval)) { ?>
+					<option value="<?php echo $color["color"]?>"><?php echo $color["color"] ?></option>
+					<?php
 					}
-					echo '</select>';
-					?>
+	
+					echo "</select>";
+				?>
 				<footer><button class="btn btn-primary" type="button" style="float: left">Purchase item</button><input style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
 				</footer></div>
 				<div class="columnRight"><img class="img-polaroid" src="images/<?php echo $arr[0]['image']; ?>"/></div>

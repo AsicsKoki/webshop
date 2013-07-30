@@ -8,6 +8,8 @@
 	}
 	$id = $_GET["id"];
 	$sql = "SELECT * FROM products where id= '$id'";
+	
+	$sqlColors = "SELECT color FROM products where id= '$id'";
 
 	mysql_select_db('webshop');
 	$retval = mysql_query( $sql, $conn );
@@ -15,7 +17,7 @@
 	{
 		die('Could not get data: ' . mysql_error());
 	}
-	$arr = [];
+	$arr = []; // array();
 
 	while($row = mysql_fetch_assoc($retval))
 		$arr[] = $row;
@@ -23,7 +25,7 @@
 	//var_dump($arr);
 	$arr[0]["name"];
 
-	$boje = ARRAY('Red','Green','Blue','Orange');//spisak boja u nizu
+	$boje = ['Red','Green','Blue','Orange'];//spisak boja u nizu
 
  ?>
 <!doctype html>
@@ -43,10 +45,11 @@
 			<div id="central">
 				<div class="columnLeft">
 					<?php echo $arr[0]["description"]; 
-					FOREACH($boje AS $boja){
-					echo '<select name="color"></select>';
-				    echo '<option value="'.$color.'">'.$boja.'</option>';//nesto idk sta radim... smesan rezultat.
-				}
+					echo '<select name="color">';
+					foreach($boje AS $boja){
+					    echo '<option value="'.$color.'">'.$boja.'</option>';//nesto idk sta radim... smesan rezultat.
+					}
+					echo '</select>';
 					?>
 				<footer><button class="btn btn-primary" type="button" style="float: left">Purchase item</button><input style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
 				</footer></div>

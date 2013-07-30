@@ -1,8 +1,8 @@
-<?php 
+<?php
 	$conn = mysql_connect("localhost","root","","webshop");
 	//$query = "SELECT * FROM products where id= '1'";
 	//var_dump($query);
-		if(! $conn )
+	if(! $conn )
 	{
 	  	die('Could not connect: ' . mysql_error());
 	}
@@ -11,14 +11,15 @@
 
 	mysql_select_db('webshop');
 	$retval = mysql_query( $sql, $conn );
-		if(! $retval )
+	if(! $retval )
 	{
 		die('Could not get data: ' . mysql_error());
 	}
 	$arr = [];
 
-		while($row = mysql_fetch_assoc($retval))
-	$arr[] = $row;
+	while($row = mysql_fetch_assoc($retval))
+		$arr[] = $row;
+
 	//var_dump($arr);
 	$arr[0]["name"];
  ?>

@@ -10,7 +10,7 @@
 	$result= mysql_query("SELECT COUNT(*) FROM products WHERE id='$id'",$conn);
 	$row = mysql_fetch_assoc($result);
 	if (!$row["COUNT(*)"]) {
-		header("Location: http://localhost/webshop/index.php");
+		header("Location: /webshop/index.php");
 		die();
 	}
 

@@ -27,6 +27,10 @@ if(! $retval )
 		die('Could not get data: ' . mysql_error());
 	}
 
+	$banners = 'SELECT * FROM banners';
+
+	
+
 
  ?>
 

@@ -6,24 +6,23 @@
 	// var_dump($result);
 
 $conn = mysql_connect("localhost","root","","webshop");
-if(! $conn )
-{
-  die('Could not connect: ' . mysql_error());
-}
+	if(! $conn ) {
+		die('Could not connect: ' . mysql_error());
+	}
+
 $sql = 'SELECT * FROM products';
 
 mysql_select_db('webshop');
-$retval = mysql_query( $sql, $conn );
-if(! $retval )
-{
-  die('Could not get data: ' . mysql_error());
-}
-	$full= "SELECT products.id, products.name as product_name, colorid, price, quantity, image, description, colors.id as colors_id, colors.name as colors_name FROM products, colors WHERE (colors.id = colorid)";
 
-	mysql_select_db('webshop');
+$retval = mysql_query( $sql, $conn );
+	if(! $retval ) {
+		die('Could not get data: ' . mysql_error());
+	}
+$full= "SELECT products.id, products.name as product_name, colorid, price, quantity, image, description, colors.id as colors_id, colors.name as colors_name FROM products, colors WHERE (colors.id = colorid)";
+
+mysql_select_db('webshop');
 	$retval2 = mysql_query( $full, $conn );
-		if(! $retval2 )
-	{
+	if(! $retval2 ) {
 		die('Could not get data: ' . mysql_error());
 	}
 

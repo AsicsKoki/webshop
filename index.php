@@ -18,6 +18,15 @@ if(! $retval )
 {
   die('Could not get data: ' . mysql_error());
 }
+	$full= "SELECT products.id, products.name as product_name, colorid, price, quantity, image, description, colors.id as colors_id, colors.name as colors_name FROM products, colors WHERE (colors.id = colorid)";
+
+	mysql_select_db('webshop');
+	$retval2 = mysql_query( $full, $conn );
+		if(! $retval2 )
+	{
+		die('Could not get data: ' . mysql_error());
+	}
+
 
  ?>
 
@@ -46,15 +55,15 @@ if(! $retval )
 					</thead>
 					<tbody>
 						<?php 
-							while($row = mysql_fetch_assoc($retval)) {
+							while($row = mysql_fetch_assoc($retval2)) {
 
 						 ?>
 						<tr>
-							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["name"]; ?></a></td>
-							<td class="column2"><?php echo $row["color"]; ?></td>
+							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["product_name"]; ?></a></td>
+							<td class="column2"><?php echo $row["colors_name"]; ?></td>
 							<td class="column3"><i class="icon-tag"></i><?php echo $row["price"]; ?></td>
 							<td class="column4"><a class="btn btn-info" target="_blank" href="product.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>More info</a></td>
-							<td class="column5"><?php echo $row["price"] ?></td>
+							<td class="column5"><?php echo $row["quantity"] ?></td>
 						</tr>
 						<?php 
 							}

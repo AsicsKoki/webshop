@@ -28,8 +28,8 @@
 	//var_dump($arr);
 	$arr[0]["name"];
 
-	// $boje = ['Red','Green','Blue','Orange'];
-	$boje= "SELECT DISTINCT color FROM products";
+	// OVDE SELEKTUJE BOJE
+	$boje= "SELECT * FROM colors";
 
 	mysql_select_db('webshop');
 	$retval = mysql_query( $boje, $conn );
@@ -64,9 +64,16 @@
 				// }
 				// 	echo"</select>";
 				echo "<select>";
-				while ($color= mysql_fetch_assoc($retval)) { ?>
-					<option value="<?php echo $color["color"]?>"><?php echo $color["color"] ?></option>
-					<?php
+				while ($color= mysql_fetch_assoc($retval)) {
+					if ($arr[0]["colorid"] == $color["id"]) { ?>
+						<option selected="selected"  value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
+						<?php
+					} else { ?>
+						<option value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
+						<?php
+					}
+
+					
 					}
 	
 					echo "</select>";

@@ -5,8 +5,8 @@
 	  	die('Could not connect: ' . mysql_error());
 	}
 
-	$id = $_GET["id"];
 	mysql_select_db('webshop');
+	$id = $_GET["id"];
 	$result= mysql_query("SELECT COUNT(*) FROM products WHERE id='$id'",$conn);
 	$row = mysql_fetch_assoc($result);
 	if (!$row["COUNT(*)"]) {
@@ -31,12 +31,29 @@
 	// OVDE SELEKTUJE BOJE
 	$boje= "SELECT * FROM colors";
 
-	mysql_select_db('webshop');
 	$retval = mysql_query( $boje, $conn );
 	if(! $retval )
 	{
 	  die('Could not get data: ' . mysql_error());
 	}
+
+	//LEVI BANNER
+
+		$banners = 'SELECT banner FROM banners';
+
+		$banners = mysql_query($banners, $conn);
+		if(! $banners) {
+			die('Could not get data: ' . mysql_error());
+		}
+
+		$bannerNames = [];
+		while ($bannerName= mysql_fetch_assoc($banners)) {
+			$bannerNames[] = 'images/'.$bannerName["banner"];
+		}
+		shuffle($bannerNames);
+		$banners = array_slice($bannerNames, 0,3);
+		$banners2 = array_slice($bannerNames, 3,6);
+
 
 
  ?>
@@ -53,36 +70,33 @@
 	<div id="mainElement">
 		<header id="header">Konstantin's web shop</header>
 		<div id="elementOne">
-			<div class="side" >BANNER</div>
+		
+			<div class="side"><img id="banner" src=""></div>
 			<div id="central">
 				<div class="columnLeft">
-					<?php echo $arr[0]["description"]; //PRODUCT INFO
-					//RADI, URADJENO PREKO NIZA.
-				// 	echo '<select name="color">';
-				// foreach($boje AS $boja){
-				//     echo '<option value="'.$color.'">'.$boja.'</option>';
-				// }
-				// 	echo"</select>";
-				echo "<select>";
-				while ($color= mysql_fetch_assoc($retval)) {
-					if ($arr[0]["colorid"] == $color["id"]) { ?>
-						<option selected="selected"  value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
+					<?php echo $arr[0]["description"];
+
+					echo "<select>";
+					while ($color= mysql_fetch_assoc($retval)) {
+						if ($arr[0]["colorid"] == $color["id"]) { ?>
+							<option selected="selected"  value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
 						<?php
-					} else { ?>
-						<option value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
+						} else { ?>
+							<option value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
 						<?php
 					}
-
-					
 					}
 	
 					echo "</select>";
 				?>
 				<footer><button class="btn btn-primary" type="button" style="float: left">Purchase item</button><input style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
 				</footer></div>
-				<div class="columnRight"><img class="img-polaroid" src="images/<?php echo $arr[0]['image']; ?>"/></div>
+				<div class="columnRight"><img class="img-polaroid" src="images/<?php echo $arr[0]['image']; ?>"/>
+					<input id="checkbox" type="checkbox">rotate banners
+				</div>
 			</div>
-			<div class="side">BANNER</div>
+			
+			<div class="side"><img id="banner2" src=""></div>
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>
 		    <div id="alert" class="modal hide fade">
@@ -100,6 +114,11 @@
     <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/javaShop.js"></script>
+	<script>
+		var banners = <?php echo json_encode($banners); ?>;
+		var banners2 = <?php echo json_encode($banners2); ?>;
+	</script>
+	<script src="js/main.js"></script>
 	</div>
 </body>
 </html>

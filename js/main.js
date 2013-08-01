@@ -71,8 +71,7 @@ jQuery(document).ready(function($) {
 	//RIGHT SIDE BANNER!
 	var i = 0;
 	var i2 = 0;
-	var banners = ["images/side1.jpg","images/side2.jpg","images/side3.jpg", "images/side4.jpg"];
-	var banners2 = ["images/side21.jpg","images/side22.jpg","images/side23.jpg", "images/side24.jpg"];
+	
 
 	setInterval(function() {
 			if($("input#checkbox").is(':checked'))

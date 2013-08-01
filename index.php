@@ -13,7 +13,7 @@ $conn = mysql_connect("localhost","root","","webshop");
 $sql = 'SELECT * FROM products';
 
 mysql_select_db('webshop');
-
+													
 $retval = mysql_query( $sql, $conn );
 	if(! $retval ) {
 		die('Could not get data: ' . mysql_error());
@@ -26,12 +26,14 @@ mysql_select_db('webshop');
 		die('Could not get data: ' . mysql_error());
 	}
 
-	$banners = 'SELECT * FROM banners';
+		$banners = 'SELECT banner FROM banners LIMIT 0,3';
 
-	
-
-
- ?>
+	mysql_select_db('webshop');
+		$banner = mysql_query($banners, $conn);
+		if(! $banner) {
+			die('Could not get data: ' . mysql_error());
+		}	
+	 ?>
 
 <!doctype html>
 <html>
@@ -46,7 +48,14 @@ mysql_select_db('webshop');
 	<div id="mainElement">
 		<header id="header">Konstantin's web shop</header>
 		<div id="elementOne">
-			<div class="side" >BANNER</div>
+		<!-- 	<?php
+			// while($arr = mysql_fetch_assoc($banner)){
+
+			 ?>
+			<div class="side"><img src="images/<?php echo $arr['banner']; ?>"></div>
+			<?php 
+			//}
+			 ?> -->
 			<div id="central">
 				<table class="table table-hover">
 					<thead>

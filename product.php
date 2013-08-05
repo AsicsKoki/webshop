@@ -56,7 +56,9 @@
 
 	//QUANTITY SUBMIT
 	if ( !empty($_POST)) {
-		print_r($_POST);
+		mysql_select_db("products", $conn);
+		$data = mysql_fetch_assoc($_POST, $_GET);
+		
 	}
 
 

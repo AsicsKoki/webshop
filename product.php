@@ -39,20 +39,25 @@
 
 	//LEVI BANNER
 
-		$banners = 'SELECT banner FROM banners';
+	$banners = 'SELECT banner FROM banners';
 
-		$banners = mysql_query($banners, $conn);
-		if(! $banners) {
-			die('Could not get data: ' . mysql_error());
-		}
+	$banners = mysql_query($banners, $conn);
+	if(! $banners) {
+		die('Could not get data: ' . mysql_error());
+	}
 
-		$bannerNames = [];
-		while ($bannerName= mysql_fetch_assoc($banners)) {
-			$bannerNames[] = 'images/'.$bannerName["banner"];
-		}
-		shuffle($bannerNames);
-		$banners = array_slice($bannerNames, 0,3);
-		$banners2 = array_slice($bannerNames, 3,6);
+	$bannerNames = [];
+	while ($bannerName= mysql_fetch_assoc($banners)) {
+		$bannerNames[] = 'images/'.$bannerName["banner"];
+	}
+	shuffle($bannerNames);
+	$banners = array_slice($bannerNames, 0,3);
+	$banners2 = array_slice($bannerNames, 3,6);
+
+	//QUANTITY SUBMIT
+	if ( !empty($_POST)) {
+		print_r($_POST);
+	}
 
 
 
@@ -84,13 +89,18 @@
 						} else { ?>
 							<option value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
 						<?php
+						}
 					}
-					}
-	
 					echo "</select>";
 				?>
-				<footer><button class="btn btn-primary" type="button" style="float: left">Purchase item</button><input style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
-				</footer></div>
+				<footer>
+					<form action="" method="post">
+						<label for="quantity">quantity: </label>	
+						<input type="submit" value="purchase">
+						<input name="quantity" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
+					</form>
+				</footer>
+			</div>
 				<div class="columnRight"><img class="img-polaroid" src="images/<?php echo $arr[0]['image']; ?>"/>
 					<input id="checkbox" type="checkbox">rotate banners
 				</div>

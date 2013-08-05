@@ -57,8 +57,9 @@
 	//QUANTITY SUBMIT
 	if ( !empty($_POST)) {
 		mysql_select_db("products", $conn);
-		$data = mysql_fetch_assoc($_POST, $_GET);
-		
+		$quantity = $_POST['quantity'];
+		$idd = $_GET['id'];
+		mysqli_query("UPDATE products SET quantity='$quantity' WHERE id = '$idd'",$conn);
 	}
 
 

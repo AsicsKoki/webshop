@@ -1,19 +1,10 @@
-<?php 
-	
-	// $con = mysqli_connect("localhost","root","","webshop"); 
-	// $result = mysqli_query($con,"SELECT * FROM table products");
-	
-	// var_dump($result);
-
-$conn = mysql_connect("localhost","root","","webshop");
-	if(! $conn ) {
-		die('Could not connect: ' . mysql_error());
-	}
+<?php
+include 'phpcode.php';
 
 $sql = 'SELECT * FROM products';
 
 mysql_select_db('webshop');
-													
+
 $retval = mysql_query( $sql, $conn );
 	if(! $retval ) {
 		die('Could not get data: ' . mysql_error());
@@ -32,7 +23,7 @@ mysql_select_db('webshop');
 		$banner = mysql_query($banners, $conn);
 		if(! $banner) {
 			die('Could not get data: ' . mysql_error());
-		}	
+		}
 	 ?>
 
 <!doctype html>

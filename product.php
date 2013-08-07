@@ -1,11 +1,6 @@
 <?php
-	$conn = mysql_connect("localhost","root","","webshop");
-	if(! $conn )
-	{
-	  	die('Could not connect: ' . mysql_error());
-	}
+	include 'phpcode.php';
 
-	mysql_select_db('webshop');
 	$id = $_GET["id"];
 	$result= mysql_query("SELECT COUNT(*) FROM products WHERE id='$id'",$conn);
 	$row = mysql_fetch_assoc($result);

@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$conn = mysql_connect("localhost","root","","webshop");
 	if(! $conn )
 	{
@@ -51,15 +51,28 @@
 		$bannerNames[] = 'images/'.$bannerName["banner"];
 	}
 	shuffle($bannerNames);
-	$banners = array_slice($bannerNames, 0,3);
+	$banners  = array_slice($bannerNames, 0,3);
 	$banners2 = array_slice($bannerNames, 3,6);
 
 	//QUANTITY SUBMIT
-	if ( !empty($_POST)) {
-		mysql_select_db("products", $conn);
-		$quantity = $_POST['quantity'];
-		$idd = $_GET['id'];
-		mysqli_query("UPDATE products SET quantity='$quantity' WHERE id = '$idd'",$conn);
+	if (isset($_POST['quantity'])){
+		$amount = 'SELECT quantity FROM products WHERE id = ' . $id;
+		$current = mysql_query( $amount, $conn);
+		if(! $current )
+		{
+			 die('Could not get data: ' . mysql_error());
+		}
+		
+		while ($val= mysql_fetch_assoc($current))
+			$value = $val['quantity'];
+
+		if ($value >= $_POST['quantity']){
+			$quantity = $_POST['quantity'];
+			mysql_query("UPDATE products SET quantity= quantity - '$quantity' WHERE id = '$id'",$conn);
+			$sucsses = "Purchase sucssesfull";
+		} else {
+			$error = "Amount is too high";
+		}
 	}
 
 
@@ -78,9 +91,17 @@
 	<div id="mainElement">
 		<header id="header">Konstantin's web shop</header>
 		<div id="elementOne">
-		
+
 			<div class="side"><img id="banner" src=""></div>
 			<div id="central">
+				<?php
+				//ERROR/SUCSSES CHECK AND POPUP
+					if(isset($error)){
+						echo "<div class='alert alert-error'> <button type='button' class='close' data-dismiss='alert'>&times;</button>$error</div>";	}
+					if(isset($sucsses)){
+						echo "<div class='alert alert-sucsses'> <button type='button' class='close' data-dismiss='alert'>&times;</button>$sucsses</div>";
+					}
+						 ?>
 				<div class="columnLeft">
 					<?php echo $arr[0]["description"];
 
@@ -98,7 +119,7 @@
 				?>
 				<footer>
 					<form action="" method="post">
-						<label for="quantity">quantity: </label>	
+						<label for="quantity">quantity: </label>
 						<input type="submit" value="purchase">
 						<input name="quantity" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
 					</form>
@@ -108,7 +129,7 @@
 					<input id="checkbox" type="checkbox">rotate banners
 				</div>
 			</div>
-			
+
 			<div class="side"><img id="banner2" src=""></div>
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>

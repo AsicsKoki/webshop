@@ -1,6 +1,6 @@
 <?php
-	include 'phpcode.php';
-
+	include 'common.php';
+	//PRODUCT DATA
 	$id = $_GET["id"];
 	$result= mysql_query("SELECT COUNT(*) FROM products WHERE id='$id'",$conn);
 	$row = mysql_fetch_assoc($result);
@@ -20,10 +20,9 @@
 
 		while($row = mysql_fetch_assoc($retval))
 	$arr[] = $row;
-	//var_dump($arr);
 	$arr[0]["name"];
 
-	// OVDE SELEKTUJE BOJE
+	// COLOR SELECTION
 	$boje= "SELECT * FROM colors";
 
 	$retval = mysql_query( $boje, $conn );
@@ -32,7 +31,7 @@
 	  die('Could not get data: ' . mysql_error());
 	}
 
-	//LEVI BANNER
+	//BANNERS
 
 	$banners = 'SELECT banner FROM banners';
 

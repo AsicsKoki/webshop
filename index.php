@@ -1,5 +1,5 @@
 <?php
-include 'phpcode.php';
+include 'common.php';
 
 $sql = 'SELECT * FROM products';
 
@@ -39,14 +39,6 @@ mysql_select_db('webshop');
 	<div id="mainElement">
 		<header id="header">Konstantin's web shop</header>
 		<div id="elementOne">
-		<!-- 	<?php
-			// while($arr = mysql_fetch_assoc($banner)){
-
-			 ?>
-			<div class="side"><img src="images/<?php echo $arr['banner']; ?>"></div>
-			<?php 
-			//}
-			 ?> -->
 			<div id="central">
 				<table class="table table-hover">
 					<thead>

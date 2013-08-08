@@ -64,7 +64,7 @@
 		if ($value >= $_POST['quantity']){
 			$quantity = $_POST['quantity'];
 			mysql_query("UPDATE products SET quantity= quantity - '$quantity' WHERE id = '$id'",$conn);
-			$sucsses = "Purchase sucssesfull";
+			$success = "Purchase successfull";
 		} else {
 			$error = "Amount is too high";
 		}
@@ -92,7 +92,7 @@
 			<div class="side"><img id="banner" src=""></div>
 			<div id="central">
 				<?php
-				//ERROR/SUCSSES CHECK AND POPUP
+				//ERROR/success CHECK AND POPUP
 					include 'notice.php';
 						 ?>
 				<div class="columnLeft">

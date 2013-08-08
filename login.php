@@ -1,11 +1,17 @@
 <?php
 		include 'common.php';
+		include 'notice.php';
 
-		
+
 		if(isset($_POST['password'], $_POST['username'])){
 
-		$username = $_POST['username'];;
+		$username = $_POST['username'];
 		$password = $_POST['password'];
+
+			if ($username == "" OR $password == "") {
+				$_SESSION['messageError'] = "Please enter username and password.";
+				header("Location: login.php");
+			}
 
 			$sql = mysql_query("SELECT * FROM users WHERE username='$username' AND password='$password'");
 			$row = mysql_fetch_assoc($sql);
@@ -14,9 +20,8 @@
 				session_start();
 				$_SESSION['username'] = $username;
 				header("Location: index.php");
-				exit();
 			} else {
-				echo "Wrong Username or Password";
+				$_SESSION['messageError'] = "Wrong username and/or password.";
 			}
 		}
 

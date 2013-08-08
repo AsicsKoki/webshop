@@ -48,6 +48,7 @@
 				    <input type="checkbox"> Remember me
 				  </label>
 				  <button type="submit" name"submit" class="btn">Sign in</button>
+				  <a href="register.php"><button class="btn-info" src="logout.php">Register</button></a>
 				</form>
 			</div>
 				<div class="side">BANNER</div>

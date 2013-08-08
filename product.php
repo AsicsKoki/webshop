@@ -1,4 +1,5 @@
 <?php
+	include 'logincheck.php';
 	include 'common.php';
 	//PRODUCT DATA
 	$id = $_GET["id"];
@@ -83,18 +84,16 @@
 </head>
 <body id="background">
 	<div id="mainElement">
-		<header id="header">Konstantin's web shop</header>
+		<header id="header">Konstantin's web shop
+			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
+		</header>
 		<div id="elementOne">
 
 			<div class="side"><img id="banner" src=""></div>
 			<div id="central">
 				<?php
 				//ERROR/SUCSSES CHECK AND POPUP
-					if(isset($error)){
-						echo "<div class='alert alert-error'> <button type='button' class='close' data-dismiss='alert'>&times;</button>$error</div>";	}
-					if(isset($sucsses)){
-						echo "<div class='alert alert-sucsses'> <button type='button' class='close' data-dismiss='alert'>&times;</button>$sucsses</div>";
-					}
+					include 'notice.php';
 						 ?>
 				<div class="columnLeft">
 					<?php echo $arr[0]["description"];

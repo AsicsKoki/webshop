@@ -1,4 +1,6 @@
 <?php
+
+include 'logincheck.php';
 include 'common.php';
 //SELECT TABLE INFO
 $sql = 'SELECT * FROM products';
@@ -37,7 +39,9 @@ mysql_select_db('webshop');
 </head>
 <body id="background">
 	<div id="mainElement">
-		<header id="header">Konstantin's web shop</header>
+		<header id="header">Konstantin's web shop
+			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
+		</header>
 		<div id="elementOne">
 			<div id="central">
 				<table class="table table-hover">

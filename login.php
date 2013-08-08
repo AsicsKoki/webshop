@@ -1,8 +1,24 @@
 <?php
 		include 'common.php';
 
-		$sql = mysql_query("SELECT COUNT(*) AS total FROM users WHERE username='$username'");
-		$row = mysql_fetch_object($sql);
+		
+		if(isset($_POST['password'], $_POST['username'])){
+
+		$username = $_POST['username'];;
+		$password = $_POST['password'];
+
+			$sql = mysql_query("SELECT * FROM users WHERE username='$username' AND password='$password'");
+			$row = mysql_fetch_assoc($sql);
+
+			if ($row) {
+				session_start();
+				$_SESSION['username'] = $username;
+				header("Location: index.php");
+				exit();
+			} else {
+				echo "Wrong Username or Password";
+			}
+		}
 
 ?>
 

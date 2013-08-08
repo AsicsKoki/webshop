@@ -1,6 +1,6 @@
 <?php
 include 'common.php';
-
+//SELECT TABLE INFO
 $sql = 'SELECT * FROM products';
 
 mysql_select_db('webshop');
@@ -16,7 +16,7 @@ mysql_select_db('webshop');
 	if(! $retval2 ) {
 		die('Could not get data: ' . mysql_error());
 	}
-
+	//BANNER SELECT
 		$banners = 'SELECT banner FROM banners LIMIT 0,3';
 
 	mysql_select_db('webshop');

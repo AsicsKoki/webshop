@@ -10,6 +10,34 @@
 	<link rel ="stylesheet" href="../css/bootstrap.min.css">
 	<link rel ="stylesheet" href="../css/bootstrap-responsive.css">
 	<link rel ="stylesheet" href="../css/bootstrap-responsive.min.css">
+	<style>
+	header{
+	height:100px;
+}
+.bs-docs-sidenav.affix {
+  	top: 10px;
+}
+@media (min-width: 1200px) {
+  .bs-docs-sidenav {
+      width: 258px;
+  }
+  .bs-docs-sidenav {
+      width: 228px;
+      margin: 10px 0 0;
+      padding: 0;
+      background-color: #fff;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+      -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+      -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+      box-shadow: 0 1px 4px rgba(0,0,0,.065);
+      text-align: left;
+  }
+  .affix {
+    position: fixed;
+  }
+}</style>
 </head>
 <body id="background">
 <div id="mainElement">
@@ -28,17 +56,16 @@
 		</div>
 	</div>
 		<div id="elementOne">
-				<div>
-					<div class="dropdown">
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-						<li><a tabindex="-1" href="#">Action</a></li>
-						<li><a tabindex="-1" href="#">Another action</a></li>
-						<li><a tabindex="-1" href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li><a tabindex="-1" href="#">Separated link</a></li>
-					</ul>
-			</div>
-			</div>
+			 <div class="span3 bs-docs-sidebar">
+			    <ul class="nav nav-list bs-docs-sidenav affix-top" data-spy="affix" data-offset-top="100">
+			      <li class="header"><h3>Sidebar</h3></li>
+			      <li class="active"><a href="#global"><i class="icon-chevron-right"></i> Global styles</a></li>
+			      <li><a href="#gridSystem"><i class="icon-chevron-right"></i> Grid system</a></li>
+			      <li><a href="#fluidGridSystem"><i class="icon-chevron-right"></i> Fluid grid system</a></li>
+			      <li><a href="#layouts"><i class="icon-chevron-right"></i> Layouts</a></li>
+			      <li><a href="#responsive"><i class="icon-chevron-right"></i> Responsive design</a></li>
+			    </ul>
+			  </div>
 			<div id="central">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

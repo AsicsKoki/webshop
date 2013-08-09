@@ -18,14 +18,24 @@ mysql_select_db('webshop');
 	if(! $retval2 ) {
 		die('Could not get data: ' . mysql_error());
 	}
-	//BANNER SELECT
-		$banners = 'SELECT banner FROM banners LIMIT 0,3';
+		//BANNERS
 
-	mysql_select_db('webshop');
-		$banner = mysql_query($banners, $conn);
-		if(! $banner) {
-			die('Could not get data: ' . mysql_error());
-		}
+	$banners = 'SELECT banner FROM banners';
+
+	$banners = mysql_query($banners, $conn);
+	if(! $banners) {
+		die('Could not get data: ' . mysql_error());
+	}
+
+	$bannerNames = [];
+	while ($bannerName= mysql_fetch_assoc($banners)) {
+		$bannerNames[] = 'images/'.$bannerName["banner"];
+	}
+	shuffle($bannerNames);
+	$banners  = array_slice($bannerNames, 0,3);
+	$banners2 = array_slice($bannerNames, 3,6);
+
+
 	 ?>
 
 <!doctype html>
@@ -43,7 +53,8 @@ mysql_select_db('webshop');
 			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
 		</header>
 		<div id="elementOne">
-			<div id="central">
+			<div class="side"><img id="banner" src=""></div>
+				<div id="central">
 				<table class="table table-hover">
 					<thead>
 						<th>Product name</th>
@@ -70,13 +81,19 @@ mysql_select_db('webshop');
 					</tbody>
 				</table>
 			</div>
-			<div class="side">BANNER</div>
+			<div class="side"><img id="banner2" src=""></div>
+			<input id="checkbox" type="checkbox">rotate banners
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>
 	</div>
-	<script src="bootstrap.js"></script>
-	<script src="bootstrap.min.js"></script>
-	<script src="main.js"></script>
+    <script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		var banners  = <?php echo json_encode($banners); ?>;
+		var banners2 = <?php echo json_encode($banners2); ?>;
+	</script>
 </body>
 </html>
 <?php mysql_close($conn); ?>

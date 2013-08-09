@@ -7,11 +7,13 @@
 
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-
 			if ($username == "" OR $password == "") {
 				$_SESSION['messageError'] = "Please enter username and password.";
 				header("Location: login.php");
 			}
+
+			$password = crypt($password, "./PeRa1.2.");
+			var_dump($password);
 
 			$sql = mysql_query("SELECT * FROM users WHERE username='$username' AND password='$password'");
 			$row = mysql_fetch_assoc($sql);
@@ -48,7 +50,7 @@
 				    <input type="checkbox"> Remember me
 				  </label>
 				  <button type="submit" name"submit" class="btn">Sign in</button>
-				  <a href="register.php"><button class="btn-info" src="logout.php">Register</button></a>
+				  <a class="btn-info" href="register.php">Register</a>
 				</form>
 			</div>
 				<div class="side">BANNER</div>

@@ -1,20 +1,40 @@
 <?php 
 	include 'common.php';
 	include 'notice.php';
-
+		
 		if(isset($_POST['password'], $_POST['username'], $_POST['first_name'], $_POST['last_name'], $_POST['email'])){
 
-			$username = $_POST['username'];
-			$password = $_POST['password'];
+			$username   = $_POST['username'];
+			$password   = $_POST['password'];
 			$first_name = $_POST['first_name'];
-			$last_name = $_POST['last_name'];
-			$email = $_POST['email'];
+			$last_name  = $_POST['last_name'];
+			$email      = $_POST['email'];
 
-			if ($username == "" || $password == "" || $first_name = "" || $last_name = "" || $email = |"") {
+			if (!$username || !$password || !$first_name || !$last_name || !$email) {
+				session_start();
+
 				$_SESSION['messageError'] = "Please enter info.";
 				header("Location: register.php");
 			}
+			if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+			$password   = crypt($_POST['password'],"./PeRa1.2.");
+
+			$sql = mysql_query("SELECT * FROM users WHERE username='$username' OR email='$email'");
+			$row = mysql_fetch_assoc($sql);
+			if(!$row){
+
+			mysql_query ("INSERT INTO users (username, password, first_name, last_name, email) VALUES ('$username', '$password', '$first_name', '$last_name', '$email')");
+			header("location: index.php");
+			} else {
+			$_SESSION['messageError'] = "Username or email already exists.";
+			header("Location: register.php");
+			}
+		} else {
+			$_SESSION['messageError'] = "Invalid email";
+			header("Location: register.php");
 		}
+	}
  ?>
 
 
@@ -38,7 +58,7 @@
 					<input type="text" name="email" class="input-medium" placeholder="Email?">
 				  	<input type="text" class="input-medium" name="username" placeholder="username">
 				  	<input type="password" name="password" class="input-medium" placeholder="Password">
-				  	<button type="submit" name"submit" class="btn">Sign in</button>
+				  	<button type="submit" name"submit" class="btn">Register</button>
 				</form>
 			</div>
 				<div class="side">BANNER</div>

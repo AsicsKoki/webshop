@@ -126,23 +126,13 @@
 			<div class="side"><img id="banner2" src=""></div>
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>
-		    <div id="alert" class="modal hide fade">
-	    <div  class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		    <h3>Alert!</h3>
-	    </div>
-	    <div class="modal-body">
-	  	  <p>Nema na lageru</p>
-	    </div>
-	    <div class="modal-footer">
-	   	 <a href="#" class="btn" data-dismiss="modal">Close</a>
-	    </div>
+
     </div>
     <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/javaShop.js"></script>
 	<script>
-		var banners = <?php echo json_encode($banners); ?>;
+		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;
 	</script>
 	<script src="js/main.js"></script>

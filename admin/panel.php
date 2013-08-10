@@ -1,31 +1,44 @@
 <?php 
-	echo "NICE, YOU ARE HERE!";
+	
  ?>
 
  <!doctype HTML>
  <html>
 <head>
-	<link rel="stylesheet" href="../css/styles.css">
-	<link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../css/bootstrap-responsive.css">
-	<link rel="stylesheet" href="../css/bootstrap-responsive.min.css">
+	<link rel ="stylesheet" href="../css/styles.css">
+	<link rel ="stylesheet" href="../css/bootstrap.css">
+	<link rel ="stylesheet" href="../css/bootstrap.min.css">
+	<link rel ="stylesheet" href="../css/bootstrap-responsive.css">
+	<link rel ="stylesheet" href="../css/bootstrap-responsive.min.css">
 </head>
 <body id="background">
 <div id="mainElement">
 	<header id="header">Konstantin's web shop</header>
-	<div width="100%">CONTROL PANEL</div>
-		<div>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-
- 			<li class="dropdown-submenu">
-    		<a tabindex="-1" href="#">More options</a>
-    		<ul class="dropdown-menu">
-    </ul>
-  </li>
-</ul>
-		 </div>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div width="100%">
+				<ul class="nav">
+		   			<li class="active">
+						<a href="panel.php">Home</a>
+					</li>
+						<li><a href="#">Posts</a></li>
+						<li><a href="#">Users</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 		<div id="elementOne">
+				<div>
+					<div class="dropdown">
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+						<li><a tabindex="-1" href="#">Action</a></li>
+						<li><a tabindex="-1" href="#">Another action</a></li>
+						<li><a tabindex="-1" href="#">Something else here</a></li>
+						<li class="divider"></li>
+						<li><a tabindex="-1" href="#">Separated link</a></li>
+					</ul>
+			</div>
+			</div>
 			<div id="central">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -34,13 +47,12 @@
 				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</div>
-				<div class="side">BANNER</div>
-			</div>
-		<footer id="footer">(2013) All rights reserved</footer>
-	</div>
-	<script src="/..js/bootstrap.js"></script>
-	<script src="/..js/bootstrap.min.js"></script>
-	<script src="/..js/main.js"></script>
+		</div>
+	<footer id="footer">(2013) All rights reserved</footer>
+</div>
+	<script src="../js/jquery-1.10.2.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/main.js"></script>
 </body>
 </html>
-<?php mysql_close($conn); ?>

@@ -4,9 +4,10 @@
 
 
 		if(isset($_POST['password'], $_POST['username'])){
+			
+			$username   = mysql_real_escape_string($_POST['username']);
+			$password   = mysql_real_escape_string($_POST['password']);
 
-		$username = $_POST['username'];
-		$password = $_POST['password'];
 			if ($username == "" OR $password == "") {
 				$_SESSION['messageError'] = "Please enter username and password.";
 				header("Location: login.php");

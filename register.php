@@ -4,11 +4,11 @@
 		
 		if(isset($_POST['password'], $_POST['username'], $_POST['first_name'], $_POST['last_name'], $_POST['email'])){
 
-			$username   = $_POST['username'];
-			$password   = $_POST['password'];
-			$first_name = $_POST['first_name'];
-			$last_name  = $_POST['last_name'];
-			$email      = $_POST['email'];
+			$username   = mysql_real_escape_string($_POST['username']);
+			$password   = mysql_real_escape_string($_POST['password']);
+			$first_name = mysql_real_escape_string($_POST['first_name']);
+			$last_name  = mysql_real_escape_string($_POST['last_name']);
+			$email      = mysql_real_escape_string($_POST['email']);
 
 			if (!$username || !$password || !$first_name || !$last_name || !$email) {
 				session_start();

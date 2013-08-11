@@ -15,7 +15,7 @@
 		float: left;
 	}
 	#central{
-		 width: 600px;
+		 width: 800px;
 		 border: 1px solid black;
 		 float: left;
 	}
@@ -26,6 +26,7 @@
 		color: gold;
 		letter-spacing: 2px;
 		text-shadow: 0.5px 0.5px 0.5px #000000 ;
+		height: 50px;
 	}
 	#footer{
 		float: left; 
@@ -38,11 +39,11 @@
 		background-color: #660066;
 	}
 	#elementOne{
-		 float: left;
+		 float: right;
 		 width: 100%;
 	}
 	#mainElement{
-		width:800px; 
+		width:1200px; 
 		border: 1px solid black; 
 		text-align: center;
 		margin: 0 auto; 
@@ -101,3 +102,30 @@
     	padding-top: 240px;
 		padding-left: 150px;
     }
+    .headerNavbar{
+	height:100px;
+}
+.bs-docs-sidenav.affix {
+  	top: 10px;
+}
+ @media (min-width: 1200px) {
+  .bs-docs-sidenav {
+      width: 258px;
+  }
+  .bs-docs-sidenav {
+      width: 228px;
+      margin: 10px 0 0;
+      padding: 0;
+      background-color: #fff;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+      -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+      -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+      box-shadow: 0 1px 4px rgba(0,0,0,.065);
+      text-align: left;
+  }
+  .affix {
+    position: fixed;
+  }
+}

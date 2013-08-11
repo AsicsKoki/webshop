@@ -1,8 +1,23 @@
 <?php 
+
 		include '../common.php';
 		include '../notice.php';
+	
+		$sql = 'SELECT * FROM products';
 
+	mysql_select_db('webshop');
 
+	$retval = mysql_query( $sql, $conn );
+	if(! $retval ) {
+		die('Could not get data: ' . mysql_error());
+	}
+	$full= "SELECT products.id, products.name as product_name, colorid, price, quantity, image, description, colors.id as colors_id, colors.name as colors_name FROM products, colors WHERE (colors.id = colorid)";
+
+	mysql_select_db('webshop');
+		$retval2 = mysql_query( $full, $conn );
+	if(! $retval2 ) {
+		die('Could not get data: ' . mysql_error());
+	}
  ?>
 
  <!doctype HTML>
@@ -29,12 +44,31 @@
 			    </ul>
 			  </div>
 			<div id="central">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				<table class="table table-hover">
+					<thead>
+						<th>Product name</th>
+						<th>Color</th>
+						<th>Price</th>
+						<th>Action</th>
+						<th>Quantity</th>
+					</thead>
+					<tbody>
+						<?php 
+							while($row = mysql_fetch_assoc($retval2)) {
+
+						 ?>
+						<tr>
+							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["product_name"]; ?></a></td>
+							<td class="column2"><?php echo $row["colors_name"]; ?></td>
+							<td class="column3"><i class="icon-tag"></i><?php echo $row["price"]; ?></td>
+							<td class="column4"><a class="btn btn-danger" target="_blank" href="product.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Delete</a></td>
+							<td class="column5"><?php echo $row["quantity"] ?></td>
+						</tr>
+						<?php 
+							}
+						 ?>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	<footer id="footer">(2013) All rights reserved</footer>

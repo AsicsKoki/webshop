@@ -49,6 +49,7 @@
 						<th>Color</th>
 						<th>Price</th>
 						<th>Action</th>
+						<th>Action</th>
 						<th>Quantity</th>
 					</thead>
 					<tbody>
@@ -60,7 +61,8 @@
 							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["product_name"]; ?></a></td>
 							<td class="column2"><?php echo $row["colors_name"]; ?></td>
 							<td class="column3"><i class="icon-tag"></i><?php echo $row["price"]; ?></td>
-							<td class="column4"><a class="btn btn-danger" target="_blank" href="productDelete.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Delete</a></td>
+							<td class="column4"><a class="btn btn-warning" href="productEdit.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Edit</a></td>
+							<td class="column4"><a class="btn btn-danger" href="productDelete.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Delete</a></td>
 							<td class="column5"><?php echo $row["quantity"] ?></td>
 						</tr>
 						<?php 

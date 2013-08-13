@@ -3,14 +3,10 @@
 		include '../common.php';
 		include '../notice.php';
 	
-		$sql = 'SELECT * FROM products';
+		
+	// $full= "SELECT products.id, products.name as product_name, colorid, price, quantity, image, description, colors.id as colors_id, colors.name as colors_name FROM products, colors WHERE (colors.id = colorid)";
 
-
-	$retval = mysql_query( $sql, $conn );
-	if(! $retval ) {
-		die('Could not get data: ' . mysql_error());
-	}
-	$full= "SELECT products.id, products.name as product_name, colorid, price, quantity, image, description, colors.id as colors_id, colors.name as colors_name FROM products, colors WHERE (colors.id = colorid)";
+	$full = "SELECT * FROM products LEFT JOIN colors ON products.id=colors.id";
 
 	mysql_select_db('webshop');
 		$retval2 = mysql_query( $full, $conn );

@@ -65,10 +65,10 @@
 			<div id="central">
 				<form action="" method="post">
 				<ul>
-				<li>Name:<input type="text" name="name" value="<?php echo $row["name"];?>" /></li>
-				<li>Price:<input type="text" name="price" value="<?php echo $row["price"] ;?>" /></li>
-				<li>Quantity:<input type="number" name="quantity" value="<?php echo $row["quantity"] ;?>" /></li>
-				<li>Description:<textarea name="description" cols="100" rows="10"><?php echo $row["description"] ;?></textarea></li>
+				<li>Name:<input type="text" name="name" value="<?php echo $row["name"];?>" data-trigger="change" data-validation-minlength/></li>
+				<li>Price:<input type="text" name="price" value="<?php echo $row["price"] ;?>" data-trigger="change" data-notblank="true" data-type="number"/></li>
+				<li>Quantity:<input type="number" name="quantity" value="<?php echo $row["quantity"] ;?>" data-trigger="change" data-notblank="true" data-type="number"/></li>
+				<li>Description:<textarea name="description" cols="100" rows="10" data-trigger="change" data-rangelength="[20,400]"><?php echo $row["description"] ;?></textarea></li>
 				<?php
 				echo "<select name='color'>";
 					while ($color= mysql_fetch_assoc($retvalcolor)) {
@@ -82,7 +82,6 @@
 					}
 					echo "</select>";
 				?>
-
 				<li><input type="submit" name"submit" class="btn" value="Save"></li>
 				</ul>
 				</form>
@@ -94,5 +93,6 @@
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/main.js"></script>
+	<script src="../js/parsley.js"></script>
 </body>
 </html>

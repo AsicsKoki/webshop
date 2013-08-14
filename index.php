@@ -2,6 +2,12 @@
 
 include 'logincheck.php';
 include 'common.php';
+
+
+if (!userLogin($conn)) {
+	$_SESSION['messageError'] = "Please log in.";
+	header("Location: login.php");
+	}
 //SELECT TABLE INFO
 $sql = 'SELECT * FROM products';
 
@@ -11,7 +17,8 @@ $retval = mysql_query( $sql, $conn );
 	if(! $retval ) {
 		die('Could not get data: ' . mysql_error());
 	}
-$full= "SELECT products.id, products.name as product_name, colorid, price, quantity, image, description, colors.id as colors_id, colors.name as colors_name FROM products, colors WHERE (colors.id = colorid)";
+$full = "SELECT *, colors.name AS color_name, products.name as product_name FROM products LEFT JOIN colors ON products.id=colors.id";
+
 
 mysql_select_db('webshop');
 	$retval2 = mysql_query( $full, $conn );
@@ -70,7 +77,7 @@ mysql_select_db('webshop');
 						 ?>
 						<tr>
 							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["product_name"]; ?></a></td>
-							<td class="column2"><?php echo $row["colors_name"]; ?></td>
+							<td class="column2"><?php echo $row["color_name"]; ?></td>
 							<td class="column3"><i class="icon-tag"></i><?php echo $row["price"]; ?></td>
 							<td class="column4"><a class="btn btn-info" target="_blank" href="product.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>More info</a></td>
 							<td class="column5"><?php echo $row["quantity"] ?></td>

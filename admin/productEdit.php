@@ -3,11 +3,10 @@
 	include '../notice.php';
 
 
-	if (!loginCheck($conn)) {
-		$_SESSION['messageError'] = "You don't have permissions to view this page.";
+	if (!userLogin($conn)) {
+		$_SESSION['messageError'] = "Please log in!";
 		header("Location: login.php");
 	}
-
 
 	$id = $_GET['id'];
 	if(!empty($_POST)){

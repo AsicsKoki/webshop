@@ -4,7 +4,7 @@
 
 
 		if(isset($_POST['password'], $_POST['username'])){
-			
+
 			$username   = mysql_real_escape_string($_POST['username']);
 			$password   = mysql_real_escape_string($_POST['password']);
 

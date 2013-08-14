@@ -1,6 +1,11 @@
 <?php
 	include 'logincheck.php';
 	include 'common.php';
+
+	if (!userLogin($conn)) {
+		$_SESSION['messageError'] = "Please log in.";
+		header("Location: login.php");
+	}
 	//PRODUCT DATA
 	$id = $_GET["id"];
 	$result= mysql_query("SELECT COUNT(*) FROM products WHERE id='$id'",$conn);

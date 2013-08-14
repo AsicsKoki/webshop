@@ -6,14 +6,13 @@
 		if(isset($_POST['password'], $_POST['username'])){
 			$username   = mysql_real_escape_string($_POST['username']);
 			$password   = mysql_real_escape_string($_POST['password']);
-			
+
 			if ($username == "" OR $password == "") {
 				$_SESSION['messageError'] = "Please enter username and password.";
 				header("Location: login.php");
 			}
 
 			$password = crypt($password, "./PeRa1.2.");
-			var_dump($password);
 
 			$sql = mysql_query("SELECT * FROM users WHERE username='$username' AND password='$password'");
 			$row = mysql_fetch_assoc($sql);
@@ -24,6 +23,7 @@
 				header("Location: index.php");
 			} else {
 				$_SESSION['messageError'] = "Wrong username and/or password.";
+				header("Location: login.php");
 			}
 		}
 

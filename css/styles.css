@@ -129,3 +129,6 @@
     position: fixed;
   }
 }
+  .parsley-error-list {
+  	color: red;
+  }

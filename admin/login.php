@@ -14,7 +14,6 @@
 			}
 
 			$password = crypt($password, "./PeRa1.2.");
-			var_dump($password);
 
 			$sql = mysql_query("SELECT * FROM users WHERE username='$username' AND password='$password' AND role_id = 1");
 			$row = mysql_fetch_assoc($sql);

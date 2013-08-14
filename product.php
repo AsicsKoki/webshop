@@ -57,7 +57,7 @@
 		{
 			 die('Could not get data: ' . mysql_error());
 		}
-		
+
 		while ($val= mysql_fetch_assoc($current))
 			$value = $val['quantity'];
 

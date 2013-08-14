@@ -1,10 +1,14 @@
-<?php 
+<?php
 
 		include '../common.php';
 		include '../notice.php';
-	
-		
-	// $full= "SELECT products.id, products.name as product_name, colorid, price, quantity, image, description, colors.id as colors_id, colors.name as colors_name FROM products, colors WHERE (colors.id = colorid)";
+
+
+	if (!loginCheck($conn)) {
+		$_SESSION['messageError'] = "You don't have permissions to view this page.";
+		header("Location: login.php");
+	}
+
 
 	$full = "SELECT *, colors.name AS color_name, products.name as product_name FROM products LEFT JOIN colors ON products.id=colors.id";
 
@@ -13,6 +17,7 @@
 	if(! $retval2 ) {
 		die('Could not get data: ' . mysql_error());
 	}
+
  ?>
 
  <!doctype HTML>
@@ -26,7 +31,8 @@
 </head>
 <body id="background">
 <div id="mainElement">
-	<header id="header">Konstantin's web shop</header>
+	<header id="header">Konstantin's web shop
+	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
 		<div id="elementOne">
 			 <div class="span3 bs-docs-sidebar">
 			    <ul class="nav nav-list bs-docs-sidenav affix-top" data-spy="affix" data-offset-top="100">
@@ -49,7 +55,7 @@
 						<th>Quantity</th>
 					</thead>
 					<tbody>
-						<?php 
+						<?php
 							while($row = mysql_fetch_assoc($retval2)) {
 						 ?>
 						<tr>
@@ -60,7 +66,7 @@
 							<td class="column4"><a class="btn btn-danger" href="productDelete.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Delete</a></td>
 							<td class="column5"><?php echo $row["quantity"] ?></td>
 						</tr>
-						<?php 
+						<?php
 							}
 						 ?>
 					</tbody>

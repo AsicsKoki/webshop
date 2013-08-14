@@ -15,7 +15,7 @@
 
 			$password = crypt($password, "./PeRa1.2.");
 
-			$sql = mysql_query("SELECT * FROM users WHERE username='$username' AND password='$password' AND role_id = 1");
+			$sql = mysql_query("SELECT * FROM users WHERE username='$username' AND password='$password'");
 			$row = mysql_fetch_assoc($sql);
 
 			if ($row) {
@@ -25,6 +25,7 @@
 			} else {
 				$_SESSION['messageError'] = "Wrong username and/or password.";
 			}
+			loginCheck($conn);
 		}
 
 ?>

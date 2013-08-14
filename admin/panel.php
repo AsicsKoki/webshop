@@ -16,7 +16,8 @@
 </head>
 <body id="background">
 <div id="mainElement">
-	<header id="header">Konstantin's web shop</header>
+	<header id="header">Konstantin's web shop
+	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
 		<div id="elementOne">
 			 <div class="span3 bs-docs-sidebar">
 			    <ul class="nav nav-list bs-docs-sidenav affix-top" data-spy="affix" data-offset-top="100">

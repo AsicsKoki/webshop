@@ -3,6 +3,12 @@
 	include '../notice.php';
 
 
+	if (!loginCheck($conn)) {
+		$_SESSION['messageError'] = "You don't have permissions to view this page.";
+		header("Location: login.php");
+	}
+
+
 	$id = $_GET['id'];
 	if(!empty($_POST)){
 		$name        = $_POST['name'];
@@ -52,7 +58,8 @@
 </head>
 <body id="background">
 <div id="mainElement">
-	<header id="header">Konstantin's web shop</header>
+	<header id="header">Konstantin's web shop
+	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
 		<div id="elementOne">
 			 <div class="span3 bs-docs-sidebar">
 			    <ul class="nav nav-list bs-docs-sidenav affix-top" data-spy="affix" data-offset-top="100">

@@ -24,9 +24,6 @@
 	}
 	$arr = [];
 
-		while($row = mysql_fetch_assoc($retval))
-	$arr[] = $row;
-	$arr[0]["name"];
 
 	// COLOR SELECTION
 	$boje= "SELECT * FROM colors";
@@ -36,6 +33,8 @@
 	{
 	  die('Could not get data: ' . mysql_error());
 	}
+	while($row = mysql_fetch_assoc($retval))
+		$arr[] = $row;
 
 	//BANNERS
 

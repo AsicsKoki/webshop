@@ -14,10 +14,11 @@
 		$quantity    = $_POST['quantity'];
 		$price       = $_POST['price'];
 		$description = $_POST['description'];
+		$color       = $_POST['color'];
 
 		if(is_numeric($quantity) AND $quantity >= 0){
 
-			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = 'color' WHERE id = '$id'",$conn);
+			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color' WHERE id = '$id'",$conn);
 			$_SESSION['messageSuccess'] = "Saved!";
 			header('Location: productEdit.php?id='.$_GET['id']);
 		} else {
@@ -75,19 +76,19 @@
 				<li>Price:<input type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number"/></li>
 				<li>Quantity:<input type="number" name="quantity" value="<?php echo $row["quantity"];?>" data-required="true" data-type="number"/></li>
 				<li>Description:<textarea name="description" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["description"] ;?></textarea></li>
+				<select name='color'>
 				<?php
-				echo "<select name='color'>";
 					while ($color= mysql_fetch_assoc($retvalcolor)) {
-						if ($arr[0]["colorid"] == $color["id"]) { ?>
-							<option selected="selected"  value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
+						if ($row['colorid'] == $color["id"]) { ?>
+							<option selected="selected"  value="<?php echo $color["id"]?>"><?php echo $color["name"] ?></option>
 						<?php
 						} else { ?>
-							<option value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
+							<option value="<?php echo $color["id"]?>"><?php echo $color["name"] ?></option>
 						<?php
 						}
 					}
-					echo "</select>";
 				?>
+				</select>
 				<li><input type="submit" name"submit" class="btn" value="Save"></li>
 				</ul>
 				</form>

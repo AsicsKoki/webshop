@@ -3,7 +3,7 @@
 	include '../notice.php';
 
 
-	if (!userLogin($conn)) {
+	if (!loginCheck($conn)) {
 		$_SESSION['messageError'] = "Please log in!";
 		header("Location: login.php");
 	}

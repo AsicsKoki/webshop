@@ -10,7 +10,7 @@
 	}
 
 
-	$full = "SELECT *, colors.name AS color_name, products.name as product_name FROM products LEFT JOIN colors ON products.id=colors.id";
+	$full = "SELECT *, colors.color_name AS color_name, products.name as product_name FROM products LEFT JOIN colors ON products.id=colors.color_id";
 
 	mysql_select_db('webshop');
 		$retval2 = mysql_query( $full, $conn );
@@ -59,6 +59,7 @@
 							while($row = mysql_fetch_assoc($retval2)) {
 						 ?>
 						<tr>
+							<?php var_dump($row['id']) ?>
 							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["product_name"]; ?></a></td>
 							<td class="column2"><?php echo $row["color_name"]; ?></td>
 							<td class="column3"><i class="icon-tag"></i><?php echo $row["price"]; ?></td>

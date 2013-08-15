@@ -27,7 +27,7 @@
 		}
 	}
 
-	//GETS THE DATA FROMT HE TABLE
+	//GETS THE DATA FROMT THE TABLE
 	$sql = "SELECT * FROM products where id= '$id'";
 
 	$retval = mysql_query( $sql, $conn );
@@ -80,10 +80,10 @@
 				<?php
 					while ($color= mysql_fetch_assoc($retvalcolor)) {
 						if ($row['colorid'] == $color["id"]) { ?>
-							<option selected="selected"  value="<?php echo $color["id"]?>"><?php echo $color["name"] ?></option>
+							<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
 						<?php
 						} else { ?>
-							<option value="<?php echo $color["id"]?>"><?php echo $color["name"] ?></option>
+							<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
 						<?php
 						}
 					}

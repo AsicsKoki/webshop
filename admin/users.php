@@ -9,7 +9,7 @@
 		header("Location: login.php");
 	}
 
-
+//SELECTS DATA FROM THE USERS TABLE
 	$full = "SELECT * FROM users";
 
 	mysql_select_db('webshop');
@@ -17,6 +17,7 @@
 	if(! $retval2 ) {
 		die('Could not get data: ' . mysql_error());
 	}
+//SELECTS DATA FROM ROLES TABLE
 
  ?>
 

@@ -51,7 +51,6 @@
 						<th>Last name</th>
 						<th>username</th>
 						<th>email</th>
-						<th>role</th>
 						<th>Action</th>
 						<th>Action</th>
 					</thead>
@@ -64,7 +63,6 @@
 							<td class="column2"><?php echo $row["last_name"]; ?></td>
 							<td class="column3"><?php echo $row["username"]; ?></td>
 							<td class="column4"><?php echo $row["email"]; ?></a></td>
-							<td class="column4"><?php echo $row["role_id"]; ?></td>
 							<td class="column4"><a class="btn btn-warning" href="userEdit.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Edit</a></td>
 							<td class="column4"><a class="btn btn-danger" href="userDelete.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Delete</a></td>
 						</tr>

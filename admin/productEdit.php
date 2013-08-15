@@ -79,7 +79,7 @@
 				<select name='color'>
 				<?php
 					while ($color= mysql_fetch_assoc($retvalcolor)) {
-						if ($row['colorid'] == $color["id"]) { ?>
+						if ($row['colorid'] == $color["color_id"]) { ?>
 							<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
 						<?php
 						} else { ?>

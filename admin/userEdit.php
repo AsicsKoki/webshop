@@ -16,15 +16,10 @@
 		$role_id    = $_POST['role_id'];
 		$email      = $_POST['email'];
 
-		if(is_numeric($quantity) AND $quantity >= 0){
 
-			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = 'color' WHERE id = '$id'",$conn);
-			$_SESSION['messageSuccess'] = "Saved!";
-			header('Location: productEdit.php?id='.$_GET['id']);
-		} else {
-			$_SESSION['messageError'] = "Please enter valid quantity";
-			header('Location: productEdit.php?id='.$_GET['id']);
-		}
+		mysql_query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', username = '$username', role_id = '$role_id' WHERE id = '$id'",$conn);
+		$_SESSION['messageSuccess'] = "Saved!";
+		header('Location: userEdit.php?id='.$_GET['id']);
 	}
 
 	//GETS THE DATA FROMT HE TABLE

@@ -23,7 +23,7 @@
 	}
 
 	//GETS THE DATA FROMT HE TABLE
-	$sql = "SELECT * FROM users where id= '$id'";
+	$sql = "SELECT * FROM users LEFT JOIN roles ON users.role_id = roles.id WHERE users.id = '$id'";
 
 	$retval = mysql_query( $sql, $conn );
 	if(! $retval )
@@ -31,6 +31,7 @@
 		die('Could not get data: ' . mysql_error());
 	}
 	$row = mysql_fetch_assoc($retval);
+	//FETCH ROLES
 
 
  ?>

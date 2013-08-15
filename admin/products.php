@@ -40,8 +40,6 @@
 			      <li class="active"><a href="panel.php"><i class="icon-chevron-right"></i> Panel home </a></li>
 			      <li><a href="products.php"><i class="icon-chevron-right"></i> Products </a></li>
 			      <li><a href="Users.php"><i class="icon-chevron-right"></i> Users </a></li>
-<!-- 			      <li><a href="#layouts"><i class="icon-chevron-right"></i> Layouts</a></li>
-			      <li><a href="#responsive"><i class="icon-chevron-right"></i> Responsive design</a></li> -->
 			    </ul>
 			  </div>
 			<div id="central">
@@ -59,7 +57,6 @@
 							while($row = mysql_fetch_assoc($retval2)) {
 						 ?>
 						<tr>
-							<?php var_dump($row['id']) ?>
 							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["name"]; ?></a></td>
 							<td class="column2"><?php echo $row["color_name"]; ?></td>
 							<td class="column3"><i class="icon-tag"></i><?php echo $row["price"]; ?></td>

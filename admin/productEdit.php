@@ -15,10 +15,10 @@
 		$price       = $_POST['price'];
 		$description = $_POST['description'];
 		$color       = $_POST['color'];
-
+		$image       = $_FILES['image']['name'];
 		if(is_numeric($quantity) AND $quantity >= 0){
 
-			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color', image = {$_FILES['image']} WHERE id = '$id'",$conn);
+			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color', image = '$image' WHERE id = '$id'",$conn);
 			$_SESSION['messageSuccess'] = "Saved!";
 			header('Location: productEdit.php?id='.$_GET['id']);
 		} else {

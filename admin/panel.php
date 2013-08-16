@@ -22,15 +22,9 @@
 	<header id="header">Konstantin's web shop
 	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
 		<div id="elementOne">
-			 <div class="span3 bs-docs-sidebar">
-			    <ul class="nav nav-list bs-docs-sidenav affix-top" data-spy="affix" data-offset-top="100">
-			      <li class="header"><h3>Menu</h3></li>
-			      <li class="active"><a href="panel.php"><i class="icon-chevron-right"></i> Panel home </a></li>
-			      <li><a href="products.php"><i class="icon-chevron-right"></i> Products </a></li>
-			      <li><a href="Users.php"><i class="icon-chevron-right"></i> Users </a></li>
-<!-- 			      <li><a href="#layouts"><i class="icon-chevron-right"></i> Layouts</a></li>
-			      <li><a href="#responsive"><i class="icon-chevron-right"></i> Responsive design</a></li> -->
-			    </ul>
+			<?php 
+			 include 'sidebar.php';
+			  ?>
 			  </div>
 			<div id="central">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

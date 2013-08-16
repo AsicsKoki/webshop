@@ -61,13 +61,8 @@
 	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
 		<div id="elementOne">
 			 <div class="span3 bs-docs-sidebar">
-			    <ul class="nav nav-list bs-docs-sidenav affix-top" data-spy="affix" data-offset-top="100">
-			      <li class="header"><h3>Menu</h3></li>
-			      <li class="active"><a href="panel.php"><i class="icon-chevron-right"></i> Panel home </a></li>
-			      <li><a href="products.php"><i class="icon-chevron-right"></i> Products </a></li>
-			      <li><a href="Users.php"><i class="icon-chevron-right"></i> Users </a></li>
-			    </ul>
-			  </div>
+				<?php include 'sidebar.php'; ?>
+			 </div>
 			<div id="central">
 				<!-- SUBMISION FORM -->
 				<form action="" method="post" data-validate="parsley">

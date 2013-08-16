@@ -1,4 +1,4 @@
-<?php 
+<?php
 		include '../common.php';
 		include '../notice.php';
 	if (!loginCheck($conn)) {
@@ -22,7 +22,7 @@
 	<header id="header">Konstantin's web shop
 	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
 		<div id="elementOne">
-			<?php 
+			<?php
 			 include 'sidebar.php';
 			  ?>
 			  </div>

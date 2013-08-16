@@ -92,3 +92,6 @@ jQuery(document).ready(function($) {
 			}
 	}, 2000);
 });
+$(document).ready(function() {
+    $('#productsTable').dataTable();
+} );

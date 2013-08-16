@@ -29,6 +29,7 @@
 	<link rel ="stylesheet" href="../css/bootstrap.min.css">
 	<link rel ="stylesheet" href="../css/bootstrap-responsive.css">
 	<link rel ="stylesheet" href="../css/bootstrap-responsive.min.css">
+	<link rel ="stylesheet" href="../css/jquery.dataTables.css">
 </head>
 <body id="background">
 <div id="mainElement">
@@ -38,7 +39,7 @@
 		<?php include 'sidebar.php'; ?>
 			  </div>
 			<div id="central">
-				<table class="table table-hover">
+				<table id="usersTable" class="table table-hover" class="display">
 					<thead>
 						<th>First name</th>
 						<th>Last name</th>
@@ -72,5 +73,6 @@
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/main.js"></script>
+	<script src="../js/jquery.dataTables.min.js"></script>
 </body>
 </html>

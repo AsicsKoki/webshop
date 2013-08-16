@@ -95,3 +95,6 @@ jQuery(document).ready(function($) {
 $(document).ready(function() {
     $('#productsTable').dataTable();
 } );
+$(document).ready(function() {
+    $('#usersTable').dataTable();
+} );

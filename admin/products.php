@@ -29,6 +29,7 @@
 	<link rel ="stylesheet" href="../css/bootstrap-responsive.css">
 	<link rel ="stylesheet" href="../css/bootstrap-responsive.min.css">
 	<link rel ="stylesheet" href="../css/jquery.dataTables.css">
+	<link rel ="stylesheet" href="../css/jquery.dataTables_themeroller.css">
 </head>
 <body id="background">
 <div id="mainElement">

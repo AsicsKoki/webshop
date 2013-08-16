@@ -59,10 +59,9 @@
 <div id="mainElement">
 	<header id="header">Konstantin's web shop
 	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
-		<div id="elementOne">
-			 <div class="span3 bs-docs-sidebar">
-				<?php include 'sidebar.php'; ?>
-			 </div>
+			<div id="elementOne">
+			<?php include 'sidebar.php'; ?>
+			  </div>
 			<div id="central">
 				<!-- SUBMISION FORM -->
 				<form action="" method="post" data-validate="parsley">
@@ -85,9 +84,12 @@
 				?>
 				</select>
 				</li>
+				<li><label for="file">Filename:</label>
+					<input type="file" name="file" id="file"><br></li>
 				<li><input type="submit" name"submit" class="btn" value="Save"></li>
 				</ul>
 				</form>
+				<a href="imageupdate.php">Image update</a>
 			</div>
 		</div>
 	<footer id="footer">(2013) All rights reserved</footer>

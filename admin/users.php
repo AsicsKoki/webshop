@@ -17,8 +17,6 @@
 	if(! $retval2 ) {
 		die('Could not get data: ' . mysql_error());
 	}
-//SELECTS DATA FROM ROLES TABLE
-
  ?>
 
  <!doctype HTML>

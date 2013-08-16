@@ -16,6 +16,9 @@
 		$role_id    = $_POST['role_id'];
 		$email      = $_POST['email'];
 
+	if ($_FILES["file"]["name"]) {
+		fileUpload($conn);
+	}
 
 
 		mysql_query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', username = '$username', role_id = '$role_id' WHERE id = '$id'",$conn);
@@ -43,9 +46,6 @@
 	}
 
 	//FILE UPLOAD
-	if ($_FILES["file"]["name"]) {
-		fileUpload($conn);
-	}
 
 
 

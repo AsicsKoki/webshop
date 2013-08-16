@@ -18,12 +18,15 @@
 
 		if(is_numeric($quantity) AND $quantity >= 0){
 
-			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color' WHERE id = '$id'",$conn);
+			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color', image = {$_FILES['image']} WHERE id = '$id'",$conn);
 			$_SESSION['messageSuccess'] = "Saved!";
 			header('Location: productEdit.php?id='.$_GET['id']);
 		} else {
 			$_SESSION['messageError'] = "Please enter valid quantity";
 			header('Location: productEdit.php?id='.$_GET['id']);
+		}
+		if ($_FILES["file"]["name"]) {
+			fileUpload($conn);
 		}
 	}
 
@@ -64,7 +67,7 @@
 		<?php include 'sidebar.php'; ?>
 			  </div>
 			<div id="central">
-				<form action="" method="post" data-validate="parsley">
+				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
 				<ul>
 				<li>Name:<input type="text" name="name" value="<?php echo $row["name"];?>" data-minlength="3" data-required="true"/></li>
 				<li>Price:<input type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number"/></li>
@@ -83,6 +86,8 @@
 					}
 				?>
 				</select>
+				<li><label for="file">Filename:</label>
+					<input type="file" name="image"><br></li>
 				<li><input type="submit" name"submit" class="btn" value="Save"></li>
 				</ul>
 				</form>

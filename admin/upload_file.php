@@ -1,4 +1,5 @@
 <?php
+  function fileUpload(){
   if ($_FILES["file"]["error"] > 0) {
     echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
     } else {
@@ -14,4 +15,5 @@
       	echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
       }
     }
+}
 ?>

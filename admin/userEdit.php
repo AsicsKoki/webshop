@@ -15,6 +15,8 @@
 		$username   = $_POST['username'];
 		$role_id    = $_POST['role_id'];
 		$email      = $_POST['email'];
+		$role       = $_POST['role'];
+
 
 
 		mysql_query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', username = '$username', role_id = '$role_id' WHERE id = '$id'",$conn);
@@ -23,7 +25,7 @@
 	}
 
 	//GETS THE DATA FROMT HE TABLE
-	$sql = "SELECT * FROM users LEFT JOIN roles ON users.role_id = roles.id WHERE users.id = '$id'";
+	$sql = "SELECT * FROM users WHERE id = '$id'";
 
 	$retval = mysql_query( $sql, $conn );
 	if(! $retval )
@@ -31,7 +33,16 @@
 		die('Could not get data: ' . mysql_error());
 	}
 	$row = mysql_fetch_assoc($retval);
-	//FETCH ROLES
+
+
+	//roles
+	$sql2 = "SELECT * FROM roles";
+	$roles = mysql_query( $sql2, $conn );
+	if(! $roles )
+	{
+		die('Could not get data: ' . mysql_error());
+	}
+
 
 
  ?>
@@ -65,7 +76,20 @@
 				<li>Last name:<input type="text" name="last_name" value="<?php echo $row["last_name"] ;?>" data-required="true" ></li>
 				<li>Username:<input type="text" name="username" value="<?php echo $row["username"];?>" data-required="true"></li>
 				<li>email:<input type="text" name="email" value="<?php echo $row["email"] ;?>" data-required="true" data-type="email" ></li>
-				<li>Role:<input type="number" name="role_id" value="<?php echo $row["role_id"] ;?>" data-required="true" data-type="number"></li>
+				<li><select name='role'>
+				<?php
+					while ($role= mysql_fetch_assoc($roles)) {
+						if ($row['role_id'] == $role["id"]) { ?>
+							<option selected="selected"  value="<?php echo $role["id"]?>"><?php echo $role["role"] ?></option>
+						<?php
+						} else { ?>
+							<option value="<?php echo $row["role_id"]?>"><?php echo $role["role"] ?></option>
+						<?php
+						}
+					}
+				?>
+				</select>
+				</li>
 				<li><input type="submit" name"submit" class="btn" value="Save"></li>
 				</ul>
 				</form>

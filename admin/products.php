@@ -57,7 +57,7 @@
 							while($row = mysql_fetch_assoc($retval2)) {
 						 ?>
 						<tr>
-							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["name"]; ?></a></td>
+							<td class="column1"><a href="../product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["name"]; ?></a></td>
 							<td class="column2"><?php echo $row["color_name"]; ?></td>
 							<td class="column3"><i class="icon-tag"></i><?php echo $row["price"]; ?></td>
 							<td class="column4"><a class="btn btn-warning" href="productEdit.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Edit</a></td>

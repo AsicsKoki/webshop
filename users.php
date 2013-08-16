@@ -1,25 +1,23 @@
 <?php
 
-include 'logincheck.php';
-include 'common.php';
+		include 'common.php';
+		include 'notice.php';
 
 
-if (!userLogin($conn)) {
-	$_SESSION['messageError'] = "Please log in.";
-	header("Location: login.php");
+	if (!loginCheck($conn)) {
+		$_SESSION['messageError'] = "You don't have permissions to view this page.";
+		header("Location: login.php");
 	}
-//SELECT TABLE INFO
-$sql = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id";
 
-mysql_select_db('webshop');
+//SELECTS DATA FROM THE USERS TABLE
+	$full = "SELECT * FROM users";
 
-$retval = mysql_query( $sql, $conn );
-	if(! $retval ) {
+	mysql_select_db('webshop');
+		$retval2 = mysql_query( $full, $conn );
+	if(! $retval2 ) {
 		die('Could not get data: ' . mysql_error());
 	}
-
-
-		//BANNERS
+//BANNERS
 
 	$banners = 'SELECT banner FROM banners';
 
@@ -37,7 +35,7 @@ $retval = mysql_query( $sql, $conn );
 	$banners2 = array_slice($bannerNames, 3,6);
 
 
-	 ?>
+ ?>
 
 <!doctype html>
 <html>
@@ -68,25 +66,24 @@ $retval = mysql_query( $sql, $conn );
 				<div id="central">
 				<table class="table table-hover">
 					<thead>
-						<th>Product name</th>
-						<th>Color</th>
-						<th>Price</th>
+						<th>First name</th>
+						<th>Last name</th>
+						<th>username</th>
+						<th>email</th>
 						<th>Action</th>
-						<th>Quantity</th>
 					</thead>
 					<tbody>
 						<?php
-							while($row = mysql_fetch_assoc($retval)) {
-
+							while($row = mysql_fetch_assoc($retval2)) {
 						 ?>
 						<tr>
-							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["name"]; ?></a></td>
-							<td class="column2"><?php echo $row["color_name"]; ?></td>
-							<td class="column3"><i class="icon-tag"></i><?php echo $row["price"]; ?></td>
-							<td class="column4"><a class="btn btn-info" target="_blank" href="product.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>More info</a></td>
-							<td class="column5"><?php echo $row["quantity"] ?></td>
+							<td class="column1"><?php echo $row["first_name"]; ?></a></td>
+							<td class="column2"><?php echo $row["last_name"]; ?></td>
+							<td class="column3"><?php echo $row["username"]; ?></td>
+							<td class="column4"><?php echo $row["email"]; ?></a></td>
+							<td class="column4"><a class="btn btn-info" href="user.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Profile</a></td>
 						</tr>
-						<?php 
+						<?php
 							}
 						 ?>
 					</tbody>

@@ -12,11 +12,10 @@ $sql = "SELECT * FROM products where id= '$id'";
 	}
 	$row = mysql_fetch_assoc($retval);
 
-
 	 $image = $row['image'];
-	if ($row['image']) {
-		unlink('files/' . $image);
-		header('Location: productEdit.php');
-
+	if ($image) {
+		unlink('../files/' . $image);
+		mysql_query("UPDATE products SET image = '$foo' WHERE id = '$id'",$conn);
+		header('Location: productEdit.php?id='.$_GET['id']);
 	}
  ?>

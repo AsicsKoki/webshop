@@ -22,7 +22,7 @@ function loginCheck($connectionParam){
     } else {
     	echo "Upload: " . $_FILES["image"]["name"] . "<br>";
     	echo "Type: " . $_FILES["image"]["type"] . "<br>";
-    	echo "Size: " . ($_FILES["image"]["size"] / 8192) . " kB<br>";
+    	echo "Size: " . ($_FILES["image"]["size"] / 1024) . " kB<br>";
     	echo "Temp file: " . $_FILES["image"]["tmp_name"] . "<br>";
 
     	if (file_exists("files/" . $_FILES["image"]["name"])) {

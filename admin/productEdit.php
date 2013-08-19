@@ -66,6 +66,7 @@
 		<?php include 'sidebar.php'; ?>
 			  </div>
 			<div id="central">
+				<img src="../files/<?php echo $row['image'] ?>"></img>
 				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
 				<ul>
 				<li>Name:<input type="text" name="name" value="<?php echo $row["name"];?>" data-minlength="3" data-required="true"/></li>
@@ -82,13 +83,16 @@
 							<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
 						<?php
 						}
-					}
-				?>
+					} ?>
 				</select>
-				<li><label for="file">Filename:</label>
-					<input type="file" name="image"><br></li>
-				<li><input type="submit" name"submit" class="btn" value="Save"></li>
-				<li><a href="fileDelete.php">Delete image</a></li>
+				<?php
+					if ($row['image']) {?>
+						<li><a href="fileDelete.php?id=<?php echo $row["id"]; ?>">Delete image</a></li>
+			<?php } else { ?>
+						<li><label for="file">Filename:</label></li>
+						<li><input type="file" name="image"><br></li>
+						<li><input type="submit" name"submit" class="btn" value="Save"></li>
+						<?php } ?>
 				</ul>
 				</form>
 			</div>

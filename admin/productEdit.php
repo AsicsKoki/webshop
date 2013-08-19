@@ -3,6 +3,7 @@
 	include '../notice.php';
 
 
+
 	if (!loginCheck($conn)) {
 		$_SESSION['messageError'] = "Please log in!";
 		header("Location: login.php");
@@ -20,14 +21,13 @@
 
 			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color', image = '$image' WHERE id = '$id'",$conn);
 			$_SESSION['messageSuccess'] = "Saved!";
-			header('Location: productEdit.php?id='.$_GET['id']);
 		} else {
 			$_SESSION['messageError'] = "Please enter valid quantity";
-			header('Location: productEdit.php?id='.$_GET['id']);
 		}
-		if ($_FILES["file"]["name"]) {
+		if ($_FILES["image"]["name"]) {
 			fileUpload($conn);
 		}
+		header('Location: productEdit.php?id='.$_GET['id']);
 	}
 
 	//GETS THE DATA FROMT THE TABLE
@@ -48,7 +48,6 @@
 	{
 	  die('Could not get data: ' . mysql_error());
 	}
-
  ?>
 <!doctype HTML>
 <html>
@@ -87,8 +86,9 @@
 				?>
 				</select>
 				<li><label for="file">Filename:</label>
-					<input type="file" name="image" value=" <?php echo $row['image'] ?> "><br></li>
+					<input type="file" name="image"><br></li>
 				<li><input type="submit" name"submit" class="btn" value="Save"></li>
+				<li><a href="fileDelete.php">Delete image</a></li>
 				</ul>
 				</form>
 			</div>

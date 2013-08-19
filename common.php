@@ -16,21 +16,21 @@ function loginCheck($connectionParam){
 	$role   = mysql_fetch_assoc($retval);
 	return $role;
 } //FILE UPLOAD FUNCTION
-function fileUpload(){
-	if ($_FILES["file"]["error"] > 0) {
-		echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
-	} else {
-		echo "Upload: " . $_FILES["file"]["name"] . "<br>";
-		echo "Type: " . $_FILES["file"]["type"] . "<br>";
-		echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
-		echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
+  function fileUpload($conn){
+	if ($_FILES["image"]["error"] > 0) {
+		echo "Return Code: " . $_FILES["image"]["error"] . "<br>";
+    } else {
+    	echo "Upload: " . $_FILES["image"]["name"] . "<br>";
+    	echo "Type: " . $_FILES["image"]["type"] . "<br>";
+    	echo "Size: " . ($_FILES["image"]["size"] / 8192) . " kB<br>";
+    	echo "Temp file: " . $_FILES["image"]["tmp_name"] . "<br>";
 
-	if (file_exists("../files/" . $_FILES["file"]["name"])) {
-		$_SESSION['messageError'] = "File already exists. Upload different file.";
-	} else {
-		move_uploaded_file($_FILES["file"]["tmp_name"], "../files/" . $_FILES["file"]["name"]);
-		echo "Stored in: " . "../files/" . $_FILES["file"]["name"];
-		}
-	}
+    	if (file_exists("files/" . $_FILES["image"]["name"])) {
+	    	echo $_FILES["image"]["name"] . " already exists. ";
+	    } else {
+	      	move_uploaded_file($_FILES["image"]["tmp_name"], "../files/" . $_FILES["image"]["name"]);
+	      	echo "Stored in: " . "webshop/files/" . $_FILES["image"]["name"];
+     	}
+    }
 }
 ?>

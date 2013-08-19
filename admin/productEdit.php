@@ -87,7 +87,7 @@
 				?>
 				</select>
 				<li><label for="file">Filename:</label>
-					<input type="file" name="image"><br></li>
+					<input type="file" name="image" value=" <?php echo $row['image'] ?> "><br></li>
 				<li><input type="submit" name"submit" class="btn" value="Save"></li>
 				</ul>
 				</form>

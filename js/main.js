@@ -113,3 +113,18 @@ $('.delete').click(function(e){
 		}
 	});
 });
+$('.deleteFile').click(function(e){
+	e.preventDefault();
+	var id = $(this).data('id');
+	var self = this;
+	$.ajax({
+		url: "fileDelete.php",
+		type: "get",
+		data: {
+			id: id
+		},
+		success: function(data){
+			alert('success');
+		}
+	});
+});

@@ -85,14 +85,10 @@
 						}
 					} ?>
 				</select>
-				<?php
-					if ($row['image']) {?>
-						<li><a href="fileDelete.php?id=<?php echo $row["id"]; ?>">Delete image</a></li>
-			<?php } else { ?>
-						<li><label for="file">Filename:</label></li>
-						<li><input type="file" name="image"><br></li>
-						<li><input type="submit" name"submit" class="btn" value="Save"></li>
-						<?php } ?>
+				<div><a data-id='<?php echo $row["id"]; ?>' class="deleteFile">Delete image</a></div>
+					<div><li><label for="file">Filename:</label></li>
+					<li><input type="file" name="image"><br></li>
+					<li><input type="submit" name"submit" class="btn" value="Save"></li></div>
 				</ul>
 				</form>
 			</div>

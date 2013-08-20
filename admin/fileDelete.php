@@ -11,11 +11,10 @@ $sql = "SELECT * FROM products where id= '$id'";
 		die('Could not get data: ' . mysql_error());
 	}
 	$row = mysql_fetch_assoc($retval);
-
 	 $image = $row['image'];
 	if ($image) {
 		unlink('../files/' . $image);
-		mysql_query("UPDATE products SET image = '$foo' WHERE id = '$id'",$conn);
-		header('Location: productEdit.php?id='.$_GET['id']);
+		mysql_query("UPDATE products SET image = null WHERE id = '$id'",$conn);
+	return 1;
 	}
  ?>

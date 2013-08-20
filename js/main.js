@@ -98,3 +98,18 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#usersTable').dataTable();
 } );
+$('.delete').click(function(e){
+	e.preventDefault();
+	var id = $(this).data('id');
+	var self = this;
+	$.ajax({
+		url: "productDelete.php",
+		type: "get",
+		data: {
+			id: id
+		},
+		success: function(data){
+			$(self).parents("tr").remove();
+		}
+	});
+});

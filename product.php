@@ -112,6 +112,7 @@
 				<div class="columnLeft">
 					<?php echo $arr[0]["description"];
 
+
 					echo "<select>";
 					while ($color= mysql_fetch_assoc($retval)) {
 						if ($arr[0]["colorid"] == $color["id"]) { ?>

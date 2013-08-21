@@ -66,14 +66,13 @@
 		<?php include 'sidebar.php'; ?>
 			  </div>
 			<div id="central">
-				<img src="../files/<?php echo $row['image'] ?>"></img>
 				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
 				<ul>
 				<li>Name:<input type="text" name="name" value="<?php echo $row["name"];?>" data-minlength="3" data-required="true"/></li>
 				<li>Price:<input type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number"/></li>
 				<li>Quantity:<input type="number" name="quantity" value="<?php echo $row["quantity"];?>" data-required="true" data-type="number"/></li>
 				<li>Description:<textarea name="description" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["description"] ;?></textarea></li>
-				<select name='color'>
+				<li><select name='color'>
 				<?php
 					while ($color= mysql_fetch_assoc($retvalcolor)) {
 						if ($row['colorid'] == $color["color_id"]) { ?>
@@ -84,11 +83,15 @@
 						<?php
 						}
 					} ?>
-				</select>
-				<div class="deleteFile"><a data-id='<?php echo $row["id"]; ?>'>Delete image</a></div>
-					<div class="uploadFile"><li><label for="file">Filename:</label></li>
+				</select></li>
+				<div class="deleteFile <?php echo $row["image"]?'':'hide'; ?>">
+					<a data-id='<?php echo $row["id"]; ?>'>Delete image</a>
+					<img src="../files/<?php echo $row['image'] ?>"></img>
+				</div>
+				<div class="uploadFile <?php echo $row["image"]?'hide':''; ?>"><li><label for="file">Filename:</label></li>
 					<li><input type="file" name="image"><br></li>
-					<li><input type="submit" name"submit" class="btn" value="Save"></li></div>
+					<li><input type="submit" name"submit" class="btn" value="Save"></li>
+				</div>
 				</ul>
 				</form>
 			</div>
@@ -101,13 +104,13 @@
 	<script src="../js/main.js"></script>
 	<script src="../js/parsley.js"></script>
 	<script type="text/javascript">
-		if ("$image"){
+	/*	if ("<?php echo $row["image"] ?>"){
 			$('.deleteFile').show();
 			$('.uploadFile').hide();
 	} else {
 			$('.deleteFile').hide();
 			$('.uploadFile').show();
-}
+}*/
 	</script>
 </body>
 </html>

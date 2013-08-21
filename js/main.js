@@ -15,23 +15,20 @@
 	});
 }())
 
-function toTitleCase(str)
-{
+function toTitleCase(str) {
 	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
-
 //READ MORE BUTTON
 jQuery(document).ready(function($) {
 	$("div.columnLeft > footer").prepend("<button id=\"readMoreBtn\">Read more</button>");
 
 	$("div.columnLeft > footer > button#readMoreBtn").on('click', function(){
-		var btn = $(this);
 
+	var btn = $(this);
 		if (btn.text() == "Read more") {
-
 			$("div.more").slideDown()
 			btn.text("Read less");
-		} else{
+		} else {
 			$("div.more").slideUp();
 			btn.text("Read more");
 		}
@@ -91,13 +88,11 @@ jQuery(document).ready(function($) {
 				$("img#banner2").attr("src", banners2[i2*-1])
 			}
 	}, 2000);
+	$('#productsTable').dataTable();
+	$('#usersTable').dataTable();
 });
-$(document).ready(function() {
-    $('#productsTable').dataTable();
-} );
-$(document).ready(function() {
-    $('#usersTable').dataTable();
-} );
+
+
 $('.delete').click(function(e){
 	e.preventDefault();
 	var id = $(this).data('id');
@@ -113,6 +108,7 @@ $('.delete').click(function(e){
 		}
 	});
 });
+
 $('.deleteFile').click(function(e){
 	e.preventDefault();
 	var id = $(this).data('id');
@@ -124,7 +120,10 @@ $('.deleteFile').click(function(e){
 			id: id
 		},
 		success: function(data){
-			alert('success');
+			if (data){
+				$('.deleteFile').hide();
+				$('.uploadFile').show();
+			} 
 		}
 	});
 });

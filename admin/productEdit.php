@@ -84,8 +84,8 @@
 						}
 					} ?>
 				</select></li>
-				<div class="deleteFile <?php echo $row["image"]?'':'hide'; ?>">
-					<a data-id='<?php echo $row["id"]; ?>'>Delete image</a>
+				<div data-id='<?php echo $row["id"];?>' class="deleteFile <?php echo $row["image"]?'':'hide'; ?>">
+					<a class="link" href="#" data-id='<?php echo $row["id"];?>'>Delete image</a>
 					<img src="../files/<?php echo $row['image'] ?>"></img>
 				</div>
 				<div class="uploadFile <?php echo $row["image"]?'hide':''; ?>"><li><label for="file">Filename:</label></li>
@@ -104,13 +104,6 @@
 	<script src="../js/main.js"></script>
 	<script src="../js/parsley.js"></script>
 	<script type="text/javascript">
-	/*	if ("<?php echo $row["image"] ?>"){
-			$('.deleteFile').show();
-			$('.uploadFile').hide();
-	} else {
-			$('.deleteFile').hide();
-			$('.uploadFile').show();
-}*/
 	</script>
 </body>
 </html>

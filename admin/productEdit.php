@@ -85,8 +85,8 @@
 						}
 					} ?>
 				</select>
-				<div><a data-id='<?php echo $row["id"]; ?>' class="deleteFile">Delete image</a></div>
-					<div><li><label for="file">Filename:</label></li>
+				<div class="deleteFile"><a data-id='<?php echo $row["id"]; ?>'>Delete image</a></div>
+					<div class="uploadFile"><li><label for="file">Filename:</label></li>
 					<li><input type="file" name="image"><br></li>
 					<li><input type="submit" name"submit" class="btn" value="Save"></li></div>
 				</ul>
@@ -100,5 +100,14 @@
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/main.js"></script>
 	<script src="../js/parsley.js"></script>
+	<script type="text/javascript">
+		if ("$image"){
+			$('.deleteFile').show();
+			$('.uploadFile').hide();
+	} else {
+			$('.deleteFile').hide();
+			$('.uploadFile').show();
+}
+	</script>
 </body>
 </html>

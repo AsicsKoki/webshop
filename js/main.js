@@ -88,8 +88,10 @@ jQuery(document).ready(function($) {
 				$("img#banner2").attr("src", banners2[i2*-1])
 			}
 	}, 2000);
-	$('#productsTable').dataTable();
-	$('#usersTable').dataTable();
+if($('table').length > 0) {
+		$('#productsTable').dataTable();
+		$('#usersTable').dataTable();
+}
 });
 
 

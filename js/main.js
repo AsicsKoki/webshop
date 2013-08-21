@@ -123,7 +123,7 @@ $('.deleteFile').click(function(e){
 			if (data){
 				$('.deleteFile').hide();
 				$('.uploadFile').show();
-			} 
+			}
 		}
 	});
 });

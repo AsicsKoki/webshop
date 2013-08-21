@@ -6,7 +6,7 @@
 	}
 
 	mysql_select_db('webshop');
-
+//LOGIN CHECK FUNCTION
 function loginCheck($connectionParam){
 	if (!isset($_SESSION['username']))
 		return false;
@@ -33,4 +33,25 @@ function loginCheck($connectionParam){
      	}
     }
 }
+//FILE DELETE FUNCTION
+function fileDelete($conn){
+	$id     = $_GET['id'];
+	$sql    = "SELECT * FROM products where id= '$id'";
+	$retval = mysql_query( $sql, $conn );
+
+		if(! $retval ) {
+			die('Could not get data: ' . mysql_error());
+		}
+
+	$row   = mysql_fetch_assoc($retval);
+	$image = $row['image'];
+
+		if ($image) {
+			unlink('../files/' . $image);
+			mysql_query("UPDATE products SET image = null WHERE id = '$id'",$conn);
+			echo 1;
+			return;
+		}
+		echo 0;
+	}
 ?>

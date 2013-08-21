@@ -88,7 +88,7 @@ jQuery(document).ready(function($) {
 				$("img#banner2").attr("src", banners2[i2*-1])
 			}
 	}, 2000);
-if($('table').length > 0) {
+if($('table').length) {
 		$('#productsTable').dataTable();
 		$('#usersTable').dataTable();
 }

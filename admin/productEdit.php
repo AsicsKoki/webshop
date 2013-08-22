@@ -19,13 +19,16 @@
 		$image       = $_FILES['image']['name'];
 		if(is_numeric($quantity) AND $quantity >= 0){
 
-			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color', image = '$image' WHERE id = '$id'",$conn);
+			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color' WHERE id = '$id'",$conn);
 			$_SESSION['messageSuccess'] = "Saved!";
 		} else {
 			$_SESSION['messageError'] = "Please enter valid quantity";
 		}
 		if ($_FILES["image"]["name"]) {
-			fileUpload($conn);
+
+			if (fileUpload($conn)){
+				mysql_query("INSERT INTO images (image_name, entity_id, entity_type)VALUES ('$image', '$id', 'product')", $conn);
+			} 
 		}
 		header('Location: productEdit.php?id='.$_GET['id']);
 	}
@@ -43,16 +46,18 @@
 	// COLOR SELECTION
 	$boje= "SELECT * FROM colors";
 
-	$retvalcolor = mysql_query( $boje, $conn );
-	if(! $retvalcolor )
-	{
+	$retvalColor = mysql_query( $boje, $conn );
+	if(! $retvalColor ) {
 	  die('Could not get data: ' . mysql_error());
 	}
+	//IMAGE QUERY
+	$imgQuery = "SELECT * FROM images WHERE entity_type = 'product' and entity_id = '$id'";
 
-	//UPLOADING TO IMAGE TABLE
-	if(!empty($_POST)){
-	mysql_query("UPDATE image SET image_name = '$image', entity_type = 'product', entity_id = '1' WHERE id='$id'", $conn);
-}
+	$retvalImg = mysql_query( $imgQuery, $conn );
+	if(! $retval ) {
+		die('Could not get data: ' . mysql_error());
+	}
+
  ?>
 <!doctype HTML>
 <html>
@@ -79,7 +84,7 @@
 				<li>Description:<textarea name="description" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["description"] ;?></textarea></li>
 				<li><select name='color'>
 				<?php
-					while ($color= mysql_fetch_assoc($retvalcolor)) {
+					while ($color= mysql_fetch_assoc($retvalColor)) {
 						if ($row['colorid'] == $color["color_id"]) { ?>
 							<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
 						<?php
@@ -89,16 +94,17 @@
 						}
 					} ?>
 				</select></li>
-				<div data-id='<?php echo $row["id"];?>' class="deleteFile <?php echo $row["image"]?'':'hide'; ?>">
-					<a class="link" href="#" data-id='<?php echo $row["id"];?>'>Delete image</a>
-					<img src="../files/<?php echo $row['image'] ?>"></img>
-				</div>
-				<div class="uploadFile <?php echo $row["image"]?'hide':''; ?>"><li><label for="file">Filename:</label></li>
+				<div class="uploadFile"><li><label for="file">Filename:</label></li>
 					<li><input type="file" name="image"><br></li>
 					<li><input type="submit" name"submit" class="btn" value="Save"></li>
 				</div>
 				</ul>
 				</form>
+				<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
+					<img src="../files/<?php echo $image['image_name'] ?>"></img>
+					<div data-id='<?php echo $image["id"];?>' class="deleteFile">
+					<a class="link" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a>
+				<?php } ?>
 			</div>
 		</div>
 	<footer id="footer">(2013) All rights reserved</footer>

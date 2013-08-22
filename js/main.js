@@ -68,7 +68,7 @@ jQuery(document).ready(function($) {
 	//RIGHT SIDE BANNER!
 	var i = 0;
 	var i2 = 0;
-	
+
 
 	setInterval(function() {
 			if($("input#checkbox").is(':checked'))
@@ -106,7 +106,7 @@ $('.delete').click(function(e){
 			id: id
 		},
 		success: function(data){
-			$(self).parents("tr").remove();
+			alert("Deleted!");
 		}
 	});
 });
@@ -123,8 +123,7 @@ $('.deleteFile').click(function(e){
 		},
 		success: function(data){
 			if (data){
-				$('.deleteFile').hide();
-				$('.uploadFile').show();
+				alert("Deleted!");
 			}
 		}
 	});

@@ -48,6 +48,11 @@
 	{
 	  die('Could not get data: ' . mysql_error());
 	}
+
+	//UPLOADING TO IMAGE TABLE
+	if(!empty($_POST)){
+	mysql_query("UPDATE image SET image_name = '$image', entity_type = 'product', entity_id = '1' WHERE id='$id'", $conn);
+}
  ?>
 <!doctype HTML>
 <html>

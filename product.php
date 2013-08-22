@@ -8,23 +8,16 @@
 	}
 	//PRODUCT DATA
 	$id = $_GET["id"];
-	$result= mysql_query("SELECT COUNT(*) FROM products WHERE id='$id'",$conn);
-	$row = mysql_fetch_assoc($result);
-	if (!$row["COUNT(*)"]) {
-		header("Location: /webshop/index.php");
-		die();
-	}
 
 	$sql = "SELECT * FROM products where id= '$id'";
 
-	$retval = mysql_query( $sql, $conn );
-		if(! $retval )
+	$retval2 = mysql_query( $sql, $conn );
+		if(! $retval2 )
 	{
 		die('Could not get data: ' . mysql_error());
 	}
-	$arr = [];
-
-
+	$row = mysql_fetch_assoc($retval2);
+var_dump($row);
 	// COLOR SELECTION
 	$boje= "SELECT * FROM colors";
 
@@ -110,7 +103,7 @@
 					include 'notice.php';
 						 ?>
 				<div class="columnLeft">
-					<?php echo $arr[0]["description"];
+					<?php echo $row["description"];
 
 
 					echo "<select>";
@@ -131,10 +124,11 @@
 						<input type="submit" value="purchase">
 						<input name="quantity" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
 					</form>
+					<input id="checkbox" type="checkbox">rotate banners
 				</footer>
 			</div>
-				<div class="columnRight"><img class="img-polaroid" src="images/<?php echo $arr[0]['image']; ?>"/>
-					<input id="checkbox" type="checkbox">rotate banners
+				<div class="columnRight">
+					<img src="files/<?php echo $row['image'] ?>"></img>
 				</div>
 			</div>
 

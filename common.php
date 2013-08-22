@@ -28,7 +28,7 @@ function fileUpload($conn){
 //FILE DELETE FUNCTION
 function fileDelete($conn){
 	$id     = $_GET['id'];
-	$sql    = "SELECT * FROM products where id= '$id'";
+	$sql    = "SELECT * FROM images where id= '$id'";
 	$retval = mysql_query( $sql, $conn );
 
 		if(! $retval ) {
@@ -36,11 +36,11 @@ function fileDelete($conn){
 		}
 
 	$row   = mysql_fetch_assoc($retval);
-	$image = $row['image'];
+	$image = $row['image_name'];
 
 		if ($image) {
 			unlink('../files/' . $image);
-			mysql_query("UPDATE products SET image = null WHERE id = '$id'",$conn);
+			mysql_query("DELETE FROM images WHERE id = '$id'",$conn);
 			echo 1;
 			return;
 		}

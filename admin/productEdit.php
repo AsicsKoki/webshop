@@ -100,17 +100,15 @@
 				</div>
 				</ul>
 				</form>
-				<ul style="list-style: none;">
-				<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
-					<li><img src="../files/<?php echo $image['image_name'] ?>"></img>
-					<div data-id='<?php echo $image["id"];?>' class="deleteFile">
-					<a class="link" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></li>
-				<?php } ?>
-				</ul>
+					<ul style="list-style: none;">
+					<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
+						<li><img src="../files/<?php echo $image['image_name'] ?>"></img>
+						<div>
+						<a class="deleteFile" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></div></li>
+					<?php } ?>
+					</ul>
 			</div>
-		</div>
 	<footer id="footer">(2013) All rights reserved</footer>
-</div>
 	<script src="../js/jquery-1.10.2.min.js"></script>
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/bootstrap.min.js"></script>

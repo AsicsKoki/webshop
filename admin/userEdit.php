@@ -78,29 +78,31 @@
 			<div id="central">
 				<!-- SUBMISION FORM -->
 				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
-				<ul ul style="list-style: none;">
-				<li>First name:<input type="text" name="first_name" value="<?php echo $row["first_name"];?>" data-minlength="3" data-required="true"/></li>
-				<li>Last name:<input type="text" name="last_name" value="<?php echo $row["last_name"] ;?>" data-required="true" ></li>
-				<li>Username:<input type="text" name="username" value="<?php echo $row["username"];?>" data-required="true"></li>
-				<li>email:<input type="text" name="email" value="<?php echo $row["email"] ;?>" data-required="true" data-type="email" ></li>
-				<li><select name='role_id'>
-				<?php
-					while ($role= mysql_fetch_assoc($roles)) {
-						if ($row['role_id'] == $role["id"]) { ?>
-							<option selected="selected"  value="<?php echo $role["id"]?>"><?php echo $role["role"] ?></option>
+					<ul ul style="list-style: none;">
+						<li>First name:<input type="text" name="first_name" value="<?php echo $row["first_name"];?>" data-minlength="3" data-required="true"/></li>
+						<li>Last name:<input type="text" name="last_name" value="<?php echo $row["last_name"] ;?>" data-required="true" ></li>
+						<li>Username:<input type="text" name="username" value="<?php echo $row["username"];?>" data-required="true"></li>
+						<li>email:<input type="text" name="email" value="<?php echo $row["email"] ;?>" data-required="true" data-type="email" ></li>
+						<li>
+							<select name='role_id'>
 						<?php
-						} else { ?>
-							<option value="<?php echo $role["id"]?>"><?php echo $role["role"] ?></option>
-						<?php
-						}
-					}
-				?>
-				</select>
-				<div class="uploadFile"><li><label for="file">Filename:</label></li>
-					<li><input type="file" name="image"><br></li>
-					<li><input type="submit" name"submit" class="btn" value="Save"></li>
-				</div>
-				</ul>
+							while ($role= mysql_fetch_assoc($roles)) {
+								if ($row['role_id'] == $role["id"]) { ?>
+									<option selected="selected"  value="<?php echo $role["id"]?>"><?php echo $role["role"] ?></option>
+								<?php
+								} else { ?>
+									<option value="<?php echo $role["id"]?>"><?php echo $role["role"] ?></option>
+								<?php
+								}
+							}
+						?>
+							</select>
+							<div class="uploadFile"><li><label for="file">Filename:</label>
+						</li>
+						<li><input type="file" name="image"><br></li>
+						<li><input type="submit" name"submit" class="btn" value="Save"></li>
+						</div>
+					</ul>
 				</form>
 				<ul style="list-style: none;">
 					<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>

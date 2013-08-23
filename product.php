@@ -17,17 +17,22 @@
 		die('Could not get data: ' . mysql_error());
 	}
 	$row = mysql_fetch_assoc($retval2);
-var_dump($row);
+	$description = $row['description'];
+	$name = $row['name'];
+	$price = $row['price'];
+	$quantity = $row['quantity'];
+
 	// COLOR SELECTION
 	$boje= "SELECT * FROM colors";
 
-	$retval = mysql_query( $boje, $conn );
-	if(! $retval )
-	{
+	$retvalColor = mysql_query( $boje, $conn );
+	if(! $retvalColor ) {
 	  die('Could not get data: ' . mysql_error());
 	}
-	while($row = mysql_fetch_assoc($retval))
-		$arr[] = $row;
+
+	//IMAGE SELECTION
+	$imgSql = "SELECT * FROM images WHERE entity_type = 'product' and entity_id = '$id'";
+	$retvalImg = mysql_query( $imgSql, $conn );
 
 	//BANNERS
 
@@ -85,61 +90,64 @@ var_dump($row);
 			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
 		</header>
 		<div class="navbar">
-						<div class="navbar-inner">
-					    		<a class="brand" href="index.php">Home</a>
-					    	<ul class="nav">
-					    		<li><a href="#">Products</a></li>
-					    		<li><a href="#">About us</a></li>
-					    		<li><a href="#">Contact</a></li>
-					    	</ul>
-						</div>
-					</div>
+			<div class="navbar-inner">
+		    		<a class="brand" href="index.php">Home</a>
+		    	<ul class="nav">
+		    		<li><a href="#">Products</a></li>
+		    		<li><a href="#">About us</a></li>
+		    		<li><a href="#">Contact</a></li>
+		    	</ul>
+			</div>
+		</div>
 		<div id="elementOne">
-
 			<div class="side"><img id="banner" src=""></div>
 			<div id="central">
+				<header><h4> <?php echo $name ?> </h4></header>
 				<?php
 				//ERROR/success CHECK AND POPUP
 					include 'notice.php';
 						 ?>
 				<div class="columnLeft">
-					<?php echo $row["description"];
-
-
-					echo "<select>";
-					while ($color= mysql_fetch_assoc($retval)) {
-						if ($arr[0]["colorid"] == $color["id"]) { ?>
-							<option selected="selected"  value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
+					<ul style="list-style: none;">
+						<li><?php echo $description; ?></li>
+						<li> Price:  <?php echo $price ?> </li>
+						<li> quantity:  <?php echo $quantity ?> </li>
+					</ul>
+					<select>
+						<?php while ($color= mysql_fetch_assoc($retvalColor)) {
+						if ($row['colorid'] == $color["color_id"]) { ?>
+							<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
 						<?php
 						} else { ?>
-							<option value="<?php echo $color["name"]?>"><?php echo $color["name"] ?></option>
+							<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
 						<?php
 						}
 					}
-					echo "</select>";
-				?>
-				<footer>
-					<form action="" method="post">
-						<label for="quantity">quantity: </label>
-						<input type="submit" value="purchase">
-						<input name="quantity" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
-					</form>
-					<input id="checkbox" type="checkbox">rotate banners
-				</footer>
-			</div>
+						?>
+					</select>
+					<footer>
+						<form action="" method="post">
+							<label for="quantity">quantity: </label>
+							<input type="submit" value="purchase">
+							<input name="quantity" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
+						</form>
+						<input id="checkbox" type="checkbox">rotate banners
+					</footer>
+				</div>
 				<div class="columnRight">
-					<img src="files/<?php echo $row['image'] ?>"></img>
+					<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
+					<img src="files/<?php echo $image['image_name'] ?>"></img>
+				<?php } ?>
 				</div>
 			</div>
 
 			<div class="side"><img id="banner2" src=""></div>
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>
-
     </div>
     <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/javaShop.js"></script>
+	<script src="js/main.js"></script>
 	<script>
 		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;

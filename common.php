@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ E_NOTICE);
 
 	$conn = mysql_connect("localhost","root","","webshop");
 	if(! $conn ) {

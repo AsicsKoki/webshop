@@ -19,36 +19,36 @@ function toTitleCase(str) {
 	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 //READ MORE BUTTON
-jQuery(document).ready(function($) {
-	$("div.columnLeft > footer").prepend("<button id=\"readMoreBtn\">Read more</button>");
+// jQuery(document).ready(function($) {
+// 	$("div.columnLeft > footer").prepend("<button id=\"readMoreBtn\">Read more</button>");
 
-	$("div.columnLeft > footer > button#readMoreBtn").on('click', function(){
+// 	$("div.columnLeft > footer > button#readMoreBtn").on('click', function(){
 
-	var btn = $(this);
-		if (btn.text() == "Read more") {
-			$("div.more").slideDown()
-			btn.text("Read less");
-		} else {
-			$("div.more").slideUp();
-			btn.text("Read more");
-		}
-	});
+// 	var btn = $(this);
+// 		if (btn.text() == "Read more") {
+// 			$("div.more").slideDown()
+// 			btn.text("Read less");
+// 		} else {
+// 			$("div.more").slideUp();
+// 			btn.text("Read more");
+// 		}
+// 	});
 
-	$("button#next").on('click', function(){
-		var img = $("div.columnRight > img:visible");
-		img.hide();
-		var imgNext = img.next();
-		if (!imgNext.length) imgNext =  $("div.columnRight > img").first();
-		imgNext.show();
+// 	$("button#next").on('click', function(){
+// 		var img = $("div.columnRight > img:visible");
+// 		img.hide();
+// 		var imgNext = img.next();
+// 		if (!imgNext.length) imgNext =  $("div.columnRight > img").first();
+// 		imgNext.show();
 
-	})
-	$("button#previous").on('click', function(){
-		var img = $("div.columnRight > img:visible");
-		img.hide();
-		var imgPrevious = img.prev();
-		if (!imgPrevious.length) imgPrevious =  $("div.columnRight > img").last();
-		imgPrevious.show();
-	});
+// 	})
+// 	$("button#previous").on('click', function(){
+// 		var img = $("div.columnRight > img:visible");
+// 		img.hide();
+// 		var imgPrevious = img.prev();
+// 		if (!imgPrevious.length) imgPrevious =  $("div.columnRight > img").last();
+// 		imgPrevious.show();
+// 	});
 
 	//COLOR INPUT
 
@@ -91,8 +91,7 @@ jQuery(document).ready(function($) {
 if($('table').length) {
 		$('#productsTable').dataTable();
 		$('#usersTable').dataTable();
-}
-});
+};
 
 
 $('.delete').click(function(e){

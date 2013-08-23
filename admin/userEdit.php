@@ -15,14 +15,17 @@
 		$username   = $_POST['username'];
 		$role_id    = $_POST['role_id'];
 		$email      = $_POST['email'];
-
-	if ($_FILES["file"]["name"]) {
-		fileUpload($conn);
-	}
+		$image      = $_FILES['image']['name'];
 
 
 		mysql_query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', username = '$username', role_id = '$role_id' WHERE id = '$id'",$conn);
 		$_SESSION['messageSuccess'] = "Saved!";
+
+		if ($_FILES["image"]["name"]) {
+			if (fileUpload($conn)) {
+				mysql_query("INSERT INTO images (image_name, entity_id, entity_type)VALUES ('$image', '$id', 'user')", $conn);
+			}
+		}
 		header('Location: userEdit.php?id='.$_GET['id']);
 	}
 
@@ -45,7 +48,13 @@
 		die('Could not get data: ' . mysql_error());
 	}
 
-	//FILE UPLOAD
+	//IMAGE QUERY
+	$imgQuery = "SELECT * FROM images WHERE entity_type = 'user' and entity_id = '$id'";
+
+	$retvalImg = mysql_query( $imgQuery, $conn );
+	if(! $retval ) {
+		die('Could not get data: ' . mysql_error());
+	}
 
 
 
@@ -65,11 +74,11 @@
 	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
 			<div id="elementOne">
 			<?php include 'sidebar.php'; ?>
-			  </div>
+			</div>
 			<div id="central">
 				<!-- SUBMISION FORM -->
 				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
-				<ul>
+				<ul ul style="list-style: none;">
 				<li>First name:<input type="text" name="first_name" value="<?php echo $row["first_name"];?>" data-minlength="3" data-required="true"/></li>
 				<li>Last name:<input type="text" name="last_name" value="<?php echo $row["last_name"] ;?>" data-required="true" ></li>
 				<li>Username:<input type="text" name="username" value="<?php echo $row["username"];?>" data-required="true"></li>
@@ -87,17 +96,21 @@
 					}
 				?>
 				</select>
-				</li>
-				<li><label for="file">Filename:</label>
-					<input type="file" name="file" id="file"><br></li>
-				<li><input type="submit" name"submit" class="btn" value="Save"></li>
+				<div class="uploadFile"><li><label for="file">Filename:</label></li>
+					<li><input type="file" name="image"><br></li>
+					<li><input type="submit" name"submit" class="btn" value="Save"></li>
+				</div>
 				</ul>
 				</form>
-				<a href="imageupdate.php">Image update</a>
+				<ul style="list-style: none;">
+					<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
+					<li><img src="../files/<?php echo $image['image_name'] ?>"></img>
+					<div><a class="deletePhoto" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></div></li>
+					<?php } ?>
+				</ul>
 			</div>
-		</div>
-	<footer id="footer">(2013) All rights reserved</footer>
 </div>
+	<footer id="footer">(2013) All rights reserved</footer>
 	<script src="../js/jquery-1.10.2.min.js"></script>
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/bootstrap.min.js"></script>

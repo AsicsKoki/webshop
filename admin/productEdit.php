@@ -28,7 +28,7 @@
 
 			if (fileUpload($conn)){
 				mysql_query("INSERT INTO images (image_name, entity_id, entity_type)VALUES ('$image', '$id', 'product')", $conn);
-			} 
+			}
 		}
 		header('Location: productEdit.php?id='.$_GET['id']);
 	}
@@ -104,7 +104,7 @@
 					<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
 						<li><img src="../files/<?php echo $image['image_name'] ?>"></img>
 						<div>
-						<a class="deleteFile" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></div></li>
+						<a class="deletePhoto" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></div></li>
 					<?php } ?>
 					</ul>
 			</div>

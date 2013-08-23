@@ -111,7 +111,7 @@ $('.delete').click(function(e){
 	});
 });
 
-$('.deleteFile').click(function(e){
+$('.deletePhoto').click(function(e){
 	e.preventDefault();
 	var id = $(this).data('id');
 	var self = this;

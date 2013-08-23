@@ -106,7 +106,7 @@ $('.delete').click(function(e){
 			id: id
 		},
 		success: function(data){
-			alert("Deleted!");
+			$(self).parents("tr").remove();
 		}
 	});
 });
@@ -123,7 +123,7 @@ $('.deleteFile').click(function(e){
 		},
 		success: function(data){
 			if (data){
-				alert("Deleted!");
+				$(self).parents("li").remove();
 			}
 		}
 	});

@@ -77,7 +77,7 @@
 			  </div>
 			<div id="central">
 				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
-				<ul>
+				<ul style="list-style: none;">
 				<li>Name:<input type="text" name="name" value="<?php echo $row["name"];?>" data-minlength="3" data-required="true"/></li>
 				<li>Price:<input type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number"/></li>
 				<li>Quantity:<input type="number" name="quantity" value="<?php echo $row["quantity"];?>" data-required="true" data-type="number"/></li>
@@ -100,11 +100,13 @@
 				</div>
 				</ul>
 				</form>
+				<ul style="list-style: none;">
 				<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
-					<img src="../files/<?php echo $image['image_name'] ?>"></img>
+					<li><img src="../files/<?php echo $image['image_name'] ?>"></img>
 					<div data-id='<?php echo $image["id"];?>' class="deleteFile">
-					<a class="link" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a>
+					<a class="link" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></li>
 				<?php } ?>
+				</ul>
 			</div>
 		</div>
 	<footer id="footer">(2013) All rights reserved</footer>

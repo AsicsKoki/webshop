@@ -73,7 +73,7 @@
 	<header id="header">Konstantin's web shop
 	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
 			<div id="elementOne">
-			<?php include 'sidebar.php'; ?>
+				<?php include 'sidebar.php'; ?>
 			</div>
 			<div id="central">
 				<!-- SUBMISION FORM -->
@@ -97,11 +97,10 @@
 							}
 						?>
 							</select>
-							<div class="uploadFile"><li><label for="file">Filename:</label>
 						</li>
+							<div class="uploadFile"><li><label for="file">Filename:</label></li></div>
 						<li><input type="file" name="image"><br></li>
 						<li><input type="submit" name"submit" class="btn" value="Save"></li>
-						</div>
 					</ul>
 				</form>
 				<ul style="list-style: none;">

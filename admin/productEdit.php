@@ -73,8 +73,8 @@
 	<header id="header">Konstantin's web shop
 	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
 		<div id="elementOne">
-		<?php include 'sidebar.php'; ?>
-			  </div>
+			<?php include 'sidebar.php'; ?>
+		</div>
 			<div id="central">
 				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
 				<ul style="list-style: none;">

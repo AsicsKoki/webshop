@@ -19,21 +19,17 @@ function toTitleCase(str) {
 	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 //READ MORE BUTTON
-// jQuery(document).ready(function($) {
-// 	$("div.columnLeft > footer").prepend("<button id=\"readMoreBtn\">Read more</button>");
 
-// 	$("div.columnLeft > footer > button#readMoreBtn").on('click', function(){
-
-// 	var btn = $(this);
-// 		if (btn.text() == "Read more") {
-// 			$("div.more").slideDown()
-// 			btn.text("Read less");
-// 		} else {
-// 			$("div.more").slideUp();
-// 			btn.text("Read more");
-// 		}
-// 	});
-
+$("#readMore").click(function(){
+	var self = $(this);
+  $("#more").slideToggle(function(){
+  	if(self.text() == "Read more"){
+  		self.text("Read less");
+  	} else {
+  		self.text("Read more");
+  	}
+  });
+});
 // 	$("button#next").on('click', function(){
 // 		var img = $("div.columnRight > img:visible");
 // 		img.hide();

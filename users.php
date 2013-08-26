@@ -58,6 +58,7 @@
 					    		<li><a href="index.php">Products</a></li>
 					    		<li><a href="users.php">Users</a></li>
 					    		<li><a href="#">Contact</a></li>
+					    		<li><a href="users.php">Users</a></li>
 					    	</ul>
 						</div>
 					</div>

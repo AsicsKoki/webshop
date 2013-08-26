@@ -6,10 +6,11 @@
 		$_SESSION['messageError'] = "Please log in.";
 		header("Location: login.php");
 	}
-	//PRODUCT DATA
-	$id = $_GET["id"];
+	//USER DATA
+	$username = $_SESSION["username"];
 
-	$sql = "SELECT * FROM users where id= '$id'";
+
+	$sql = "SELECT * FROM users where username= '$username'";
 
 	$retval = mysql_query( $sql, $conn );
 		if(! $retval ) {
@@ -20,10 +21,12 @@
 	$last_name = $data['last_name'];
 	$username = $data['username'];
 	$email = $data['email'];
+	$about = $data['bio'];
+
 
 
 	//IMAGE SELECTION
-	$imgSql = "SELECT * FROM images WHERE entity_type = 'user' and entity_id = '$id'";
+	$imgSql = "SELECT * FROM images WHERE entity_type = 'user' and entity_name = '$username'";
 	$retvalImg = mysql_query( $imgSql, $conn );
 
 	//BANNERS
@@ -66,7 +69,6 @@
 		<header id="header">Konstantin's web shop
 		</header>
 		<div style="float: right;">
-			<a href="profile"><button class="btn-info">Profile</button></a>
 			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
 		</div>
 		<div class="navbar">
@@ -76,48 +78,30 @@
 		    		<li><a href="#">Products</a></li>
 		    		<li><a href="#">About us</a></li>
 		    		<li><a href="#">Contact</a></li>
+		    		<li><a href="users.php">Users</a></li>
 		    	</ul>
 			</div>
 		</div>
 		<div id="elementOne">
 			<div class="side"><img id="banner" src=""></div>
 			<div id="central">
-				<header><h4> <?php echo $name ?> </h4></header>
+				<header><h4> <?php echo $username ?>'s profile </h4></header>
 				<?php
 				//ERROR/success CHECK AND POPUP
 					include 'notice.php';
 						 ?>
 				<div class="columnLeft">
 					<ul style="list-style: none;">
-						<li><?php echo $description; ?></li>
-						<li><button id="readMore">Read more</button></li>
-						<li> Price:  <?php echo $price ?> </li>
-						<li> quantity:  <?php echo $quantity ?> </li>
+						<li><h4>First name:</h4> <?php echo $first_name; ?></li>
+						<li><h4>Last name:</h4>  <?php echo $last_name ?> </li>
+						<li><h4>Email:</h4>  <?php echo $email ?> </li>
+						<li><h4>About me:</h4></li>
 					</ul>
-					<select>
-						<?php while ($color= mysql_fetch_assoc($retvalColor)) {
-						if ($row['colorid'] == $color["color_id"]) { ?>
-							<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
-						<?php
-						} else { ?>
-							<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
-						<?php
-						}
-					}
-						?>
-					</select>
-					<footer>
-						<form action="" method="post">
-							<label for="quantity">quantity: </label>
-							<input type="submit" value="purchase">
-							<input name="quantity" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
-						</form>
-						<input id="checkbox" type="checkbox">rotate banners
-					</footer>
-				</div>
-					<div id="more" class="hide">
-						Lorem ipsum enim aliquip in et nulla deserunt esse anim ullamco officia proident id reprehenderit sint exercitation tempor amet in enim culpa.
+					<div>
+						<?php echo $about; ?>
 					</div>
+					<button><a href="profileEdit.php">Edit profile</a></button>
+				</div>
 				<div class="columnRight">
 					<div id="slider1">
 						<a class="buttons prev" href="#">left</a>
@@ -130,6 +114,7 @@
 						</div>
 					    <a class="buttons next" href="#">right</a>
 					</div>
+						<input id="checkbox" type="checkbox">rotate banners
 				</div>
 			</div>
 			<div class="side"><img id="banner2" src=""></div>

@@ -8,6 +8,9 @@ if (!userLogin($conn)) {
 	$_SESSION['messageError'] = "Please log in.";
 	header("Location: login.php");
 	}
+
+	$username = $_SESSION['username'];
+
 //SELECT TABLE INFO
 $sql = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id";
 
@@ -51,8 +54,11 @@ $retval = mysql_query( $sql, $conn );
 <body id="background">
 	<div id="mainElement">
 		<header id="header">Konstantin's web shop
-			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
 		</header>
+		<div style="float: right;">
+			<a href="profile.php"><button class="btn-info">Profile</button></a>
+			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
+		</div>
 		<div class="navbar">
 						<div class="navbar-inner">
 					    		<a class="brand" href="#">Home</a>

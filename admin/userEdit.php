@@ -15,15 +15,16 @@
 		$username   = $_POST['username'];
 		$role_id    = $_POST['role_id'];
 		$email      = $_POST['email'];
+		$about      = $_POST['bio'];
 		$image      = $_FILES['image']['name'];
 
 
-		mysql_query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', username = '$username', role_id = '$role_id' WHERE id = '$id'",$conn);
+		mysql_query("UPDATE users SET first_name = '$first_name', last_name = '$last_name', email = '$email', username = '$username', role_id = '$role_id', bio = '$about' WHERE id = '$id'",$conn);
 		$_SESSION['messageSuccess'] = "Saved!";
 
 		if ($_FILES["image"]["name"]) {
 			if (fileUpload($conn)) {
-				mysql_query("INSERT INTO images (image_name, entity_id, entity_type)VALUES ('$image', '$id', 'user')", $conn);
+				mysql_query("INSERT INTO images (image_name, entity_id, entity_type, entity_name)VALUES ('$image', '$id', 'user', '$username')", $conn);
 			}
 		}
 		header('Location: userEdit.php?id='.$_GET['id']);
@@ -83,6 +84,7 @@
 						<li>Last name:<input type="text" name="last_name" value="<?php echo $row["last_name"] ;?>" data-required="true" ></li>
 						<li>Username:<input type="text" name="username" value="<?php echo $row["username"];?>" data-required="true"></li>
 						<li>email:<input type="text" name="email" value="<?php echo $row["email"] ;?>" data-required="true" data-type="email" ></li>
+						<li>About me: <textarea name="bio" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["bio"] ;?></textarea></li>
 						<li>
 							<select name='role_id'>
 						<?php

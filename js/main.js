@@ -30,22 +30,6 @@ $("#readMore").click(function(){
   	}
   });
 });
-// 	$("button#next").on('click', function(){
-// 		var img = $("div.columnRight > img:visible");
-// 		img.hide();
-// 		var imgNext = img.next();
-// 		if (!imgNext.length) imgNext =  $("div.columnRight > img").first();
-// 		imgNext.show();
-
-// 	})
-// 	$("button#previous").on('click', function(){
-// 		var img = $("div.columnRight > img:visible");
-// 		img.hide();
-// 		var imgPrevious = img.prev();
-// 		if (!imgPrevious.length) imgPrevious =  $("div.columnRight > img").last();
-// 		imgPrevious.show();
-// 	});
-
 	//COLOR INPUT
 
 	$("footer").on('click', 'select#menu > option', function(){

@@ -9,29 +9,21 @@
 	//PRODUCT DATA
 	$id = $_GET["id"];
 
-	$sql = "SELECT * FROM products where id= '$id'";
+	$sql = "SELECT * FROM users where id= '$id'";
 
-	$retval2 = mysql_query( $sql, $conn );
-		if(! $retval2 )
-	{
+	$retval = mysql_query( $sql, $conn );
+		if(! $retval ) {
 		die('Could not get data: ' . mysql_error());
 	}
-	$row = mysql_fetch_assoc($retval2);
-	$description = $row['description'];
-	$name = $row['name'];
-	$price = $row['price'];
-	$quantity = $row['quantity'];
+	$data = mysql_fetch_assoc($retval);
+	$first_name = $data['first_name'];
+	$last_name = $data['last_name'];
+	$username = $data['username'];
+	$email = $data['email'];
 
-	// COLOR SELECTION
-	$boje= "SELECT * FROM colors";
-
-	$retvalColor = mysql_query( $boje, $conn );
-	if(! $retvalColor ) {
-	  die('Could not get data: ' . mysql_error());
-	}
 
 	//IMAGE SELECTION
-	$imgSql = "SELECT * FROM images WHERE entity_type = 'product' and entity_id = '$id'";
+	$imgSql = "SELECT * FROM images WHERE entity_type = 'user' and entity_id = '$id'";
 	$retvalImg = mysql_query( $imgSql, $conn );
 
 	//BANNERS
@@ -50,29 +42,6 @@
 	shuffle($bannerNames);
 	$banners  = array_slice($bannerNames, 0,3);
 	$banners2 = array_slice($bannerNames, 3,6);
-
-	//QUANTITY SUBMIT
-	if (isset($_POST['quantity'])){
-		$amount = 'SELECT quantity FROM products WHERE id = ' . $id;
-		$current = mysql_query( $amount, $conn);
-		if(! $current )
-		{
-			 die('Could not get data: ' . mysql_error());
-		}
-
-		while ($val= mysql_fetch_assoc($current))
-			$value = $val['quantity'];
-
-		if ($value >= $_POST['quantity']){
-			$quantity = $_POST['quantity'];
-			mysql_query("UPDATE products SET quantity= quantity - '$quantity' WHERE id = '$id'",$conn);
-			$success = "Purchase successfull";
-		} else {
-			$error = "Amount is too high";
-		}
-	}
-
-
 
  ?>
 <!doctype html>

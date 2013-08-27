@@ -69,6 +69,7 @@
 		<header id="header">Konstantin's web shop
 		</header>
 		<div style="float: right;">
+			<a href="profile.php"><button class="btn-info">Profile</button></a>
 			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
 		</div>
 		<div class="navbar">

@@ -58,11 +58,25 @@
 	<link rel ="stylesheet" href="css/bootstrap-responsive.min.css">
 </head>
 <body id="background">
-<div id="mainElement">
-	<header id="header">Konstantin's web shop
-	<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></header>
-			<div id="elementOne">
+	<div id="mainElement">
+		<header id="header">Konstantin's web shop</header>
+		<div style="float: right;">
+			<a href="profile.php"><button class="btn-info">Profile</button></a>
+			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
+		</div>
+		<div class="navbar">
+			<div class="navbar-inner">
+		    		<a class="brand" href="index.php">Home</a>
+		    	<ul class="nav">
+		    		<li><a href="#">Products</a></li>
+		    		<li><a href="#">About us</a></li>
+		    		<li><a href="#">Contact</a></li>
+		    		<li><a href="users.php">Users</a></li>
+		    	</ul>
 			</div>
+		</div>
+		<div id="elementOne">
+			<div class="side"><img id="banner" src=""></div>
 			<div id="central">
 				<!-- SUBMISION FORM -->
 				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
@@ -81,7 +95,8 @@
 					<?php } ?>
 				</ul>
 			</div>
-</div>
+		</div>
+	</div>
 	<footer id="footer">(2013) All rights reserved</footer>
 	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.js"></script>

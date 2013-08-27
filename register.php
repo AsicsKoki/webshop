@@ -17,7 +17,9 @@
 				header("Location: register.php");
 			}
 			if (filter_var($email, FILTER_VALIDATE_EMAIL)){
-
+				$_SESSION['messageError'] = "Invalid email";
+				header("Location: register.php");
+			}
 			$password   = crypt($_POST['password'],"./PeRa1.2.");
 
 			$sql = mysql_query("SELECT * FROM users WHERE username='$username' OR email='$email'");
@@ -30,10 +32,6 @@
 			$_SESSION['messageError'] = "Username or email already exists.";
 			header("Location: register.php");
 			}
-		} else {
-			$_SESSION['messageError'] = "Invalid email";
-			header("Location: register.php");
-		}
 	}
  ?>
 

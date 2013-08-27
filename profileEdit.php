@@ -44,16 +44,19 @@
 			$_SESSION['messageError'] = "Please enter old password";
 		};
 
-
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+				$_SESSION['messageError'] = "Invalid email";
+				header("Location: register.php");
+			}
 		mysql_query("UPDATE users SET email = '$email', bio = '$about' WHERE username = '$username'",$conn);
 		$_SESSION['messageSuccess'] = "Saved!";
 
 		if ($_FILES["image"]["name"]) {
 			if (fileUpload($conn)) {
 				mysql_query("INSERT INTO images (image_name, entity_id, entity_type, entity_name) VALUES ('$image', '$id', 'user', '$username')", $conn);
+				}
 			}
-		}
-		header('Location: profileEdit.php');
+			header('Location: profileEdit.php');
 	}
 
 
@@ -128,6 +131,6 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
-	<!-- // <script src="js/parsley.js"></script> -->
+	<script src="js/parsley.js"></script>
 </body>
 </html>

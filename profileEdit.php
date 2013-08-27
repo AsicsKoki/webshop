@@ -77,7 +77,7 @@
 				<ul style="list-style: none;">
 					<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
 					<li><img src="files/<?php echo $image['image_name'] ?>"></img>
-					<div><a class="deletePhoto" href="#" data-username='<?php echo $username;?>'>Delete image</a></div></li>
+					<div><a class="deleteUserPhoto" href="#" data-username='<?php echo $username;?>'>Delete image</a></div></li>
 					<?php } ?>
 				</ul>
 			</div>

@@ -26,7 +26,7 @@ function fileUpload($conn){
 		return true;
 		}
 	}
-//FILE DELETE FUNCTION
+//FILE DELETE BACKEND
 function fileDelete($conn){
 	$id     = $_GET['id'];
 	$sql    = "SELECT * FROM images where id= '$id'";
@@ -42,6 +42,28 @@ function fileDelete($conn){
 		if ($image) {
 			unlink('../files/' . $image);
 			mysql_query("DELETE FROM images WHERE id = '$id'",$conn);
+			echo 1;
+			return;
+		}
+		echo 0;
+	}
+
+//FILE DELETE FRONTEND
+	function imageDelete($conn){
+	$username     = $_SESSION['username'];
+	$sql    = "SELECT * FROM images where entity_name= '$username'";
+	$retval = mysql_query( $sql, $conn );
+
+		if(! $retval ) {
+			die('Could not get data: ' . mysql_error());
+		}
+
+	$row   = mysql_fetch_assoc($retval);
+	$image = $row['image_name'];
+
+		if ($image) {
+			unlink('files/' . $image);
+			mysql_query("DELETE FROM images WHERE entity_name = '$username'",$conn);
 			echo 1;
 			return;
 		}

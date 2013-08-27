@@ -10,13 +10,19 @@
 	$id = $_GET["id"];
 
 	$sql = "SELECT * FROM products where id= '$id'";
-
 	$retval2 = mysql_query( $sql, $conn );
 		if(! $retval2 )
 	{
 		die('Could not get data: ' . mysql_error());
 	}
 	$row = mysql_fetch_assoc($retval2);
+
+	if(!$row){
+		$_SESSION['messageError'] = "Product not found";
+		header("Location: index.php");
+	}
+
+
 	$description = $row['description'];
 	$name = $row['name'];
 	$price = $row['price'];
@@ -74,7 +80,7 @@
 
 
 
- ?>
+ ?>	
 <!doctype html>
 <html>
 <head>

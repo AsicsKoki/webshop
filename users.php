@@ -45,6 +45,8 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" href="css/jquery.dataTables.css">
+	<link rel="stylesheet" href="css/jquery.dataTables_themeroller.css">
 </head>
 <body id="background">
 	<div id="mainElement">
@@ -65,7 +67,7 @@
 		<div id="elementOne">
 			<div class="side"><img id="banner" src=""></div>
 				<div id="central">
-				<table class="table table-hover">
+				<table id="usersTable" class="table table-hover" class="display">
 					<thead>
 						<th>First name</th>
 						<th>Last name</th>
@@ -99,6 +101,7 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
 	<script>
 		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;

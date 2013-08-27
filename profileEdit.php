@@ -1,9 +1,9 @@
 <?php
 	include 'common.php';
 	include 'notice.php';
+	include 'logincheck.php';
 
-
-	if (!loginCheck($conn)) {
+	if (!userLogin($conn)) {
 		$_SESSION['messageError'] = "Please log in!";
 		header("Location: login.php");
 	}
@@ -20,18 +20,18 @@
 	$row = mysql_fetch_assoc($retval);
 
 	if(!empty($_POST)){
-		$email          = $_POST['email'];
-		$about          = $_POST['bio'];
+		$email          = mysql_real_escape_string($_POST['email']);
+		$about          = mysql_real_escape_string($_POST['bio']);
 		$image          = $_FILES['image']['name'];
-		$oldPassword    = $_POST['oldPassword'];
-		$oldPassword    = crypt($oldPassword, "./PeRa1.2.");
+		$oldPassword    = mysql_real_escape_string($_POST['oldPassword']);
+		$oldPassword    = mysql_real_escape_string(crypt($oldPassword, "./PeRa1.2."));
 
 		if($row['password'] == $oldPassword){
 
 			if(isset($_POST['newPassword'],$_POST['repeatPassword']) and $_POST['newPassword'] and $_POST['repeatPassword']){
 
-				$newPassword    = $_POST['newPassword'];
-				$repeatPassword = $_POST['repeatPassword'];
+				$newPassword    = mysql_real_escape_string($_POST['newPassword']);
+				$repeatPassword = mysql_real_escape_string($_POST['repeatPassword']);
 
 				if($newPassword == $repeatPassword){
 					$newPassword = crypt($newPassword, "./PeRa1.2.");
@@ -128,6 +128,6 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/parsley.js"></script>
+	<!-- // <script src="js/parsley.js"></script> -->
 </body>
 </html>

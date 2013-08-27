@@ -22,8 +22,6 @@
 	$username   = $data['username'];
 	$email      = $data['email'];
 	$about      = $data['bio'];
-	$password   = $data['password'];
-
 
 	//IMAGE SELECTION
 	$imgSql = "SELECT * FROM images WHERE entity_type = 'user' and entity_name = '$username'";

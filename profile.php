@@ -99,7 +99,7 @@
 					<div>
 						<?php echo $about; ?>
 					</div>
-					<button><a href="profileEdit.php">Edit profile</a></button>
+					<a href="profileEdit.php" class="btn">Edit profile</a>
 				</div>
 				<div class="columnRight">
 					<div id="slider1">

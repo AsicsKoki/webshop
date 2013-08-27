@@ -9,10 +9,40 @@
 	}
 
 	$username = $_SESSION['username'];
+	//GETS THE DATA FROM THE TABLE
+	$sql = "SELECT * FROM users WHERE username = '$username'";
+
+	$retval = mysql_query( $sql, $conn );
+	if(! $retval )
+	{
+		die('Could not get data: ' . mysql_error());
+	}
+	$row = mysql_fetch_assoc($retval);
+
 	if(!empty($_POST)){
-		$email      = $_POST['email'];
-		$about      = $_POST['bio'];
-		$image      = $_FILES['image']['name'];
+		$email          = $_POST['email'];
+		$about          = $_POST['bio'];
+		$image          = $_FILES['image']['name'];
+		$oldPassword    = $_POST['oldPassword'];
+		$oldPassword    = crypt($oldPassword, "./PeRa1.2.");
+
+		if($row['password'] == $oldPassword){
+
+			if(isset($_POST['newPassword'],$_POST['repeatPassword']) and $_POST['newPassword'] and $_POST['repeatPassword']){
+
+				$newPassword    = $_POST['newPassword'];
+				$repeatPassword = $_POST['repeatPassword'];
+
+				if($newPassword == $repeatPassword){
+					$newPassword = crypt($newPassword, "./PeRa1.2.");
+					mysql_query("UPDATE users SET password = '$newPassword' WHERE username = '$username'", $conn);
+				} else {
+					$_SESSION['messageError'] = "Password does not match.";
+				}
+			}
+		} else {
+			$_SESSION['messageError'] = "Please enter old password";
+		};
 
 
 		mysql_query("UPDATE users SET email = '$email', bio = '$about' WHERE username = '$username'",$conn);
@@ -26,15 +56,6 @@
 		header('Location: profileEdit.php');
 	}
 
-	//GETS THE DATA FROMT HE TABLE
-	$sql = "SELECT * FROM users WHERE username = '$username'";
-
-	$retval = mysql_query( $sql, $conn );
-	if(! $retval )
-	{
-		die('Could not get data: ' . mysql_error());
-	}
-	$row = mysql_fetch_assoc($retval);
 
 
 	//IMAGE QUERY
@@ -83,7 +104,12 @@
 					<ul ul style="list-style: none;">
 						<li>email:<input type="text" name="email" value="<?php echo $row["email"] ;?>" data-required="true" data-type="email" ></li>
 						<li>About me: <textarea name="bio" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["bio"] ;?></textarea></li>
-							<div class="uploadFile"><li><label for="file">Filename:</label></li></div>
+						<li><input name="oldPassword" id="old" type="password" placeholder="enter old password"></li>
+						<li><input name="newPassword" id="new" type="password" placeholder="enter new password"></li>
+						<li><input name="repeatPassword" id="repeat" type="password" placeholder="enter new password"></li>
+							<div class="uploadFile">
+								<li><label for="file">Filename:</label></li>
+							</div>
 						<li><input type="file" name="image"><br></li>
 						<li><input type="submit" name"submit" class="btn" value="Save"></li>
 					</ul>

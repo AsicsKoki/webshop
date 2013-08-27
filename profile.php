@@ -16,13 +16,13 @@
 		if(! $retval ) {
 		die('Could not get data: ' . mysql_error());
 	}
-	$data = mysql_fetch_assoc($retval);
+	$data       = mysql_fetch_assoc($retval);
 	$first_name = $data['first_name'];
-	$last_name = $data['last_name'];
-	$username = $data['username'];
-	$email = $data['email'];
-	$about = $data['bio'];
-
+	$last_name  = $data['last_name'];
+	$username   = $data['username'];
+	$email      = $data['email'];
+	$about      = $data['bio'];
+	$password   = $data['password'];
 
 
 	//IMAGE SELECTION
@@ -74,9 +74,9 @@
 		</div>
 		<div class="navbar">
 			<div class="navbar-inner">
-		    		<a class="brand" href="index.php">Home</a>
-		    	<ul class="nav">
-		    		<li><a href="#">Products</a></li>
+					<a class="brand" href="index.php">Home</a>
+				<ul class="nav">
+					<li><a href="#">Products</a></li>
 		    		<li><a href="#">About us</a></li>
 		    		<li><a href="#">Contact</a></li>
 		    		<li><a href="users.php">Users</a></li>

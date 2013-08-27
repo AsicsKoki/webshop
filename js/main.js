@@ -68,10 +68,7 @@ $("#readMore").click(function(){
 				$("img#banner2").attr("src", banners2[i2*-1])
 			}
 	}, 2000);
-if($('table').length) {
-		$('#productsTable').dataTable();
-		$('#usersTable').dataTable();
-};
+
 
 
 $('.delete').click(function(e){
@@ -124,4 +121,9 @@ $('.deleteUserPhoto').click(function(e){
 		}
 	});
 });
-
+$(document).ready(function() {
+	if($('table').length) {
+		$('#productsTable').dataTable();
+		$('#usersTable').dataTable();
+	}
+});

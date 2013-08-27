@@ -16,7 +16,7 @@
 				$_SESSION['messageError'] = "Please enter info.";
 				header("Location: register.php");
 			}
-			if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
 				$_SESSION['messageError'] = "Invalid email";
 				header("Location: register.php");
 			}

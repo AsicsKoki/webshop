@@ -1,7 +1,6 @@
 <?php
 		include 'common.php';
 		include 'notice.php';
-		include 'logincheck.php';
 
 
 		if(isset($_POST['password'], $_POST['username'])){

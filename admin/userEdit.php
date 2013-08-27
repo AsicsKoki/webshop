@@ -7,7 +7,7 @@
 		$_SESSION['messageError'] = "Please log in!";
 		header("Location: login.php");
 	}
-
+	$username = $_SESSION['username'];
 	$id = $_GET['id'];
 	if(!empty($_POST)){
 		$first_name = $_POST['first_name'];
@@ -24,7 +24,7 @@
 
 		if ($_FILES["image"]["name"]) {
 			if (fileUpload($conn)) {
-				mysql_query("INSERT INTO images (image_name, entity_id, entity_type, entity_name)VALUES ('$image', '$id', 'user', '$username')", $conn);
+				mysql_query("INSERT INTO images (image_name, entity_id, entity_type, entity_name) VALUES ('$image', '$id', 'user', '$username')", $conn);
 			}
 		}
 		header('Location: userEdit.php?id='.$_GET['id']);
@@ -50,7 +50,7 @@
 	}
 
 	//IMAGE QUERY
-	$imgQuery = "SELECT * FROM images WHERE entity_type = 'user' and entity_id = '$id'";
+	$imgQuery = "SELECT * FROM images WHERE entity_type = 'user' and entity_name = '$username'";
 
 	$retvalImg = mysql_query( $imgQuery, $conn );
 	if(! $retval ) {
@@ -106,7 +106,7 @@
 					</ul>
 				</form>
 				<ul style="list-style: none;">
-					<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
+					<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
 					<li><img src="../files/<?php echo $image['image_name'] ?>"></img>
 					<div><a class="deletePhoto" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></div></li>
 					<?php } ?>

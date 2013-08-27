@@ -20,7 +20,7 @@
 
 		if ($_FILES["image"]["name"]) {
 			if (fileUpload($conn)) {
-				mysql_query("INSERT INTO images (image_name, entity_id, entity_type, entity_name)VALUES ('$image', '$id', 'user', '$username')", $conn);
+				mysql_query("INSERT INTO images (image_name, entity_id, entity_type, entity_name) VALUES ('$image', '$id', 'user', '$username')", $conn);
 			}
 		}
 		header('Location: profileEdit.php');
@@ -75,7 +75,7 @@
 					</ul>
 				</form>
 				<ul style="list-style: none;">
-					<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
+					<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
 					<li><img src="files/<?php echo $image['image_name'] ?>"></img>
 					<div><a class="deletePhoto" href="#" data-username='<?php echo $username;?>'>Delete image</a></div></li>
 					<?php } ?>

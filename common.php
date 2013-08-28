@@ -35,7 +35,7 @@ function imageUpload($conn){
 		return true;
 		}
 	}
-//FILE DELETE BACKEND
+//FILE DELETE BACK END
 function fileDelete($conn){
 	$id     = $_GET['id'];
 	$sql    = "SELECT * FROM images where id= '$id'";
@@ -57,7 +57,7 @@ function fileDelete($conn){
 		echo 0;
 	}
 
-//FILE DELETE FRONTEND
+//FILE DELETE FRONT END
 	function imageDelete($conn){
 	$username = $_SESSION['username'];
 	$sql      = "SELECT * FROM images where entity_name= '$username'";

@@ -86,13 +86,13 @@
 	        <div class="control-group">
 	            <label class="control-label" for="price">Price:</label>
 	                <div class="controls">
-	                    <input style="height: 30px;" type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number"/>
+	                    <input style="height: 30px;" type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number" data-range="[1, 9999999]"/>
 	                </div>
 	        </div>
 	         <div class="control-group">
 	            <label class="control-label" for="quantity">Quantity</label>
 	                <div class="controls">
-	                    <input style="height: 30px;" type="number" name="quantity" value="<?php echo $row["quantity"];?>" data-required="true" data-type="number"/>
+	                    <input style="height: 30px;" type="number" name="quantity" value="<?php echo $row["quantity"];?>" data-required="true" data-type="number" data-range="[1, 9999999]"/>
 	                </div>
 	        </div>
 	         <div class="control-group">
@@ -118,20 +118,19 @@
 				</div>
 			</div>
 	        <div class="control-group">
-	        	<div class="controls">
-				<div class="uploadFile">
-					<label for="file">Filename:</label>
-					<input type="file" name="image"><br>
-				</div>
+	            <label style="float:left; padding-left: 100px;" class="control-lable" for="file">Filename:</label>
+	                <div class="controls">
+	                    <input style="padding-left: 50px;:" type="file" name="image">
+	                </div>
 	        </div>
-	    </div>
 	        <input type="submit" name"submit" class="btn" value="Save">
 		</form>
 			<ul style="list-style: none;">
 				<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
-					<li><img src="../files/<?php echo $image['image_name'] ?>"></img></li>
-					<div>
-					<a class="deletePhoto" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></div>
+					<li><img src="../files/<?php echo $image['image_name'] ?>"></img>
+						<div>
+						<a class="deletePhoto" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></div>
+					</li>
 				<?php } ?>
 			</ul>
 		</div>

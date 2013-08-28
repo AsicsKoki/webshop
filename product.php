@@ -80,7 +80,7 @@
 
 
 
- ?>	
+ ?>
 <!doctype html>
 <html>
 <head>
@@ -144,10 +144,10 @@
 						?>
 					</select>
 					<footer>
-						<form action="" method="post">
+						<form action="" method="post" data-validate="parsley">
 							<label for="quantity">quantity: </label>
 							<input type="submit" value="purchase">
-							<input name="quantity" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
+							<input name="quantity" data-range="[1, 9999999]" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
 						</form>
 						<input id="checkbox" type="checkbox">rotate banners
 					</footer>
@@ -173,11 +173,12 @@
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>
     </div>
-	<script src="js/bootstrap.min.js"></script>
 	<script>
 		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;
 	</script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/parsley.js"></script>
 </body>
 </html>

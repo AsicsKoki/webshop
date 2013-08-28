@@ -20,7 +20,7 @@
 		if(is_numeric($quantity) AND $quantity >= 0){
 
 			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color' WHERE id = '$id'",$conn);
-			$_SESSION['messageSuccess'] = "Saved!";
+			successMessage("Saved!");
 		} else {
 			$_SESSION['messageError'] = "Please enter valid quantity";
 		}
@@ -76,13 +76,34 @@
 			<?php include 'sidebar.php'; ?>
 		</div>
 			<div id="central">
-				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
-				<ul style="list-style: none;">
-				<li>Name:<input type="text" name="name" value="<?php echo $row["name"];?>" data-minlength="3" data-required="true"/></li>
-				<li>Price:<input type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number"/></li>
-				<li>Quantity:<input type="number" name="quantity" value="<?php echo $row["quantity"];?>" data-required="true" data-type="number"/></li>
-				<li>Description:<textarea name="description" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["description"] ;?></textarea></li>
-				<li><select name='color'>
+		<form class="form-horizontal pull-left" method="post" data-validate="parsley" enctype="multipart/form-data">
+	        <div class="control-group">
+	            <label class="control-label" for="name">Product name:</label>
+	                <div class="controls">
+						<input style="height: 30px;" type="text" name="name" value="<?php echo $row["name"];?>" data-minlength="3" data-required="true"/>
+	                </div>
+	        </div>
+	        <div class="control-group">
+	            <label class="control-label" for="price">Price:</label>
+	                <div class="controls">
+	                    <input style="height: 30px;" type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number"/>
+	                </div>
+	        </div>
+	         <div class="control-group">
+	            <label class="control-label" for="quantity">Quantity</label>
+	                <div class="controls">
+	                    <input style="height: 30px;" type="number" name="quantity" value="<?php echo $row["quantity"];?>" data-required="true" data-type="number"/>
+	                </div>
+	        </div>
+	         <div class="control-group">
+	            <label class="control-label" for="description">Product description</label>
+	                <div class="controls">
+	                    <textarea name="description" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["description"] ;?></textarea>
+	                </div>
+	        </div>
+	        <div class="control-group">
+	        	<label class="control-label" for="color">Product description</label>
+	            <select name='color'>
 				<?php
 					while ($color= mysql_fetch_assoc($retvalColor)) {
 						if ($row['colorid'] == $color["color_id"]) { ?>
@@ -93,13 +114,13 @@
 						<?php
 						}
 					} ?>
-				</select></li>
-				<div class="uploadFile"><li><label for="file">Filename:</label></li>
-					<li><input type="file" name="image"><br></li>
-					<li><input type="submit" name"submit" class="btn" value="Save"></li>
+				</select>
+	        </div>
+		</form>
+				<div class="uploadFile"><li><label for="file">Filename:</label>
+					<input type="file" name="image"><br>
+					<input type="submit" name"submit" class="btn" value="Save">
 				</div>
-				</ul>
-				</form>
 					<ul style="list-style: none;">
 					<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
 						<li><img src="../files/<?php echo $image['image_name'] ?>"></img>

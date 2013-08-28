@@ -90,33 +90,52 @@
 		</div>
 		<div class="navbar">
 			<div class="navbar-inner">
-		    		<a class="brand" href="index.php">Home</a>
-		    	<ul class="nav">
-		    		<li><a href="#">Products</a></li>
-		    		<li><a href="#">About us</a></li>
-		    		<li><a href="#">Contact</a></li>
-		    		<li><a href="users.php">Users</a></li>
-		    	</ul>
+					<a class="brand" href="index.php">Home</a>
+				<ul class="nav">
+					<li><a href="#">Products</a></li>
+					<li><a href="#">About us</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="users.php">Users</a></li>
+				</ul>
 			</div>
 		</div>
 		<div id="elementOne">
 			<div class="side"><img id="banner" src=""></div>
 			<div id="central">
 				<!-- SUBMISION FORM -->
-				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
-					<ul ul style="list-style: none;">
-						<li>email:<input type="text" name="email" value="<?php echo $row["email"] ;?>" data-required="true" data-type="email" ></li>
-						<li>About me: <textarea name="bio" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["bio"] ;?></textarea></li>
-						<li><input name="oldPassword" id="old" type="password" placeholder="enter old password"></li>
-						<li><input name="newPassword" id="new" type="password" placeholder="enter new password"></li>
-						<li><input name="repeatPassword" id="repeat" type="password" placeholder="enter new password"></li>
-							<div class="uploadFile">
-								<li><label for="file">Filename:</label></li>
-							</div>
-						<li><input type="file" name="image"><br></li>
-						<li><input type="submit" name"submit" class="btn" value="Save"></li>
-					</ul>
-				</form>
+		<form class="form-horizontal pull-left" method="post" data-validate="parsley" enctype="multipart/form-data">
+	        <div class="control-group">
+	            <label class="control-label" for="email">Email</label>
+	                <div class="controls">
+						<input input type="text" name="email" value="<?php echo $row["email"] ;?>" data-required="true" data-type="email">
+	                </div>
+	        </div>
+	        <div class="control-group">
+	            <label class="control-label" for="bio">About me</label>
+	                <div class="controls">
+	                    <textarea name="bio" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["bio"] ;?></textarea>
+	                </div>
+	        </div>
+	         <div class="control-group">
+	            <label class="control-label" for="oldPassword">Old password</label>
+	                <div class="controls">
+	                    <input name="oldPassword" id="old" type="password" placeholder="enter old password"></input>
+	                </div>
+	        </div>
+	         <div class="control-group">
+	            <label class="control-label" for="newPassword">New password</label>
+	                <div class="controls">
+	                    <input name="newPassword" id="new" type="password" placeholder="enter new password"></input>
+	                </div>
+	        </div>
+	        <div class="control-group">
+	            <label class="control-label" for="newPassword">New password</label>
+	                <div class="controls">
+	                    <input name="repeatPassword" id="repeat" type="password" placeholder="enter new password"></input>
+	                </div>
+	        </div>
+	        <input type="submit" name"submit" class="btn" value="Save">
+		</form>
 				<ul style="list-style: none;">
 					<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
 					<li><img src="files/<?php echo $image['image_name'] ?>"></img>

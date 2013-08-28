@@ -17,12 +17,21 @@ function loginCheck($connectionParam){
 	$role   = mysql_fetch_assoc($retval);
 	return $role;
 }
-//FILE UPLOAD FUNCTION
+//FILE UPLOAD FUNCTION BACK END
 function fileUpload($conn){
 	if (file_exists("../files/" . $_FILES["image"]["name"])) {
 		return false;
 	} else {
 		move_uploaded_file($_FILES["image"]["tmp_name"], "../files/" . $_FILES["image"]["name"]);
+		return true;
+		}
+	}
+//FILE UPLOAD FUNCTION FRONT END
+function imageUpload($conn){
+	if (file_exists("files/" . $_FILES["image"]["name"])) {
+		return false;
+	} else {
+		move_uploaded_file($_FILES["image"]["tmp_name"], "files/" . $_FILES["image"]["name"]);
 		return true;
 		}
 	}
@@ -50,9 +59,9 @@ function fileDelete($conn){
 
 //FILE DELETE FRONTEND
 	function imageDelete($conn){
-	$username     = $_SESSION['username'];
-	$sql    = "SELECT * FROM images where entity_name= '$username'";
-	$retval = mysql_query( $sql, $conn );
+	$username = $_SESSION['username'];
+	$sql      = "SELECT * FROM images where entity_name= '$username'";
+	$retval   = mysql_query( $sql, $conn );
 
 		if(! $retval ) {
 			die('Could not get data: ' . mysql_error());

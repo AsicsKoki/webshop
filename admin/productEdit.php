@@ -20,7 +20,7 @@
 		if(is_numeric($quantity) AND $quantity >= 0){
 
 			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color' WHERE id = '$id'",$conn);
-			successMessage("Saved!");
+			$_SESSION["messageSuccess"] = "Saved!";
 		} else {
 			$_SESSION['messageError'] = "Please enter valid quantity";
 		}
@@ -102,33 +102,39 @@
 	                </div>
 	        </div>
 	        <div class="control-group">
-	        	<label class="control-label" for="color">Product description</label>
-	            <select name='color'>
-				<?php
-					while ($color= mysql_fetch_assoc($retvalColor)) {
-						if ($row['colorid'] == $color["color_id"]) { ?>
-							<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
+	        	<div class="controls">
+					<select name='color'>
+						<?php
+						while ($color= mysql_fetch_assoc($retvalColor)) {
+							if ($row['colorid'] == $color["color_id"]) { ?>
+								<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
 						<?php
 						} else { ?>
-							<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
-						<?php
-						}
-					} ?>
-				</select>
-	        </div>
-		</form>
-				<div class="uploadFile"><li><label for="file">Filename:</label>
-					<input type="file" name="image"><br>
-					<input type="submit" name"submit" class="btn" value="Save">
+								<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
+							<?php
+							}
+						} ?>
+					</select>
 				</div>
-					<ul style="list-style: none;">
-					<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
-						<li><img src="../files/<?php echo $image['image_name'] ?>"></img>
-						<div>
-						<a class="deletePhoto" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></div></li>
-					<?php } ?>
-					</ul>
 			</div>
+	        <div class="control-group">
+	        	<div class="controls">
+				<div class="uploadFile">
+					<label for="file">Filename:</label>
+					<input type="file" name="image"><br>
+				</div>
+	        </div>
+	    </div>
+	        <input type="submit" name"submit" class="btn" value="Save">
+		</form>
+			<ul style="list-style: none;">
+				<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
+					<li><img src="../files/<?php echo $image['image_name'] ?>"></img></li>
+					<div>
+					<a class="deletePhoto" href="#" data-id='<?php echo $image["id"];?>'>Delete image</a></div>
+				<?php } ?>
+			</ul>
+		</div>
 	<footer id="footer">(2013) All rights reserved</footer>
 	<script src="../js/jquery-1.10.2.min.js"></script>
 	<script src="../js/bootstrap.js"></script>

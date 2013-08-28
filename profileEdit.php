@@ -52,7 +52,7 @@
 		$_SESSION['messageSuccess'] = "Saved!";
 
 		if ($_FILES["image"]["name"]) {
-			if (fileUpload($conn)) {
+			if (imageUpload($conn)) {
 				mysql_query("INSERT INTO images (image_name, entity_id, entity_type, entity_name) VALUES ('$image', '$id', 'user', '$username')", $conn);
 				}
 			}
@@ -105,33 +105,39 @@
 				<!-- SUBMISION FORM -->
 		<form class="form-horizontal pull-left" method="post" data-validate="parsley" enctype="multipart/form-data">
 	        <div class="control-group">
-	            <label class="control-label" for="email">Email</label>
+	            <label class="control-label" for="email">Email:</label>
 	                <div class="controls">
 						<input input type="text" name="email" value="<?php echo $row["email"] ;?>" data-required="true" data-type="email">
 	                </div>
 	        </div>
 	        <div class="control-group">
-	            <label class="control-label" for="bio">About me</label>
+	            <label class="control-label" for="bio">About me:</label>
 	                <div class="controls">
 	                    <textarea name="bio" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["bio"] ;?></textarea>
 	                </div>
 	        </div>
 	         <div class="control-group">
-	            <label class="control-label" for="oldPassword">Old password</label>
+	            <label class="control-label" for="oldPassword">Old password:</label>
 	                <div class="controls">
 	                    <input name="oldPassword" id="old" type="password" placeholder="enter old password"></input>
 	                </div>
 	        </div>
 	         <div class="control-group">
-	            <label class="control-label" for="newPassword">New password</label>
+	            <label class="control-label" for="newPassword">New password:</label>
 	                <div class="controls">
 	                    <input name="newPassword" id="new" type="password" placeholder="enter new password"></input>
 	                </div>
 	        </div>
 	        <div class="control-group">
-	            <label class="control-label" for="newPassword">New password</label>
+	            <label class="control-label" for="newPassword">New password:</label>
 	                <div class="controls">
 	                    <input name="repeatPassword" id="repeat" type="password" placeholder="enter new password"></input>
+	                </div>
+	        </div>
+	        <div class="control-group">
+	            <label style="float:left; padding-left: 100px;" class="control-lable" for="file">Filename:</label>
+	                <div class="controls">
+	                    <input style="padding-left: 50px;:" type="file" name="image">
 	                </div>
 	        </div>
 	        <input type="submit" name"submit" class="btn" value="Save">

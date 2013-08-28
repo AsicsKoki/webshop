@@ -3,7 +3,9 @@
 	include 'common.php';
 
 	if (!userLogin($conn)) {
-		messageError("Please log in.");
+		$msg = "Please log in.";
+		messageError($msg);
+		exit;
 		header("Location: login.php");
 	}
 	//USER DATA

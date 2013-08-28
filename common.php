@@ -78,4 +78,11 @@ function fileDelete($conn){
 		}
 		echo 0;
 	}
+//MESSAGE ERROR/SUCCESS
+	function messageError($msg){
+		$_SESSION['messageError'] = $msg;
+	}
+	function messageSuccess($msg){
+		$_SESSION['messageError'] = $msg;
+	}
 ?>

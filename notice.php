@@ -1,4 +1,4 @@
-<?php 
+<?php
 	session_start();
 	if(isset($_SESSION['messageSuccess'])){
 		echo "<div class='alert alert-success'> <button type='button' class='close' data-dismiss='alert'>&times;</button>{$_SESSION['messageSuccess']}</div>";

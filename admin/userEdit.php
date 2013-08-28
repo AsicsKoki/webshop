@@ -78,32 +78,61 @@
 			</div>
 			<div id="central">
 				<!-- SUBMISION FORM -->
-				<form action="" method="post" data-validate="parsley" enctype="multipart/form-data">
-					<ul ul style="list-style: none;">
-						<li>First name:<input type="text" name="first_name" value="<?php echo $row["first_name"];?>" data-minlength="3" data-required="true"/></li>
-						<li>Last name:<input type="text" name="last_name" value="<?php echo $row["last_name"] ;?>" data-required="true" ></li>
-						<li>Username:<input type="text" name="username" value="<?php echo $row["username"];?>" data-required="true"></li>
-						<li>email:<input type="text" name="email" value="<?php echo $row["email"] ;?>" data-required="true" data-type="email" ></li>
-						<li>About me: <textarea name="bio" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["bio"] ;?></textarea></li>
-						<li>
+				<form class="form-horizontal pull-left" method="post" data-validate="parsley" enctype="multipart/form-data">
+			        <div class="control-group">
+			            <label class="control-label" for="first_name">First name:</label>
+			                <div class="controls">
+								<input style="height: 30px;" type="text" name="first_name" value="<?php echo $row["first_name"];?>" data-required="true"/>
+			                </div>
+			        </div>
+			        <div class="control-group">
+			            <label class="control-label" for="last_name">Last name:</label>
+			                <div class="controls">
+								<input style="height: 30px;" type="text" name="last_name" value="<?php echo $row["last_name"];?>" data-required="true"/>
+			                </div>
+			        </div>
+			         <div class="control-group">
+			            <label class="control-label" for="username">Username</label>
+			                <div class="controls">
+			                   <input style="height: 30px;" type="text" name="username" value="<?php echo $row["username"];?>" data-required="true"/>
+			                </div>
+			        </div>
+			        <div class="control-group">
+			            <label class="control-label" for="email">Email:</label>
+			                <div class="controls">
+			                  <input style="height: 30px;" type="text" name="email" value="<?php echo $row["email"];?>" data-required="true" data-type="email"/>
+			                </div>
+			        </div>
+			        <div class="control-group">
+			            <label class="control-label" for="bio">About me:</label>
+			                <div class="controls">
+			                  <textarea name="bio" cols="100" rows="10" data-rangelength="[20,400]"><?php echo $row["bio"] ;?></textarea>
+			                </div>
+			        </div>
+			        <div class="control-group">
+			        	<div class="controls">
 							<select name='role_id'>
-						<?php
-							while ($role= mysql_fetch_assoc($roles)) {
-								if ($row['role_id'] == $role["id"]) { ?>
-									<option selected="selected"  value="<?php echo $role["id"]?>"><?php echo $role["role"] ?></option>
 								<?php
-								} else { ?>
-									<option value="<?php echo $role["id"]?>"><?php echo $role["role"] ?></option>
-								<?php
-								}
-							}
-						?>
+									while ($role= mysql_fetch_assoc($roles)) {
+										if ($row['role_id'] == $role["id"]) { ?>
+											<option selected="selected"  value="<?php echo $role["id"]?>"><?php echo $role["role"] ?></option>
+										<?php
+										} else { ?>
+											<option value="<?php echo $role["id"]?>"><?php echo $role["role"] ?></option>
+										<?php
+										}
+									}
+								?>
 							</select>
-						</li>
-							<div class="uploadFile"><li><label for="file">Filename:</label></li></div>
-						<li><input type="file" name="image"><br></li>
-						<li><input type="submit" name"submit" class="btn" value="Save"></li>
-					</ul>
+						</div>
+					</div>
+			      <div class="control-group">
+			            <label style="float:left; padding-left: 100px;" class="control-lable" for="file">Filename:</label>
+			                <div class="controls">
+			                    <input style="padding-left: 50px;:" type="file" name="image">
+			                </div>
+			        </div>
+			        <input type="submit" name"submit" class="btn" value="Save">
 				</form>
 				<ul style="list-style: none;">
 					<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>

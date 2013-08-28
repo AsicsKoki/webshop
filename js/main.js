@@ -86,7 +86,7 @@ $('.delete').click(function(e){
 		}
 	});
 });
-
+//AJAX DELETE BACK END
 $('.deletePhoto').click(function(e){
 	e.preventDefault();
 	var id = $(this).data('id');
@@ -104,6 +104,7 @@ $('.deletePhoto').click(function(e){
 		}
 	});
 });
+//AJAX DELETE FRONT END
 $('.deleteUserPhoto').click(function(e){
 	e.preventDefault();
 	var username = $(this).data('username');

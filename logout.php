@@ -2,6 +2,7 @@
 	session_start();
 	unset($_SESSION['username']);
 
-	$_SESSION['messageSuccess'] = 'You have logged out!';
+	$msg = 'You have logged out!';
+	messageSuccess($msg);
 	header('location: login.php');
  ?>

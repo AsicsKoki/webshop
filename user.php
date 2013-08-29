@@ -6,8 +6,10 @@
 	$id = $_GET['id'];
 
 	if (!userLogin($conn)) {
-		$_SESSION['messageError'] = "Please log in.";
+		$msg = "Please log in.";
+		messageError($msg);
 		header("Location: login.php");
+	}
 	}
 	//USER DATA
 

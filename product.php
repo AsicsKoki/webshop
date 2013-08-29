@@ -3,7 +3,8 @@
 	include 'common.php';
 
 	if (!userLogin($conn)) {
-		$_SESSION['messageError'] = "Please log in.";
+		$msg = "Please log in.";
+		messageError($msg);
 		header("Location: login.php");
 	}
 	//PRODUCT DATA
@@ -18,7 +19,8 @@
 	$row = mysql_fetch_assoc($retval2);
 
 	if(!$row){
-		$_SESSION['messageError'] = "Product not found";
+		$msg = "Product not found";
+		messageError($msg);
 		header("Location: index.php");
 	}
 

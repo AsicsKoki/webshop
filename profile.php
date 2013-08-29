@@ -1,13 +1,14 @@
 <?php
+
 	include 'logincheck.php';
 	include 'common.php';
 
 	if (!userLogin($conn)) {
 		$msg = "Please log in.";
 		messageError($msg);
-		exit;
 		header("Location: login.php");
 	}
+
 	//USER DATA
 	$username = $_SESSION["username"];
 
@@ -122,7 +123,10 @@
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>
     </div>
+    <script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
 	<script>
 		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;

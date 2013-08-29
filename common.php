@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 
+
 	$conn = mysql_connect("localhost","root","","webshop");
 	if(! $conn ) {
 	  	die('Could not connect: ' . mysql_error());
@@ -18,13 +19,24 @@ function loginCheck($connectionParam){
 	return $role;
 }
 //FILE UPLOAD FUNCTION BACK END
-function fileUpload($conn){
-	if (file_exists("../files/" . $_FILES["image"]["name"])) {
+ function fileUpload(){
+	if ($_FILES["file"]["error"] > 0) {
 		return false;
+	}
+
+	$infix = "";
+	while(file_exists("../files/" . $_FILES["image"]["name"] . $infix)){
+		if($infix == ""){
+			$infix = 1;
 	} else {
-		move_uploaded_file($_FILES["image"]["tmp_name"], "../files/" . $_FILES["image"]["name"]);
-		return true;
+		$infix++;
 		}
+	}
+	$name = $_FILES['image']['name'];
+	list($name, $extention) = explode('.', $name);
+
+	move_uploaded_file($_FILES["image"]["tmp_name"], "../files/" . $name . $infix . "." . $extention);
+	return $name . $infix . "." . $extention;
 	}
 //FILE UPLOAD FUNCTION FRONT END
 function imageUpload($conn){
@@ -83,6 +95,6 @@ function fileDelete($conn){
 		$_SESSION['messageError'] = $msg;
 	}
 	function messageSuccess($msg){
-		$_SESSION['messageError'] = $msg;
+		$_SESSION['messageSuccess'] = $msg;
 	}
 ?>

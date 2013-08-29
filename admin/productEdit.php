@@ -2,10 +2,15 @@
 	include '../common.php';
 	include '../notice.php';
 
-
-
+	$primer = "pera.jpg";
+	list($name, $extention) = explode('.', $primer);
+	var_dump($name);
+	var_dump($extention);
+	exit;
+	
 	if (!loginCheck($conn)) {
-		$_SESSION['messageError'] = "Please log in!";
+		$msg = "Please log in.";
+		messageError($msg);
 		header("Location: login.php");
 	}
 
@@ -20,15 +25,16 @@
 		if(is_numeric($quantity) AND $quantity >= 0){
 
 			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color' WHERE id = '$id'",$conn);
-			$_SESSION["messageSuccess"] = "Saved!";
+				$msg = "Saved";
+				messageSuccess($msg);
 		} else {
-			$_SESSION['messageError'] = "Please enter valid quantity";
+				$msg = "Enter valid quantity.";
+				messageError();
 		}
 		if ($_FILES["image"]["name"]) {
 
-			if (fileUpload($conn)){
-				mysql_query("INSERT INTO images (image_name, entity_id, entity_type)VALUES ('$image', '$id', 'product')", $conn);
-			}
+			$fileName = fileUpload($conn);
+			mysql_query("INSERT INTO images (image_name, entity_id, entity_type)VALUES ('$fileName', '$id', 'product')", $conn);
 		}
 		header('Location: productEdit.php?id='.$_GET['id']);
 	}

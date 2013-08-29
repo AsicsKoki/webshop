@@ -5,7 +5,8 @@
 
 
 	if (!loginCheck($conn)) {
-		$_SESSION['messageError'] = "You don't have permissions to view this page.";
+		$msg = "You do not have permissions to enter this page.";
+		messageError($msg);
 		header("Location: login.php");
 	}
 

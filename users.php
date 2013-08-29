@@ -3,9 +3,9 @@
 		include 'common.php';
 		include 'notice.php';
 
-
-	if (!loginCheck($conn)) {
-		$_SESSION['messageError'] = "You don't have permissions to view this page.";
+if (!userLogin($conn)) {
+		$msg = "Please log in.";
+		messageError($msg);
 		header("Location: login.php");
 	}
 

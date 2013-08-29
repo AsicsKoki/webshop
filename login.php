@@ -8,7 +8,8 @@
 			$password   = mysql_real_escape_string($_POST['password']);
 
 			if ($username == "" OR $password == "") {
-				$_SESSION['messageError'] = "Please enter username and password.";
+				$msg = "Please enter username and password.";
+				messageError($msg);
 				header("Location: login.php");
 			}
 
@@ -22,7 +23,8 @@
 				$_SESSION['username'] = $username;
 				header("Location: index.php");
 			} else {
-				$_SESSION['messageError'] = "Wrong username and/or password.";
+				$msg = "Wrong username and/or password.";
+				messageError();
 				header("Location: login.php");
 			}
 		}

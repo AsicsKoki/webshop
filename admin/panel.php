@@ -1,11 +1,12 @@
 <?php
 		include '../common.php';
 		include '../notice.php';
+
 	if (!loginCheck($conn)) {
-		$_SESSION['messageError'] = "Please log in!";
+		$msg = "Please log in.";
+		messageError($msg);
 		header("Location: login.php");
 	}
-
  ?>
 
  <!doctype HTML>

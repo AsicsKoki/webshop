@@ -13,11 +13,13 @@
 			if (!$username || !$password || !$first_name || !$last_name || !$email) {
 				session_start();
 
-				$_SESSION['messageError'] = "Please enter info.";
+				$msg = "Please enter info.";
+				messageError($msg);
 				header("Location: register.php");
 			}
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-				$_SESSION['messageError'] = "Invalid email";
+				$msg = "Invalid email";
+				messageError($msg);
 				header("Location: register.php");
 			}
 			$password   = crypt($_POST['password'],"./PeRa1.2.");
@@ -29,7 +31,8 @@
 			mysql_query ("INSERT INTO users (username, password, first_name, last_name, email) VALUES ('$username', '$password', '$first_name', '$last_name', '$email')");
 			header("location: index.php");
 			} else {
-			$_SESSION['messageError'] = "Username or email already exists.";
+			$msg = "Username or email already exists.";
+			messageError($msg);
 			header("Location: register.php");
 			}
 	}

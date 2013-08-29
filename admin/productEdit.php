@@ -2,11 +2,15 @@
 	include '../common.php';
 	include '../notice.php';
 
-	$primer = "pera.jpg";
-	list($name, $extention) = explode('.', $primer);
-	var_dump($name);
-	var_dump($extention);
-	exit;
+	// $infix = "123";
+	// $name = "proba.jpg";
+	// $name2 = explode( ".", $name);
+	// $split = array_pop($name2);
+	// array_push($name2, $infix);
+	// array_push($name2, $split);
+	// $str = implode(".", $name2);
+	// var_dump($str);
+	// exit;
 	
 	if (!loginCheck($conn)) {
 		$msg = "Please log in.";
@@ -34,7 +38,7 @@
 		if ($_FILES["image"]["name"]) {
 
 			$fileName = fileUpload($conn);
-			mysql_query("INSERT INTO images (image_name, entity_id, entity_type)VALUES ('$fileName', '$id', 'product')", $conn);
+			mysql_query("INSERT INTO images (image_name, entity_id, entity_type) VALUES ('$fileName', '$id', 'product')", $conn);
 		}
 		header('Location: productEdit.php?id='.$_GET['id']);
 	}

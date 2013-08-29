@@ -33,10 +33,14 @@ function loginCheck($connectionParam){
 		}
 	}
 	$name = $_FILES['image']['name'];
-	list($name, $extention) = explode('.', $name);
+	$name2 = explode( ".", $name);
+	$split = array_pop($name2);
+	array_push($name2, $infix);
+	array_push($name2, $split);
+	$str = implode(".", $name2);
 
-	move_uploaded_file($_FILES["image"]["tmp_name"], "../files/" . $name . $infix . "." . $extention);
-	return $name . $infix . "." . $extention;
+	move_uploaded_file($_FILES["image"]["tmp_name"], "../files/" . $str);
+	return $str;
 	}
 //FILE UPLOAD FUNCTION FRONT END
 function imageUpload($conn){

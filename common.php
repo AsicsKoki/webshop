@@ -18,6 +18,16 @@ function loginCheck($connectionParam){
 	$role   = mysql_fetch_assoc($retval);
 	return $role;
 }
+function addInfix($name, $infix){
+		if (!$infix) return $name;
+		$name2 = explode( ".", $name);
+		$last = array_pop($name2);
+		$penultimate = array_pop($name2);
+		array_push($name2, $penultimate."_".$infix);
+		array_push($name2, $last);
+		$str = implode(".", $name2);
+		return $str;
+}
 //FILE UPLOAD FUNCTION BACK END
  function fileUpload(){
 	if ($_FILES["file"]["error"] > 0) {
@@ -25,23 +35,18 @@ function loginCheck($connectionParam){
 	}
 
 	$infix = "";
-	while(file_exists("../files/" . $_FILES["image"]["name"] . $infix)){
+	while(file_exists("../files/" . addInfix($_FILES["image"]["name"], $infix) )){
 		if($infix == ""){
 			$infix = 1;
-	} else {
-		$infix++;
+		} else {
+			$infix = $infix + 1;
 		}
 	}
-	$name = $_FILES['image']['name'];
-	$name2 = explode( ".", $name);
-	$split = array_pop($name2);
-	array_push($name2, $infix);
-	array_push($name2, $split);
-	$str = implode(".", $name2);
+	$str = addInfix($_FILES["image"]["name"], $infix);
 
 	move_uploaded_file($_FILES["image"]["tmp_name"], "../files/" . $str);
 	return $str;
-	}
+}
 //FILE UPLOAD FUNCTION FRONT END
 function imageUpload($conn){
 	if (file_exists("files/" . $_FILES["image"]["name"])) {

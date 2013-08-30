@@ -29,6 +29,10 @@
 	$name = $row['name'];
 	$price = $row['price'];
 	$quantity = $row['quantity'];
+	$active = $row['active'];
+	if ($active == 0){
+		header("Location: index.php");
+	}
 
 	// COLOR SELECTION
 	$boje= "SELECT * FROM colors";

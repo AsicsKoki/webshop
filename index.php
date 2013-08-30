@@ -13,7 +13,7 @@ if (!userLogin($conn)) {
 	$username = $_SESSION['username'];
 
 //SELECT TABLE INFO
-$sql = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id";
+$sql = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id WHERE active = 1";
 
 mysql_select_db('webshop');
 

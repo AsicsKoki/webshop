@@ -8,7 +8,6 @@
 		messageError($msg);
 		header("Location: login.php");
 	}
-	}
 
 	$username = $_SESSION['username'];
 	//GETS THE DATA FROM THE TABLE
@@ -159,5 +158,25 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/parsley.js"></script>
+	<script type="text/javascript">
+		//AJAX DELETE FRONT END
+		$('.deleteUserPhoto').click(function(e){
+			e.preventDefault();
+			var username = $(this).data('username');
+			var self = this;
+			$.ajax({
+				url: "imageDelete.php",
+				type: "get",
+				data: {
+					username: username
+				},
+				success: function(data){
+					if (data){
+						$(self).parents("li").remove();
+					}
+				}
+			});
+		});
+	</script>
 </body>
 </html>

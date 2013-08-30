@@ -104,24 +104,6 @@ $('.deletePhoto').click(function(e){
 		}
 	});
 });
-//AJAX DELETE FRONT END
-$('.deleteUserPhoto').click(function(e){
-	e.preventDefault();
-	var username = $(this).data('username');
-	var self = this;
-	$.ajax({
-		url: "imageDelete.php",
-		type: "get",
-		data: {
-			username: username
-		},
-		success: function(data){
-			if (data){
-				$(self).parents("li").remove();
-			}
-		}
-	});
-});
 $(document).ready(function() {
 	if($('table').length) {
 		$('#productsTable').dataTable();

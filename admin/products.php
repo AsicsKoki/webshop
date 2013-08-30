@@ -13,6 +13,7 @@
 
 	$full = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id";
 
+
 	mysql_select_db('webshop');
 		$retval2 = mysql_query( $full, $conn );
 	if(! $retval2 ) {
@@ -48,10 +49,12 @@
 						<th>Action</th>
 						<th>Action</th>
 						<th>Quantity</th>
+						<th>Active</th>
 					</thead>
 					<tbody>
 						<?php
 							while($row = mysql_fetch_assoc($retval2)) {
+								$active = $row['active'];
 						 ?>
 						<tr>
 							<td class="column1"><a href="../product.php?id=<?php echo $row["id"]; ?>" target="_blank" ><?php echo $row["name"]; ?></a></td>
@@ -60,6 +63,9 @@
 							<td class="column4"><a class="btn btn-warning" href="productEdit.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>Edit</a></td>
 							<td class="column4"><a data-id='<?php echo $row["id"]; ?>' class="delete" class="btn btn-danger"><i class="icon-info-sign"></i>Delete</a></td>
 							<td class="column5"><?php echo $row["quantity"] ?></td>
+							<td>
+								<input class="active" type="checkbox" data-id='<?php echo $row["id"];?>' <?php echo $active ? "checked": ""; ?>>
+							</td>
 						</tr>
 						<?php
 							}
@@ -75,5 +81,25 @@
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/main.js"></script>
 	<script src="../js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript">
+		//AJAX ACTIVE CONTROLS
+		$('.active').click(function(e){
+			var id = $(this).data('id');
+			var active = $(this).is(':checked');
+			$.ajax({
+				url: "changeState.php",
+				type: "get",
+				data: {
+					id: id,
+					active: active?1:0
+				},
+				success: function(data){
+					if (!data){
+						e.preventDefault();
+					}
+				}
+			});
+		});
+	</script>
 </body>
 </html>

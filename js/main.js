@@ -110,3 +110,20 @@ $(document).ready(function() {
 		$('#usersTable').dataTable();
 	}
 });
+//COMMENT BOX
+$('.comment_btn').click(function(e){
+	var id = $(this).data('id');
+	var self = this;
+	$.ajax({
+		url: "comment.php",
+		type: "post",
+		data: {
+			id: id
+		},
+		success: function(data){
+			if (data){
+				return 1;
+			}
+		}
+	});
+});

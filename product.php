@@ -29,10 +29,10 @@
 	$name = $row['name'];
 	$price = $row['price'];
 	$quantity = $row['quantity'];
-	// $active = $row['active'];
-	// // if ($active == 0){
-	// // 	header("Location: index.php");
-	// // }
+	$active = $row['active'];
+	if ($active == 0){
+		header("Location: index.php");
+	}
 
 	// COLOR SELECTION
 	$boje= "SELECT * FROM colors";
@@ -177,9 +177,9 @@
 			</div>
 			<div class="side"><img id="banner2" src=""></div>
 		</div>
-			<form method="post"> 
-				<textarea name="comment" cols="100" rows="10"></textarea>
-				<input data-id='<?php echo $row["id"];?>' class="comment_btn" type="submit" name"submit" class="btn" value="Comment">
+			<form method="post">
+				<textarea id="comment" name="comment" cols="100" rows="10"></textarea>
+				<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment">
 			</form>
 		<footer id="footer">(2013) All rights reserved</footer>
     </div>

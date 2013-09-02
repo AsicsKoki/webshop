@@ -111,18 +111,21 @@ $(document).ready(function() {
 	}
 });
 //COMMENT BOX
-$('.comment_btn').click(function(e){
+$('#post_comment').click(function(e){
+	e.preventDefault();
+	var text = $('textarea#comment').val();
 	var id = $(this).data('id');
 	var self = this;
 	$.ajax({
 		url: "comment.php",
-		type: "post",
+		type: "POST",
 		data: {
 			id: id
+			text: text
 		},
 		success: function(data){
 			if (data){
-				return 1;
+
 			}
 		}
 	});

@@ -84,6 +84,13 @@
 		}
 	}
 
+	//COMMENT SECTION
+	$query = "SELECT * FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
+	$retvalCom = mysql_query( $query, $conn );
+		if(! $retvalCom )
+	{
+		die('Could not get data: ' . mysql_error());
+	}
 
 
  ?>
@@ -173,15 +180,23 @@
 						</div>
 					    <a class="buttons next" href="#">right</a>
 					</div>
+						<textarea id="comment" name="comment" cols="100" rows="10"></textarea>
+						<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment">
+							<div>
+								<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
+								<ul style="list-style: none;">
+									<li><h4>First name:</h4> <?php echo $data['first_name']; ?></li>
+									<li><h4>Last name:</h4>  <?php echo $data['last_name'] ?> </li>
+									<li><h4>Posted at:</h4>  <?php echo $data['posted_at'] ?> </li>
+									<li><h4>Comment: <?php echo $data['comment']; ?> </h4></li>
+								</ul>
+								<?php } ?>
+							</div>
 				</div>
 			</div>
-			<div class="side"><img id="banner2" src=""></div>
-		</div>
-			<form method="post">
-				<textarea id="comment" name="comment" cols="100" rows="10"></textarea>
-				<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment">
-			</form>
+		<div class="side"><img id="banner2" src=""></div>
 		<footer id="footer">(2013) All rights reserved</footer>
+		</div>
     </div>
 	<script>
 		var banners  = <?php echo json_encode($banners); ?>;

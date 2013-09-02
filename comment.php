@@ -2,18 +2,17 @@
 include 'common.php';
 include 'notice.php';
 
-
-	$user =	$_SESSION['username'];
-	$sql  = "SELECT id AS user_id FROM users WHERE username = '$user'";
+	$username =	$_SESSION['username'];
+	$sql  = "SELECT * FROM users where username = '$username'";
 	$info = mysql_query($sql, $conn);
 	$row  =	mysql_fetch_assoc($info);
 	$user = $row['id'];
 
 	$id   = $_POST['id'];
 	$text = $_POST['text'];
-	$sql  = "UPDATE comments SET product_id = $id, user_id = $user, comment = '$text'";
-	$retval = mysql_query( $sql, $conn );
-	return 1;
-
+	$sql  = "INSERT INTO comments (product_id,user_id,comment) VALUES ('$id','$user','$text')";
+	mysql_query( $sql, $conn );
+	var_dump($id);
+	var_dump($text);
 
 ?>

@@ -120,7 +120,7 @@ $('#post_comment').click(function(e){
 		url: "comment.php",
 		type: "POST",
 		data: {
-			id: id
+			id: id,
 			text: text
 		},
 		success: function(data){

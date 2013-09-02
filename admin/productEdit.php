@@ -2,16 +2,6 @@
 	include '../common.php';
 	include '../notice.php';
 
-	// $infix = "123";
-	// $name = "proba.jpg";
-	// $name2 = explode( ".", $name);
-	// $split = array_pop($name2);
-	// array_push($name2, $infix);
-	// array_push($name2, $split);
-	// $str = implode(".", $name2);
-	// var_dump($str);
-	// exit;
-	
 	if (!loginCheck($conn)) {
 		$msg = "Please log in.";
 		messageError($msg);

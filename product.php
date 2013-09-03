@@ -127,7 +127,6 @@
 				//ERROR/success CHECK AND POPUP
 					include 'notice.php';
 						 ?>
-				<div class="columnLeft">
 					<ul style="list-style: none;">
 						<li><?php echo $description; ?></li>
 						<li><button id="readMore">Read more</button></li>
@@ -146,19 +145,15 @@
 					}
 						?>
 					</select>
-					<footer>
 						<form action="" method="post" data-validate="parsley">
 							<label for="quantity">quantity: </label>
 							<input type="submit" value="purchase">
 							<input name="quantity" data-range="[1, 9999999]" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
 						</form>
 						<input id="checkbox" type="checkbox">rotate banners
-					</footer>
-				</div>
 					<div id="more" class="hide">
 						Lorem ipsum enim aliquip in et nulla deserunt esse anim ullamco officia proident id reprehenderit sint exercitation tempor amet in enim culpa.
 					</div>
-				<div class="columnRight">
 					<div id="slider1">
 						<a class="buttons prev" href="#">left</a>
 						<div class="viewport">
@@ -182,7 +177,6 @@
 								</ul>
 								<?php } ?>
 							</div>
-				</div>
 			</div>
 		<div class="side"><img id="banner2" src=""></div>
 		<footer id="footer">(2013) All rights reserved</footer>

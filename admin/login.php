@@ -25,7 +25,7 @@
 				header("Location: panel.php");
 			} else {
 				$msg = "Wrong username and/or password.";
-				$messageError($msg);
+				messageError($msg);
 			}
 			loginCheck($conn);
 		}

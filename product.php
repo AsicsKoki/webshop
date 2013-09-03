@@ -141,11 +141,11 @@
 						<div>
 							<dl class="dl-horizontal">
 								<dt>Description:</dt>
-								<dd> <?php echo $description ?> </dd>
+								<dd class='text-left'> <?php echo $description ?> </dd>
 								<dt>Price:</dt>
-								<dd> <?php echo $price ?> </dd>
+								<dd class='text-left'> <?php echo $price ?> </dd>
 								<dt>In stock:</dt>
-								<dd> <?php echo $quantity ?> </dd>
+								<dd class='text-left'> <?php echo $quantity ?> </dd>
 							</dl>
 						</div>
 					<form data-validate="parsley" class="form-horizontal" method="post" enctype="multipart/form-data">

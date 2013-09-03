@@ -113,74 +113,72 @@
 </head>
 <body id="background">
 	<div id="mainElement">
-		<header id="header">Konstantin's web shop
-		</header>
-			<?php
+		<header id="header">Konstantin's web shop</header>
+		<?php
 			include "partials/loginLogout.php";
 			include "partials/navbar.php";
-			 ?>
+		?>
 		<div id="elementOne">
 			<div class="side"><img id="banner" src=""></div>
-			<div id="central">
-				<header><h4> <?php echo $name ?> </h4></header>
-				<?php
-				//ERROR/success CHECK AND POPUP
-					include 'notice.php';
-						 ?>
-					<ul style="list-style: none;">
-						<li><?php echo $description; ?></li>
-						<li><button id="readMore">Read more</button></li>
-						<li> Price:  <?php echo $price ?> </li>
-						<li> quantity:  <?php echo $quantity ?> </li>
-					</ul>
-					<select>
-						<?php while ($color= mysql_fetch_assoc($retvalColor)) {
-						if ($row['colorid'] == $color["color_id"]) { ?>
-							<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
-						<?php
-						} else { ?>
-							<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
-						<?php
-						}
-					}
-						?>
-					</select>
-						<form action="" method="post" data-validate="parsley">
-							<label for="quantity">quantity: </label>
-							<input type="submit" value="purchase">
-							<input name="quantity" data-range="[1, 9999999]" style="float: left; width: 120px;" type="text" size="2" placeholder="Enter quantity here!">
-						</form>
-						<input id="checkbox" type="checkbox">rotate banners
-					<div id="more" class="hide">
-						Lorem ipsum enim aliquip in et nulla deserunt esse anim ullamco officia proident id reprehenderit sint exercitation tempor amet in enim culpa.
-					</div>
-					<div id="slider1">
-						<a class="buttons prev" href="#">left</a>
-						<div class="viewport">
-							<ul class="overview">
+				<div class="row">
+					<header><h4> <?php echo $name ?> </h4></header>
+					<!-- IMAGE SLIDER -->
+					<div class="span4">
+						<div id="slider1">
+							<a class="buttons prev" href="#">left</a>
+							<div class="viewport">
+								<ul class="overview">
 								<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
-								<li><img src="files/<?php echo $image['image_name'] ?>"></img></li>
-									<?php } ?>
-							</ul>
-						</div>
-					    <a class="buttons next" href="#">right</a>
-					</div>
-						<textarea id="comment" name="comment" cols="100" rows="10"></textarea>
-						<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment">
-							<div>
-								<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
-								<ul style="list-style: none;">
-									<li><h4>First name:</h4> <?php echo $data['first_name']; ?></li>
-									<li><h4>Last name:</h4>  <?php echo $data['last_name'] ?> </li>
-									<li><h4>Posted at:</h4>  <?php echo $data['posted_at'] ?> </li>
-									<li><h4>Comment: <?php echo $data['comment']; ?> </h4></li>
-								</ul>
+									<li><img src="files/<?php echo $image['image_name'] ?>"></img></li>
 								<?php } ?>
+								</ul>
 							</div>
-			</div>
-		<div class="side"><img id="banner2" src=""></div>
-		<footer id="footer">(2013) All rights reserved</footer>
+						<a class="buttons next" href="#">right</a>
+						</div>
+					</div>
+					<!-- PAGE CONTENT -->
+					<div class="span8">
+						<div>
+							<dl class="dl-horizontal">
+								<dt>Description:</dt>
+								<dd> <?php echo $description ?> </dd>
+								<dt>Price:</dt>
+								<dd> <?php echo $price ?> </dd>
+								<dt>In stock:</dt>
+								<dd> <?php echo $quantity ?> </dd>
+							</dl>
+						</div>
+					<form data-validate="parsley" class="form-horizontal" method="post" enctype="multipart/form-data">
+						<div class="control-group">
+	           			<label class="control-label" for="name">Quantity: </label>
+	               			<div class="controls">
+								<input class="pull-left" name="quantity" data-range="[1, 9999999]" type="text" size="2" placeholder="Enter quantity here!">
+							</div>
+	        			</div>
+	        			<div class="control-group">
+	            		<label class="control-label">Select color:</label>
+	               		<div class="controls">
+						<select class="pull-left">
+							<?php while ($color= mysql_fetch_assoc($retvalColor)) {
+							if ($row['colorid'] == $color["color_id"]) { ?>
+								<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
+							<?php
+							} else { ?>
+								<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
+							<?php
+							}
+						}
+							?>
+						</select>
+	                	</div>
+				 		</div>
+	      				<input type="submit" value="purchase">
+					</form>
+					</div>
+				</div>
+			<div class="side"><img id="banner2" src=""></div>
 		</div>
+		<footer id="footer">(2013) All rights reserved</footer>
     </div>
 	<script>
 		var banners  = <?php echo json_encode($banners); ?>;

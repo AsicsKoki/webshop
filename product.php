@@ -104,11 +104,11 @@
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="css/website.css" type="text/css" media="screen"/>
     <script src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#slider1').tinycarousel();
-	});
-</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#slider1').tinycarousel();
+		});
+	</script>
 </head>
 <body id="background">
 	<div id="mainElement">
@@ -118,10 +118,10 @@
 			include "partials/navbar.php";
 		?>
 		<div id="elementOne">
-				<div class="row">
-					<!-- IMAGE SLIDER AND COMMENTS -->
-					<div class="span4">
-						<div id="slider1">
+			<div class="row">
+				<!-- IMAGE SLIDER AND COMMENTS -->
+				<div class="span4">
+					<div id="slider1">
 						<a class="buttons prev" href="#">left</a>
 						<div class="viewport">
 							<ul class="overview">
@@ -132,23 +132,23 @@
 						</div>
 					    <a class="buttons next" href="#">right</a>
 					</div>
-					</div>
-					<!-- PAGE CONTENT -->
-					<div class="span6">
+				</div>
+				<!-- PAGE CONTENT -->
+				<div class="span6">
 					<h3> <?php echo $name ?> </h3>
-						<div>
-							<dl class="dl-horizontal">
-								<dt>Description:</dt>
-								<dd class='text-left'> <?php echo $description ?><button id="readMore">Read more</button> </dd>
-								<div id="more" class="hide">
-									Lorem ipsum enim aliquip in et nulla deserunt esse anim ullamco officia proident id reprehenderit sint exercitation tempor amet in enim culpa.
-								</div>
-								<dt>Price:</dt>
-								<dd class='text-left'> <?php echo $price ?> </dd>
-								<dt>In stock:</dt>
-								<dd class='text-left'> <?php echo $quantity ?> </dd>
-							</dl>
-						</div>
+					<div>
+						<dl class="dl-horizontal">
+							<dt>Description:</dt>
+							<dd class='text-left'> <?php echo $description ?><button id="readMore">Read more</button> </dd>
+							<div id="more" class="hide">
+								Lorem ipsum enim aliquip in et nulla deserunt esse anim ullamco officia proident id reprehenderit sint exercitation tempor amet in enim culpa.
+							</div>
+							<dt>Price:</dt>
+							<dd class='text-left'> <?php echo $price ?> </dd>
+							<dt>In stock:</dt>
+							<dd class='text-left'> <?php echo $quantity ?> </dd>
+						</dl>
+					</div>
 					<form data-validate="parsley" class="form-horizontal" method="post" enctype="multipart/form-data">
 						<div class="control-group">
 	           			<label class="control-label" for="name">Quantity: </label>
@@ -175,23 +175,23 @@
 				 		</div>
 	      				<input type="submit" value="purchase">
 					</form>
-					</div>
-						</div>
-						<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
-							<div class="comment" style="width: 360px; height: 125px;">
-								<header><?php 
-									echo $data['username'];
-									echo "  Posted at:  ";
-									echo $data['posted_at'];
-								 ?></header>
-							<p><?php echo $data['comment']; ?> </p>
-							</div>
-								<?php } ?>
-						<div class='pull-left' style='padding-left: 70px;'>
-							<textarea id="comment" name="comment" cols="100" rows="10"></textarea>
-							<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment">
-						</div>
+				</div>
 			</div>
+				<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
+				<div class="comment" style="width: 360px; height: 125px;">
+					<header><?php 
+						echo $data['username'];
+						echo "  Posted at:  ";
+						echo $data['posted_at'];
+					 ?></header>
+				<p><?php echo $data['comment']; ?> </p>
+				</div>
+				<?php } ?>
+			<div class='pull-left' style='padding-left: 70px;'>
+				<textarea id="comment" name="comment" cols="100" rows="10"></textarea>
+				<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment">
+			</div>
+		</div>
 		<footer id="footer">(2013) All rights reserved</footer>
     </div>
 	<script>
@@ -201,7 +201,6 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/parsley.js"></script>
-	<script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/jquery.tinycarousel.min.js"></script>
 </body>
 </html>

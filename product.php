@@ -102,13 +102,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-	<link rel="stylesheet" href="css/website.css" type="text/css" media="screen"/>
-    <script src="js/jquery-1.10.2.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#slider1').tinycarousel();
-		});
-	</script>
+	<link rel="Stylesheet" href="css/bjqs.css"/>
 </head>
 <body id="background">
 	<div id="mainElement">
@@ -121,16 +115,12 @@
 			<div class="row">
 				<!-- IMAGE SLIDER AND COMMENTS -->
 				<div class="span4">
-					<div id="slider1">
-						<a class="buttons prev" href="#">left</a>
-						<div class="viewport">
-							<ul class="overview">
-								<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
-								<li><img src="files/<?php echo $image['image_name'] ?>"/></li>
-								<?php } ?>
-							</ul>
-						</div>
-					    <a class="buttons next" href="#">right</a>
+					<div id="slider">
+    					<ul class="bjqs">
+    						<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
+        					<li><img src="files/<?php echo $image['image_name'] ?>"></img></li>
+        					<?php } ?>
+    					</ul>
 					</div>
 				</div>
 				<!-- PAGE CONTENT -->
@@ -201,6 +191,15 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/parsley.js"></script>
-	<script src="js/jquery.tinycarousel.min.js"></script>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bjqs.min.js"> </script>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+    $('#banner-fade').bjqs({
+        'height' : 320,
+        'width' : 620,
+        'responsive' : true
+    });
+});</script>
 </body>
 </html>

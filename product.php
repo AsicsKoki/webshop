@@ -102,7 +102,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-	<link rel="Stylesheet" href="css/bjqs.css"/>
+	<link rel="stylesheet" href="css/flexslider.css">
 </head>
 <body id="background">
 	<div id="mainElement">
@@ -115,12 +115,12 @@
 			<div class="row">
 				<!-- IMAGE SLIDER AND COMMENTS -->
 				<div class="span4">
-					<div id="slider">
-    					<ul class="bjqs">
-    						<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
-        					<li><img src="files/<?php echo $image['image_name'] ?>"></img></li>
-        					<?php } ?>
-    					</ul>
+					<div class="flexslider">
+						<ul class="slides">
+							<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
+							<li><img src="files/<?php echo $image['image_name'] ?>"/></li>
+							<?php } ?>
+						</ul>
 					</div>
 				</div>
 				<!-- PAGE CONTENT -->
@@ -193,13 +193,11 @@
 	<script src="js/parsley.js"></script>
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bjqs.min.js"> </script>
-    <script type="text/javascript">
-    jQuery(document).ready(function($) {
-    $('#banner-fade').bjqs({
-        'height' : 320,
-        'width' : 620,
-        'responsive' : true
-    });
-});</script>
+	<script src="js/jquery.flexslider-min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider();
+  });
+</script>
 </body>
 </html>

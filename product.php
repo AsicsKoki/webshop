@@ -103,6 +103,10 @@
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="css/flexslider.css">
+    <script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/parsley.js"></script>
 </head>
 <body id="background">
 	<div id="mainElement">
@@ -188,16 +192,11 @@
 		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;
 	</script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/parsley.js"></script>
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/bjqs.min.js"> </script>
 	<script src="js/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" charset="utf-8">
-  $(window).load(function() {
-    $('.flexslider').flexslider();
-  });
+	$(window).load(function() {
+		$('.flexslider').flexslider();
+	});
 </script>
 </body>
 </html>

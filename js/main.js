@@ -111,7 +111,7 @@ $(document).ready(function() {
 	}
 });
 //COMMENT BOX
-$('#post_comment').click(function(e){
+$('input#post_comment').click(function(e){
 	e.preventDefault();
 	var text = $('textarea#comment').val();
 	var id = $(this).data('id');

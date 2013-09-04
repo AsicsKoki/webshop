@@ -109,24 +109,24 @@ $(document).ready(function() {
 		$('#productsTable').dataTable();
 		$('#usersTable').dataTable();
 	}
-});
-//COMMENT BOX
-$('input#post_comment').click(function(e){
-	e.preventDefault();
-	var text = $('textarea#comment').val();
-	var id = $(this).data('id');
-	var self = this;
-	$.ajax({
-		url: "comment.php",
-		type: "POST",
-		data: {
-			id: id,
-			text: text
-		},
-		success: function(data){
-			if (data){
+	//COMMENT BOX
+	$('input#post_comment').click(function(e){
+		e.preventDefault();
+		var text = $('textarea#comment').val();
+		var id = $(this).data('id');
+		var self = this;
+		$.ajax({
+			url: "comment.php",
+			type: "POST",
+			data: {
+				id: id,
+				text: text
+			},
+			success: function(data){
+				if (data){
 
+				}
 			}
-		}
+		});
 	});
 });

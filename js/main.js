@@ -124,7 +124,9 @@ $(document).ready(function() {
 			},
 			success: function(data){
 				if (data){
-
+					var temp = $("script#comment_box_temp").html();
+					temp = temp.replace('{{text}}',$('textarea#comment').val());
+					$('div#comment_content').append(temp);
 				}
 			}
 		});

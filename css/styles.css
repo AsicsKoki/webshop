@@ -132,3 +132,17 @@
   .parsley-error-list {
   	color: red;
   }
+  .comment{
+  	border-style: solid;
+  	border-width: 1px;
+  	width: 289px; 
+  	height: 125px;
+  	text-align: left;
+  }
+  .comment_input{
+  	padding-left: 70px;
+  }
+  .com_header{
+  	border-bottom: solid;
+  	border-width: 1px;
+  }

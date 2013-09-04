@@ -107,6 +107,12 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/parsley.js"></script>
+	<script type="text/template" id="comment_box_temp">
+		<div class="comment">
+			<header><?php echo $_SESSION['username']; ?> Just now... </header>
+		{{text}}
+		</div>
+	</script>
 </head>
 <body id="background">
 	<div id="mainElement">
@@ -171,9 +177,10 @@
 					</form>
 				</div>
 			</div>
+			<div id="comment_content">
 				<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
-				<div class="comment" style="width: 360px; height: 125px;">
-					<header><?php 
+				<div class="comment">
+					<header class="com_header"><?php
 						echo $data['username'];
 						echo "  Posted at:  ";
 						echo $data['posted_at'];
@@ -181,7 +188,8 @@
 				<p><?php echo $data['comment']; ?> </p>
 				</div>
 				<?php } ?>
-			<div class='pull-left' style='padding-left: 70px;'>
+			</div>
+			<div class='pull-left comment_input'>
 				<textarea id="comment" name="comment" cols="100" rows="10"></textarea>
 				<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment">
 			</div>

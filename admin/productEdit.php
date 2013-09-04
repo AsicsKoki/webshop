@@ -57,6 +57,13 @@
 	if(! $retval ) {
 		die('Could not get data: ' . mysql_error());
 	}
+	//COMMENT SECTION
+	$query = "SELECT * FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
+	$retvalCom = mysql_query( $query, $conn );
+		if(! $retvalCom )
+	{
+		die('Could not get data: ' . mysql_error());
+	}
 
  ?>
 <!doctype HTML>
@@ -124,6 +131,20 @@
 	                </div>
 	        </div>
 	        <input type="submit" name"submit" class="btn" value="Save">
+			<div id="comment_content">
+				<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
+				<div class="comment">
+					<header class="com_header"><?php
+						echo $data['username'];
+						echo "  Posted at:  ";
+						echo $data['posted_at'];
+					 ?>
+					 <a class="deleteComment" href="#" data-id='<?php echo $data["id"]; ?>'>Delete</a>
+					</header>
+				<p><?php echo $data['comment']; ?> </p>
+				</div>
+				<?php } ?>
+			</div>
 		</form>
 			<ul style="list-style: none;">
 				<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>

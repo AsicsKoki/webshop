@@ -104,6 +104,23 @@ $('.deletePhoto').click(function(e){
 		}
 	});
 });
+//AJAX DELETE COMMENT BACK END
+$('.deleteComment').click(function(e){
+	var id = $(this).data('id');
+	var self = this;
+	$.ajax({
+		url: "commentDelete.php",
+		type: "get",
+		data: {
+			id: id
+		},
+		success: function(data){
+			if (data){
+				$(self).parents("div.comment").remove();
+			}
+		}
+	});
+});
 $(document).ready(function() {
 	if($('table').length) {
 		$('#productsTable').dataTable();

@@ -131,13 +131,13 @@
 	                </div>
 	        </div>
 	        <input type="submit" name"submit" class="btn" value="Save">
-			<div id="comment_content">
+			<div id="comment_content_backend">
 				<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
-				<div class="comment">
-					<header class="com_header"><?php
-						echo $data['username'];
+				<div class="well">
+					<a href="user.php?id=<?php echo $data['user_id'] ?>"><?php echo "<b>".$data['username']."</b>";?></a>
+						<?php
 						echo "  Posted at:  ";
-						echo $data['posted_at'];
+						echo "<i>".$data['posted_at']."</i>";
 					 ?>
 					 <a class="deleteComment" href="#" data-id='<?php echo $data["comment_id"]; ?>'>Delete</a>
 					</header>

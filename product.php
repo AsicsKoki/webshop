@@ -85,7 +85,7 @@
 	}
 
 	//COMMENT SECTION
-	$query = "SELECT * FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
+	$query = "SELECT *, users.id as user_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
 	$retvalCom = mysql_query( $query, $conn );
 		if(! $retvalCom )
 	{
@@ -99,9 +99,7 @@
 <head>
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
-	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="css/flexslider.css">
     <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -176,14 +174,15 @@
 	      				<input type="submit" value="purchase">
 					</form>
 				</div>
-			</div>
+			</div> <a href="user.php?id=<?php $data['user_id'] ?>"></a>
 			<div id="comment_content">
 				<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
-				<div class="comment">
-					<header class="com_header"><?php
-						echo $data['username'];
+				<div class="well">
+					<header class="com_header">
+						<a href="user.php?id=<?php echo $data['user_id'] ?>"><?php echo "<b>".$data['username']."</b>";?></a>
+						<?php
 						echo "  Posted at:  ";
-						echo $data['posted_at'];
+						echo "<i>".$data['posted_at']."</i>";
 					 ?></header>
 				<p><?php echo $data['comment']; ?> </p>
 				</div>

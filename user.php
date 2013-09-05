@@ -10,7 +10,7 @@
 		messageError($msg);
 		header("Location: login.php");
 	}
-	}
+
 	//USER DATA
 
 
@@ -56,17 +56,9 @@
 <head>
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
-	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="css/website.css" type="text/css" media="screen"/>
     <script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/jquery.tinycarousel.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#slider1').tinycarousel();
-	});
-</script>
 </head>
 <body id="background">
 	<div id="mainElement">

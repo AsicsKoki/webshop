@@ -1,7 +1,8 @@
 <?php
 
-		include 'common.php';
-		include 'notice.php';
+	include 'logincheck.php';
+	include 'common.php';
+	include 'notice.php';
 
 if (!userLogin($conn)) {
 		$msg = "Please log in.";

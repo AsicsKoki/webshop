@@ -1,8 +1,10 @@
-<?php 
+<?php
 	include '../common.php';
 	include '../notice.php';
-	$comment = $_GET['id'];
+
+	$id  = $_GET['id'];
+	echo $id;;
 	$sql = "DELETE FROM comments WHERE id = $id";
-	$retval = mysql_query( $sql, $conn );
+	mysql_query( $sql, $conn );
 	return 1;
  ?>

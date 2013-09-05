@@ -4,5 +4,5 @@
 
 	$id  = $_GET['id'];
 	$sql = "DELETE FROM comments WHERE id = $id";
-	return mysql_query( $sql, $conn );
+	return mysql_query( $sql, $conn ); ? 1:0;
  ?>

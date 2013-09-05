@@ -176,8 +176,10 @@
 				</div>
 			</div>
 			<div id="comment_content">
+				<?php while($data = mysql_fetch_assoc($retvalCom)){ 
+					$user_id = $data['user_id'];
+				 ?>
 				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo 'files/'.getUserPhoto($user_id)?>"></div>
-				<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
 				<div class="well" style="padding-left: 75px;">
 					<header class="com_header">
 						<a href="user.php?id=<?php echo $data['user_id'] ?>"><?php echo "<b>".$data['username']."</b>";?></a>

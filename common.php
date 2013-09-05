@@ -100,24 +100,22 @@ function fileDelete($conn){
 		echo 0;
 	}
 //MESSAGE ERROR/SUCCESS
-	function messageError($msg){
-		$_SESSION['messageError'] = $msg;
-	}
-	function messageSuccess($msg){
-		$_SESSION['messageSuccess'] = $msg;
-	}
-	function getUserPhoto($user_id){
-		$sql      = "SELECT * FROM images where entity_type = 'user' AND entity_id= '$user_id'";
-		global $conn;
-		$retval   = mysql_query( $sql, $conn );
-		if(! $retval ) {
-			// die('Could not get data: ' . mysql_error());
-		}
-		$res = mysql_fetch_assoc($retval);
-		if($res){
-			return $res['image_name'];
-		}
+function messageError($msg){
+	$_SESSION['messageError'] = $msg;
+}
+function messageSuccess($msg){
+	$_SESSION['messageSuccess'] = $msg;
+}
+function getUserPhoto($user_id){
+	$sql      = "SELECT * FROM images where entity_type = 'user' AND entity_id= '$user_id'";
+	global $conn;
+	$retval   = mysql_query( $sql, $conn );
+	$res = mysql_fetch_assoc($retval);
+	if($res){
+		return $res['image_name'];
+	} else {
 		return "default.jpg";
-
 	}
+
+}
 ?>

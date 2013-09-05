@@ -19,6 +19,7 @@
 		die('Could not get data: ' . mysql_error());
 	}
 	$row = mysql_fetch_assoc($retval);
+	$id = $row['id'];
 
 	if(!empty($_POST)){
 		$email          = mysql_real_escape_string($_POST['email']);

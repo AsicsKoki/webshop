@@ -58,7 +58,7 @@
 		die('Could not get data: ' . mysql_error());
 	}
 	//COMMENT SECTION
-	$query = "SELECT * FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
+	$query = "SELECT *, comments.id AS comment_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
 	$retvalCom = mysql_query( $query, $conn );
 		if(! $retvalCom )
 	{
@@ -139,7 +139,7 @@
 						echo "  Posted at:  ";
 						echo $data['posted_at'];
 					 ?>
-					 <a class="deleteComment" href="#" data-id='<?php echo $data["id"]; ?>'>Delete</a>
+					 <a class="deleteComment" href="#" data-id='<?php echo $data["comment_id"]; ?>'>Delete</a>
 					</header>
 				<p><?php echo $data['comment']; ?> </p>
 				</div>

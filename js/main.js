@@ -116,7 +116,8 @@ $('.deleteComment').click(function(e){
 		},
 		success: function(data){
 			if (data){
-				$(self).parents("div.comment").remove();
+				$(self).parents("div.well").remove();
+				$("div.comment_thumbnail").remove();
 			}
 		}
 	});

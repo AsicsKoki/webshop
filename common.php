@@ -116,6 +116,11 @@ function getUserPhoto($user_id){
 	} else {
 		return "default.jpg";
 	}
-
 }
+function commentDelete($conn){
+	$id  = $_GET['id'];
+	$sql = "DELETE FROM comments WHERE id = $id";
+	mysql_query( $sql, $conn );
+	return 1;
+	}
 ?>

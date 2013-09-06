@@ -2,7 +2,10 @@
 	include '../common.php';
 	include '../notice.php';
 
-	$id  = $_GET['id'];
-	$sql = "DELETE FROM comments WHERE id = $id";
-	return mysql_query( $sql, $conn ); ? 1:0;
+if (!loginCheck($conn)) {
+		$msg = "Please log in.";
+		messageError($msg);
+		header("Location: login.php");
+	}
+echo commentDelete($conn);
  ?>

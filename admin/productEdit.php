@@ -58,7 +58,7 @@
 		die('Could not get data: ' . mysql_error());
 	}
 	//COMMENT SECTION
-	$query = "SELECT *, comments.id AS comment_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
+	$query = "SELECT *,users.id AS user_id, comments.id AS comment_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
 	$retvalCom = mysql_query( $query, $conn );
 		if(! $retvalCom )
 	{
@@ -132,8 +132,11 @@
 	        </div>
 	        <input type="submit" name"submit" class="btn" value="Save">
 			<div id="comment_content_backend">
-				<?php while($data = mysql_fetch_assoc($retvalCom)){ ?>
-				<div class="well">
+				<?php while($data = mysql_fetch_assoc($retvalCom)){
+					$user_id = $data['user_id'];
+					?>
+				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo '../files/'.getUserPhoto($user_id)?>"></div>
+				<div class="well" style="width: 400px;">
 					<a href="user.php?id=<?php echo $data['user_id'] ?>"><?php echo "<b>".$data['username']."</b>";?></a>
 						<?php
 						echo "  Posted at:  ";

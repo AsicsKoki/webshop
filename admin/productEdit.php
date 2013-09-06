@@ -134,6 +134,7 @@
 			<div id="comment_content_backend">
 				<?php while($data = mysql_fetch_assoc($retvalCom)){
 					$user_id = $data['user_id'];
+					$approved = $data['approved'];
 					?>
 				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo '../files/'.getUserPhoto($user_id)?>"></div>
 				<div class="well" style="width: 400px;">
@@ -143,6 +144,7 @@
 						echo "<i>".$data['posted_at']."</i>";
 					 ?>
 					 <a class="deleteComment" href="#" data-id='<?php echo $data["comment_id"]; ?>'>Delete</a>
+					 <input class="approved" type="checkbox" data-id='<?php echo $data["comment_id"]; ?>' <?php echo $approved ? "checked": ""; ?>>
 					</header>
 				<p><?php echo $data['comment']; ?> </p>
 				</div>
@@ -165,6 +167,24 @@
 	<script src="../js/main.js"></script>
 	<script src="../js/parsley.js"></script>
 	<script type="text/javascript">
+		//AJAX APPROVE COMMENT CONTROLS
+		$('.approved').click(function(e){
+			var id = $(this).data('id');
+			var approved = $(this).is(':checked');
+			$.ajax({
+				url: "approve.php",
+				type: "get",
+				data: {
+					id: id,
+					approved: approved?1:0
+				},
+				success: function(data){
+					if (!data){
+						e.preventDefault();
+					}
+				}
+			});
+		});
 	</script>
 </body>
 </html>

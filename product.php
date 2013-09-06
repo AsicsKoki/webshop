@@ -106,7 +106,8 @@
 	<script src="js/main.js"></script>
 	<script src="js/parsley.js"></script>
 	<script type="text/template" id="comment_box_temp">
-		<div class="comment">
+	<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo 'files/'.getUserPhoto($user_id)?>"></div>
+		<div class="well">
 			<header><?php echo $_SESSION['username']; ?> Just now... </header>
 		{{text}}
 		</div>
@@ -176,7 +177,7 @@
 				</div>
 			</div>
 			<div id="comment_content">
-				<?php while($data = mysql_fetch_assoc($retvalCom)){ 
+				<?php while($data = mysql_fetch_assoc($retvalCom)){
 					$user_id = $data['user_id'];
 				 ?>
 				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo 'files/'.getUserPhoto($user_id)?>"></div>

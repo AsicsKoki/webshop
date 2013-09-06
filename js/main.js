@@ -149,4 +149,12 @@ $(document).ready(function() {
 			}
 		});
 	});
+	//COMMENT APPROVAL(FADE)
+	$('.well').each(function(index, element){
+		if ($(element).find('input.approved').is(':checked')) {
+			$('.well').removeClass('.muted');
+		} else {
+			$('.well').addClass('.muted');
+		}
+	});
 });

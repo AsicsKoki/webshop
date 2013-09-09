@@ -85,7 +85,7 @@
 	}
 
 	//COMMENT SECTION
-	$query = "SELECT *, users.id as user_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
+	$query = "SELECT *, users.id as user_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id AND approved = 1";
 	$retvalCom = mysql_query( $query, $conn );
 		if(! $retvalCom )
 	{
@@ -109,7 +109,7 @@
 	<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo 'files/'.getUserPhoto($user_id)?>"></div>
 		<div class="well">
 			<header><?php echo $_SESSION['username']; ?> Just now... </header>
-		{{text}}
+		Comment awaiting approval...
 		</div>
 	</script>
 </head>

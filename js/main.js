@@ -152,9 +152,9 @@ $(document).ready(function() {
 	//COMMENT APPROVAL(FADE)
 	$('.well').each(function(index, element){
 		if ($(element).find('input.approved').is(':checked')) {
-			$('.well').removeClass('.muted');
+			$('.well').removeClass('.disabled');
 		} else {
-			$('.well').addClass('.muted');
+			$('.well').addClass('.disabled');
 		}
 	});
 });

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2013 at 11:00 AM
+-- Generation Time: Sep 09, 2013 at 03:21 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.16
 
@@ -82,18 +82,17 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `posted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment` varchar(500) NOT NULL,
   `rating` int(11) NOT NULL,
+  `approved` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`id`, `product_id`, `user_id`, `posted_at`, `comment`, `rating`) VALUES
-(3, 1, 14, '2013-09-03 12:51:05', 'cool', 0),
-(20, 1, 16, '2013-09-04 12:37:50', '123', 0),
-(21, 1, 16, '2013-09-04 12:38:16', '222', 0),
-(22, 1, 16, '2013-09-04 12:39:57', '123', 0);
+INSERT INTO `comments` (`id`, `product_id`, `user_id`, `posted_at`, `comment`, `rating`, `approved`) VALUES
+(36, 1, 14, '2013-09-06 10:55:23', '12', 0, 0),
+(37, 1, 14, '2013-09-06 11:10:25', '123', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -108,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `entity_type` varchar(100) NOT NULL,
   `entity_name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `images`
@@ -116,7 +115,8 @@ CREATE TABLE IF NOT EXISTS `images` (
 
 INSERT INTO `images` (`id`, `image_name`, `entity_id`, `entity_type`, `entity_name`) VALUES
 (6, 'technics-q-c-250-200-7.jpg', '1', 'product', ''),
-(7, 'sports-q-c-250-200-3.jpg', '1', 'product', '');
+(7, 'sports-q-c-250-200-3.jpg', '1', 'product', ''),
+(9, 'side1.jpg', '16', 'user', 'mile');
 
 -- --------------------------------------------------------
 
@@ -140,8 +140,8 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `colorid`, `price`, `quantity`, `description`, `active`) VALUES
-(1, 'Product1', 4, 45, 0, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, repudiandae, cumque iusto laudantium animi itaque ullam error ipsam ex delectus architecto necessitatibus nostrum rem saepe nulla quod amet iure dignissimos.', 1),
-(3, 'product3', 1, 62100, 14, ' nostrud exercitation ullamco laboris nisi ut al   \r\niquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncill', 0),
+(1, 'Product1', 4, 45, 25, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, repudiandae, cumque iusto laudantium animi itaque ullam error ipsam ex delectus architecto necessitatibus nostrum rem saepe nulla quod amet iure dignissimos.', 1),
+(3, 'product3', 1, 62100, 14, ' nostrud exercitation ullamco laboris nisi ut al   \r\niquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncill', 1),
 (4, 'Product4', 1, 322, 24, 'd oiwaoma iwmawvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv', 1),
 (5, 'product2', 1, 40000, 4, ' nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0);
 

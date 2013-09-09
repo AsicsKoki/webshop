@@ -97,6 +97,7 @@
 	$retvalUser = mysql_query($userQuary, $conn);
 	$userData   = mysql_fetch_assoc($retvalUser);
 	$user_name  = $userData['username'];
+	$role       = $userData['role_id'];
 
  ?>
 <!doctype html>
@@ -139,7 +140,8 @@
 				</div>
 				<!-- PAGE CONTENT -->
 				<div class="span6">
-					<h3> <?php echo $name ?> </h3>
+					<h3> <?php echo $name ?></h3>
+					<?php echo $role ? "<a href='admin/productEdit.php?id=".$row["id"]."'>Edit product</a>":""; ?>
 					<div>
 						<dl class="dl-horizontal">
 							<dt>Description:</dt>

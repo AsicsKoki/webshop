@@ -138,12 +138,16 @@
 					?>
 				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo '../files/'.getUserPhoto($user_id)?>"></div>
 				<div class="well" id="well-width">
+					<div class="hide"><textarea required="required" data-minlength="6" id="comment" name="comment" cols="100" rows="10"></textarea>
+					<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment"></div>
+					<header class="com_header">
 					<a href="user.php?id=<?php echo $data['user_id'] ?>"><?php echo "<b>".$data['username']."</b>";?></a>
 						<?php
 						echo "  Posted at:  ";
 						echo "<i>".$data['posted_at']."</i>";
 					 ?>
 					 <a class="deleteComment" href="#" data-id='<?php echo $data["comment_id"]; ?>'>Delete</a>
+					 <a class="editComment" data-id='<?php echo $data["comment_id"]; ?>' href="#">Edit</a>
 					 <input class="approved" type="checkbox" data-id='<?php echo $data["comment_id"]; ?>' <?php echo $approved ? "checked": ""; ?>>
 					</header>
 				<p><?php echo $data['comment']; ?> </p>

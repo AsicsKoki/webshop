@@ -64,7 +64,7 @@
 	<div id="mainElement">
 		<header id="header">Konstantin's web shop
 		</header>
-		<div style="float: right;">
+		<div class="pull-right">
 			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
 		</div>
 		<div class="navbar">
@@ -87,7 +87,7 @@
 					include 'notice.php';
 						 ?>
 				<div class="columnLeft">
-					<ul style="list-style: none;">
+					<ul class="plain">
 						<li><h4>First name:</h4> <?php echo $first_name; ?></li>
 						<li><h4>Last name:</h4>  <?php echo $last_name ?> </li>
 						<li><h4>Email:</h4>  <?php echo $email ?> </li>

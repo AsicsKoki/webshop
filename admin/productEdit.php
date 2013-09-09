@@ -87,19 +87,19 @@
 	        <div class="control-group">
 	            <label class="control-label" for="name">Product name:</label>
 	                <div class="controls">
-						<input style="height: 30px;" type="text" name="name" value="<?php echo $row["name"];?>" data-minlength="3" data-required="true"/>
+						<input class="input_height" type="text" name="name" value="<?php echo $row["name"];?>" data-minlength="3" data-required="true"/>
 	                </div>
 	        </div>
 	        <div class="control-group">
 	            <label class="control-label" for="price">Price:</label>
 	                <div class="controls">
-	                    <input style="height: 30px;" type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number" data-range="[1, 9999999]"/>
+	                    <input class="input_height" type="text" name="price" value="<?php echo $row["price"] ;?>" data-required="true" data-type="number" data-range="[1, 9999999]"/>
 	                </div>
 	        </div>
 	         <div class="control-group">
 	            <label class="control-label" for="quantity">Quantity</label>
 	                <div class="controls">
-	                    <input style="height: 30px;" type="number" name="quantity" value="<?php echo $row["quantity"];?>" data-required="true" data-type="number" data-range="[1, 9999999]"/>
+	                    <input class="input_height" type="number" name="quantity" value="<?php echo $row["quantity"];?>" data-required="true" data-type="number" data-range="[1, 9999999]"/>
 	                </div>
 	        </div>
 	         <div class="control-group">
@@ -125,9 +125,9 @@
 				</div>
 			</div>
 	        <div class="control-group">
-	            <label style="float:left; padding-left: 100px;" class="control-lable" for="file">Filename:</label>
+	            <label class="control-lable ctr_group" for="file">Filename:</label>
 	                <div class="controls">
-	                    <input style="padding-left: 50px;:" type="file" name="image">
+	                    <input class="fileNamePadding" type="file" name="image">
 	                </div>
 	        </div>
 	        <input type="submit" name"submit" class="btn" value="Save">
@@ -137,7 +137,7 @@
 					$approved = $data['approved'];
 					?>
 				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo '../files/'.getUserPhoto($user_id)?>"></div>
-				<div class="well" style="width: 400px;">
+				<div class="well" id="well-width">
 					<a href="user.php?id=<?php echo $data['user_id'] ?>"><?php echo "<b>".$data['username']."</b>";?></a>
 						<?php
 						echo "  Posted at:  ";
@@ -151,7 +151,7 @@
 				<?php } ?>
 			</div>
 		</form>
-			<ul style="list-style: none;">
+			<ul class="plain">
 				<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
 					<li><img src="../files/<?php echo $image['image_name'] ?>"></img>
 						<div>

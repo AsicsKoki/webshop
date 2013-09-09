@@ -163,3 +163,22 @@
   	height: 60px;
   	width: 60px;
   }
+  .comment_padding{
+	padding-left: 75px;
+  }
+  .input_height{
+  	height: 30px;
+  }
+  .ctr_group{
+  	float:left; 
+  	padding-left: 100px;
+  }
+  .fileNamePadding{
+  	padding-left: 50px;
+  }
+  #well-width{
+  	width: 400px;
+  }
+  .plain{
+  	list-style: none;
+  }

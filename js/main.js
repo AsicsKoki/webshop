@@ -150,11 +150,11 @@ $(document).ready(function() {
 		});
 	});
 	//COMMENT APPROVAL(FADE)
-	$('.well').each(function(index, element){
+	/*$('.well').each(function(index, element){
 		if ($(element).find('input.approved').is(':checked')) {
-			$('.well').removeClass('.disabled');
+			$('.well').removeClass('muted');
 		} else {
-			$('.well').addClass('.disabled');
+			$('.well').addClass('muted');
 		}
-	});
+	});*/
 });

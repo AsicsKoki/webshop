@@ -85,13 +85,18 @@
 	}
 
 	//COMMENT SECTION
-	$query = "SELECT *, users.id as user_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id AND approved = 1";
+	$query = "SELECT *, users.id as user_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
 	$retvalCom = mysql_query( $query, $conn );
 		if(! $retvalCom )
 	{
 		die('Could not get data: ' . mysql_error());
 	}
-
+	//USER SELECT
+	$username   = $_SESSION['username'];
+	$userQuary  = "SELECT * FROM users WHERE username = '$username'";
+	$retvalUser = mysql_query($userQuary, $conn);
+	$userData   = mysql_fetch_assoc($retvalUser);
+	$user_name  = $userData['username'];
 
  ?>
 <!doctype html>
@@ -109,7 +114,7 @@
 	<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo 'files/'.getUserPhoto($user_id)?>"></div>
 		<div class="well">
 			<header><?php echo $_SESSION['username']; ?> Just now... </header>
-		Comment awaiting approval...
+			Comment awaiting approval...
 		</div>
 	</script>
 </head>
@@ -179,16 +184,25 @@
 			<div id="comment_content">
 				<?php while($data = mysql_fetch_assoc($retvalCom)){
 					$user_id = $data['user_id'];
+					$approved = $data['approved'];
 				 ?>
 				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo 'files/'.getUserPhoto($user_id)?>"></div>
-				<div class="well" style="padding-left: 75px;">
+				<div class="well comment_padding <?php echo $approved ? "": "muted";?>">
 					<header class="com_header">
 						<a href="user.php?id=<?php echo $data['user_id'] ?>"><?php echo "<b>".$data['username']."</b>";?></a>
 						<?php
 						echo "  Posted at:  ";
 						echo "<i>".$data['posted_at']."</i>";
 					 ?></header>
-				<p><?php echo $data['comment']; ?> </p>
+				<p><?php
+				if ($approved) {
+					echo $data['comment'];
+				} else {
+					echo "Comment awaiting approval...";
+					if ($user_name == $username) {
+						echo $data['comment'];
+					}
+				}?></p>
 				</div>
 				<?php } ?>
 			</div>

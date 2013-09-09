@@ -20,16 +20,6 @@ function toTitleCase(str) {
 }
 //READ MORE BUTTON
 
-$("#readMore").click(function(){
-	var self = $(this);
-  $("#more").slideToggle(function(){
-  	if(self.text() == "Read more"){
-  		self.text("Read less");
-  	} else {
-  		self.text("Read more");
-  	}
-  });
-});
 	//COLOR INPUT
 
 	$("footer").on('click', 'select#menu > option', function(){
@@ -130,6 +120,8 @@ $(document).ready(function() {
 	//COMMENT BOX
 	$('input#post_comment').click(function(e){
 		e.preventDefault();
+		var valid = $("form#post_comment_form").parsley('validate');
+		if (valid) {
 		var text = $('textarea#comment').val();
 		var id = $(this).data('id');
 		var self = this;
@@ -145,16 +137,19 @@ $(document).ready(function() {
 					var temp = $("script#comment_box_temp").html();
 					temp = temp.replace('{{text}}',$('textarea#comment').val());
 					$('div#comment_content').append(temp);
+					}
 				}
-			}
-		});
-	});
-	//COMMENT APPROVAL(FADE)
-	/*$('.well').each(function(index, element){
-		if ($(element).find('input.approved').is(':checked')) {
-			$('.well').removeClass('muted');
-		} else {
-			$('.well').addClass('muted');
+			});
 		}
-	});*/
+	});
+	$("#readMore").click(function(){
+		var self = $(this);
+	  $("#more").slideToggle(function(){
+	  	if(self.text() == "Read more"){
+	  		self.text("Read less");
+	  	} else {
+	  		self.text("Read more");
+	  	}
+	  });
+	});
 });

@@ -157,7 +157,7 @@
 						<div class="control-group">
 	           			<label class="control-label" for="name">Quantity: </label>
 	               			<div class="controls">
-								<input class="pull-left" name="quantity" data-range="[1, 9999999]" type="text" size="2" placeholder="Enter quantity here!">
+								<input class="pull-left" name="quantity" data-range="[1, <?php echo $quantity ?>]" type="text" size="2" placeholder="Enter quantity here!">
 							</div>
 	        			</div>
 	        			<div class="control-group">
@@ -207,8 +207,10 @@
 				<?php } ?>
 			</div>
 			<div class='pull-left comment_input'>
-				<textarea id="comment" name="comment" cols="100" rows="10"></textarea>
-				<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment">
+				<form id="post_comment_form" action="">
+					<textarea required="required" data-minlength="6" id="comment" name="comment" cols="100" rows="10"></textarea>
+					<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Comment">
+				</form>
 			</div>
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>

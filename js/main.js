@@ -136,11 +136,26 @@ $(document).ready(function() {
 	  });
 	});
 
-	//COMMENT EDIT-BACKEND
-	$(".editComment").each(function(index, element){
-		$(this).click(function(e){
-		e.preventDefault();
-		$("div.editForm").slideToggle();
+	//COMMENT EDIT-BACKEND-TOGGLE
+	$(".editComment").click(function(){
+		$(this).parent().siblings(".editForm").slideToggle();
+	})
+	//COMMENT EDIT-BACKEND-REQUEST
+		$('.update_comment').click(function(e){
+		var text = $(this).siblings('textarea.comment_area').val();
+		var id = $(this).data('id');
+		var self = this
+		$.ajax({
+			url: "../commentUpdate.php",
+			type: "POST",
+			data: {
+				id: id,
+				text: text
+			},
+			success: function(data){
+					$(".editForm").slideUp();
+					$(self).parents('div.well').children("p").text(text);
+			}
 		});
 	});
-});
+})

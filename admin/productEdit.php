@@ -74,11 +74,9 @@
 	<link rel ="stylesheet" href="../css/bootstrap.min.css">
 	<link rel ="stylesheet" href="../css/bootstrap-responsive.css">
 	<link rel ="stylesheet" href="../css/bootstrap-responsive.min.css">
-	<script src="../js/jquery-1.10.2.min.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/main.js"></script>
-	<script src="../js/parsley.js"></script>
+	<script type="text/template" id="update_comment_template">
+		<p class="comment_text">{{text}}</p>
+	</script>
 </head>
 <body id="background">
 <div id="mainElement">
@@ -143,19 +141,21 @@
 					?>
 				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo '../files/'.getUserPhoto($user_id)?>"></div>
 				<div class="well" id="well-width">
-					<div class="editForm hide"><textarea required="required" data-minlength="6" id="comment" name="comment" cols="100" rows="10"><?php echo $data["comment"] ;?></textarea>
-					<input data-id='<?php echo $row["id"];?>' id="post_comment" type="submit" name"submit" class="btn" value="Update"></div>
+					<div class="editForm hide">
+						<textarea required="required" data-minlength="6" class="comment_area" name="comment" cols="100" rows="10"><?php echo $data["comment"] ;?></textarea>
+						<a href="#" data-id='<?php echo $data["comment_id"]; ?>' class="update_comment" class="btn" value="Update">Update</a>
+					</div>
 					<header class="com_header">
-					<a href="user.php?id=<?php echo $data['user_id'] ?>"><?php echo "<b>".$data['username']."</b>";?></a>
-						<?php
-						echo "  Posted at:  ";
-						echo "<i>".$data['posted_at']."</i>";
-					 ?>
-					 <a class="deleteComment" href="#" data-id='<?php echo $data["comment_id"]; ?>'>Delete</a>
-					 <a class="editComment" data-id='<?php echo $data["comment_id"]; ?>' href="#">Edit</a>
-					 <input class="approved" type="checkbox" data-id='<?php echo $data["comment_id"]; ?>' <?php echo $approved ? "checked": ""; ?>>
+						<a href="user.php?id=<?php echo $data['user_id'] ?>"><?php echo "<b>".$data['username']."</b>";?></a>
+							<?php
+							echo "  Posted at:  ";
+							echo "<i>".$data['posted_at']."</i>";
+						 ?>
+						 <a class="deleteComment" href="#" data-id='<?php echo $data["comment_id"]; ?>'>Delete</a>
+						 <a class="editComment" data-id='<?php echo $data["comment_id"]; ?>' href="#">Edit</a>
+						 <input class="approved" type="checkbox" data-id='<?php echo $data["comment_id"]; ?>' <?php echo $approved ? "checked": ""; ?>>
 					</header>
-				<p><?php echo $data['comment'];?></p>
+					<p><?php echo $data['comment'];?></p>
 				</div>
 				<?php } ?>
 			</div>
@@ -170,6 +170,11 @@
 			</ul>
 		</div>
 	<footer id="footer">(2013) All rights reserved</footer>
+	<script src="../js/jquery-1.10.2.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/parsley.js"></script>
 	<script type="text/javascript">
 		//AJAX APPROVE COMMENT CONTROLS
 		$('.approved').click(function(e){

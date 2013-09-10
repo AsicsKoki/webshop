@@ -137,5 +137,10 @@ $(document).ready(function() {
 	});
 
 	//COMMENT EDIT-BACKEND
-	
+	$(".editComment").each(function(index, element){
+		$(this).click(function(e){
+		e.preventDefault();
+		$("div.editForm").slideToggle();
+		});
+	});
 });

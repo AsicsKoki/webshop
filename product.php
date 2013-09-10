@@ -205,6 +205,7 @@
 						echo $data['comment'];
 					}
 				}?></p>
+				<a class="like" href="#">Like</a>
 				</div>
 				<?php } ?>
 			</div>

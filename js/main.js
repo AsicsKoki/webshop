@@ -158,4 +158,8 @@ $(document).ready(function() {
 			}
 		});
 	});
+	//LIKE/UNLIKE SWITCH
+	$('a.like').click(function(){
+		$(this).text('unlike');
+	})
 })

@@ -158,8 +158,20 @@ $(document).ready(function() {
 			}
 		});
 	});
-	//LIKE/UNLIKE SWITCH
-	$('a.like').click(function(){
-		$(this).text('unlike');
+	//LIKE/UNLIKE
+	$('a.like').click(function(e){
+		var userId = $(this).data('userId');
+		var commentId = $(this).data('commentId');
+		$.ajax({
+			url: "../postLike.php",
+			type: "POST",
+			data: {
+				userId: userId,
+				commentId: commentId
+			},
+			success: function(data){
+				
+			}
+		});
 	})
 })

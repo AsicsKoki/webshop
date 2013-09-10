@@ -99,6 +99,7 @@
 	$user_name  = $userData['username'];
 	$role       = $userData['role_id'];
 
+
  ?>
 <!doctype html>
 <html>
@@ -205,7 +206,7 @@
 						echo $data['comment'];
 					}
 				}?></p>
-				<a class="like" href="#">Like</a>
+				<a class="like" href="#" data-commentId='<?php echo $data["comment_id"]; ?>' data-userId='<?php echo $data["user_id"]; ?>'>Like</a>
 				</div>
 				<?php } ?>
 			</div>

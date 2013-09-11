@@ -159,7 +159,7 @@ $(document).ready(function() {
 		});
 	});
 	//LIKE
-	$('a.like').on('click' ,function(e){
+	$('div.well.comment_padding').on('click', 'a.like', function(e){
 		e.preventDefault();
 		var userId = $(this).data('userid');
 		var commentId = $(this).data('commentid');
@@ -177,7 +177,7 @@ $(document).ready(function() {
 		});
 	})
 	//UNLIKE
-	$('a.unlike').on('click', function(e){
+	$('div.well.comment_padding').on('click', 'a.unlike', function(e){
 		e.preventDefault();
 		var userId = $(this).data('userid');
 		var commentId = $(this).data('commentid');

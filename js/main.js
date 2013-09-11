@@ -158,19 +158,37 @@ $(document).ready(function() {
 			}
 		});
 	});
-	//LIKE/UNLIKE
+	//LIKE
 	$('a.like').click(function(e){
 		var userId = $(this).data('userId');
 		var commentId = $(this).data('commentId');
+		var self = this
 		$.ajax({
-			url: "../postLike.php",
+			url: "postLike.php",
 			type: "POST",
 			data: {
 				userId: userId,
 				commentId: commentId
 			},
 			success: function(data){
-				
+				$(self).text('unlike');
+			}
+		});
+	})
+	//UNLIKE
+		$('a.unlike').click(function(e){
+		var userId = $(this).data('userId');
+		var commentId = $(this).data('commentId');
+		var self = this
+		$.ajax({
+			url: "unLike.php",
+			type: "POST",
+			data: {
+				userId: userId,
+				commentId: commentId
+			},
+			success: function(data){
+				$(self).text('like');
 			}
 		});
 	})

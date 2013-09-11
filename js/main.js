@@ -172,7 +172,7 @@ $(document).ready(function() {
 				commentId: commentId
 			},
 			success: function(data){
-				$(self).text('unlike').removeClass('like').addClass('unlike');
+				$(self).text('Unlike').removeClass('like').addClass('unlike');
 			}
 		});
 	})

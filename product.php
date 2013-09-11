@@ -99,16 +99,6 @@
 	$user_name  = $userData['username'];
 	$role       = $userData['role_id'];
 
-	//GETS THE LIKE STATUS
-	$like_query = "SELECT * FROM comment_likes";
-	$retval_like = mysql_query( $like_query, $conn );
-		if(! $retval_like )
-	{
-		die('Could not get data: ' . mysql_error());
-	}
-	$likeStatus = mysql_fetch_assoc($retval_like);
-
-
  ?>
 <!doctype html>
 <html>
@@ -217,7 +207,7 @@
 					}
 				}?></p>
 				<?php
-					if ($comment_id == $likeStatus['comment_id'] and $user_id == $likeStatus['user_id']) {
+					if (hasLikes($commentId, $userId)) {
 						echo '<a class="unlike" href="#" data-commentid="'.$comment_id.'" data-userid="'.$user_id.'">Unlike</a>';
 					} else {
 						echo '<a class="like" href="#" data-commentid="'.$comment_id.'" data-userid="'.$user_id.'">Like</a>';

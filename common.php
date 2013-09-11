@@ -106,6 +106,7 @@ function messageError($msg){
 function messageSuccess($msg){
 	$_SESSION['messageSuccess'] = $msg;
 }
+//SELECTS USER PHOTO FOR PROFILE PAGE
 function getUserPhoto($user_id){
 	$sql      = "SELECT * FROM images where entity_type = 'user' AND entity_id= '$user_id'";
 	global $conn;
@@ -117,10 +118,20 @@ function getUserPhoto($user_id){
 		return "default.jpg";
 	}
 }
+//DELETES COMMENTS BACKEND
 function commentDelete($conn){
 	$id  = $_GET['id'];
 	$sql = "DELETE FROM comments WHERE id = $id";
 	mysql_query( $sql, $conn );
 	return 1;
 	}
+
+function hasLikes($commentId, $userId = null){
+		$like_query = "SELECT * FROM comment_likes WHERE comment_id = '$commentId'";
+	if ($commentId and $userId) {
+		$like_query = "SELECT * FROM comment_likes WHERE comment_id = '$commentId' AND user_id = '$userId'";
+	}
+	$retval mysql_query($like_query, $conn);
+	return mysql_num_rows($retval);
+}
 ?>

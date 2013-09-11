@@ -85,7 +85,7 @@
 	}
 
 	//COMMENT SECTION
-	$query = "SELECT *, users.id as user_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
+	$query = "SELECT *, users.id as user_id, comments.id as comment_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
 	$retvalCom = mysql_query( $query, $conn );
 		if(! $retvalCom )
 	{
@@ -98,6 +98,15 @@
 	$userData   = mysql_fetch_assoc($retvalUser);
 	$user_name  = $userData['username'];
 	$role       = $userData['role_id'];
+
+	//GETS THE LIKE STATUS
+	$like_query = "SELECT * FROM comment_likes";
+	$retval_like = mysql_query( $like_query, $conn );
+		if(! $retval_like )
+	{
+		die('Could not get data: ' . mysql_error());
+	}
+	$likeStatus = mysql_fetch_assoc($retval_like);
 
 
  ?>
@@ -188,6 +197,7 @@
 				<?php while($data = mysql_fetch_assoc($retvalCom)){
 					$user_id = $data['user_id'];
 					$approved = $data['approved'];
+					$comment_id = $data['comment_id'];
 				 ?>
 				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo 'files/'.getUserPhoto($user_id)?>"></div>
 				<div class="well comment_padding <?php echo $approved ? "": "muted";?>">
@@ -206,7 +216,13 @@
 						echo $data['comment'];
 					}
 				}?></p>
-				<a class="like" href="#" data-commentId='<?php echo $data["comment_id"]; ?>' data-userId='<?php echo $data["user_id"]; ?>'>Like</a>
+				<?php
+					if ($comment_id == $likeStatus['comment_id'] and $user_id == $likeStatus['user_id']) {
+						echo '<a class="unlike" href="#" data-commentid="'.$comment_id.'" data-userid="'.$user_id.'">Unlike</a>';
+					} else {
+						echo '<a class="like" href="#" data-commentid="'.$comment_id.'" data-userid="'.$user_id.'">Like</a>';
+					}
+				 ?>
 				</div>
 				<?php } ?>
 			</div>

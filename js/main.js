@@ -159,10 +159,11 @@ $(document).ready(function() {
 		});
 	});
 	//LIKE
-	$('a.like').click(function(e){
-		var userId = $(this).data('userId');
-		var commentId = $(this).data('commentId');
-		var self = this
+	$('a.like').on('click' ,function(e){
+		e.preventDefault();
+		var userId = $(this).data('userid');
+		var commentId = $(this).data('commentid');
+		var self = this;
 		$.ajax({
 			url: "postLike.php",
 			type: "POST",
@@ -171,15 +172,16 @@ $(document).ready(function() {
 				commentId: commentId
 			},
 			success: function(data){
-				$(self).text('unlike');
+				$(self).text('unlike').removeClass('like').addClass('unlike');
 			}
 		});
 	})
 	//UNLIKE
-		$('a.unlike').click(function(e){
-		var userId = $(this).data('userId');
-		var commentId = $(this).data('commentId');
-		var self = this
+	$('a.unlike').on('click', function(e){
+		e.preventDefault();
+		var userId = $(this).data('userid');
+		var commentId = $(this).data('commentid');
+		var self = this;
 		$.ajax({
 			url: "unLike.php",
 			type: "POST",
@@ -188,7 +190,7 @@ $(document).ready(function() {
 				commentId: commentId
 			},
 			success: function(data){
-				$(self).text('like');
+				$(self).text('Like').removeClass('unlike').addClass('like');
 			}
 		});
 	})

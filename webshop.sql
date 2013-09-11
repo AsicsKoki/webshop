@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2013 at 03:21 PM
+-- Generation Time: Sep 11, 2013 at 12:31 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.16
 
@@ -84,15 +84,39 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `rating` int(11) NOT NULL,
   `approved` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `product_id`, `user_id`, `posted_at`, `comment`, `rating`, `approved`) VALUES
-(36, 1, 14, '2013-09-06 10:55:23', '12', 0, 0),
-(37, 1, 14, '2013-09-06 11:10:25', '123', 0, 1);
+(36, 1, 14, '2013-09-06 10:55:23', 'kole1236', 0, 1),
+(38, 1, 14, '2013-09-10 08:02:55', 'proba 123ffff', 0, 1),
+(39, 1, 14, '2013-09-10 08:03:00', 'proba234aaaaaaaaaa', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment_likes`
+--
+
+CREATE TABLE IF NOT EXISTS `comment_likes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+
+--
+-- Dumping data for table `comment_likes`
+--
+
+INSERT INTO `comment_likes` (`id`, `user_id`, `comment_id`) VALUES
+(21, 14, 39),
+(22, 14, 36),
+(23, 14, 36),
+(24, 14, 36);
 
 -- --------------------------------------------------------
 
@@ -107,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `entity_type` varchar(100) NOT NULL,
   `entity_name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `images`
@@ -116,7 +140,8 @@ CREATE TABLE IF NOT EXISTS `images` (
 INSERT INTO `images` (`id`, `image_name`, `entity_id`, `entity_type`, `entity_name`) VALUES
 (6, 'technics-q-c-250-200-7.jpg', '1', 'product', ''),
 (7, 'sports-q-c-250-200-3.jpg', '1', 'product', ''),
-(9, 'side1.jpg', '16', 'user', 'mile');
+(9, 'side1.jpg', '16', 'user', 'mile'),
+(10, 'side4.jpg', '14', 'user', 'AsicsKoki');
 
 -- --------------------------------------------------------
 

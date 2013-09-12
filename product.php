@@ -98,6 +98,7 @@
 	$userData   = mysql_fetch_assoc($retvalUser);
 	$user_name  = $userData['username'];
 	$role       = $userData['role_id'];
+	$userId     = $userData['id'];
 
  ?>
 <!doctype html>
@@ -187,7 +188,7 @@
 				<?php while($data = mysql_fetch_assoc($retvalCom)){
 					$user_id = $data['user_id'];
 					$approved = $data['approved'];
-					$comment_id = $data['comment_id'];
+					$commentId = $data['comment_id'];
 				 ?>
 				<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo 'files/'.getUserPhoto($user_id)?>"></div>
 				<div class="well comment_padding <?php echo $approved ? "": "muted";?>">
@@ -207,10 +208,10 @@
 					}
 				}?></p>
 				<?php
-					if ($num_likes = hasLikes($comment_id, $user_id, $conn)) {
-						echo '<a class="unlike" href="#" data-commentid="'.$comment_id.'" data-userid="'.$user_id.'">Unlike</a>';
+					if ($num_likes = hasLikes($commentId, $userId )) {
+						echo '<a class="unlike" href="#" data-commentid="'.$commentId.'" data-userid="'.$userId.'">Unlike</a>';
 					} else {
-						echo '<a class="like" href="#" data-commentid="'.$comment_id.'" data-userid="'.$user_id.'">Like</a>';
+						echo '<a class="like" href="#" data-commentid="'.$commentId.'" data-userid="'.$userId.'">Like</a>';
 					}
 				 ?>
 				</div>

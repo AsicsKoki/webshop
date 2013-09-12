@@ -126,12 +126,12 @@ function commentDelete($conn){
 	return 1;
 	}
 
-function hasLikes($commentId, $userId = null){
+function hasLikes($commentId, $userId = null, $conn){
 		$like_query = "SELECT * FROM comment_likes WHERE comment_id = '$commentId'";
 	if ($commentId and $userId) {
 		$like_query = "SELECT * FROM comment_likes WHERE comment_id = '$commentId' AND user_id = '$userId'";
 	}
-	$retval mysql_query($like_query, $conn);
+	$retval = mysql_query($like_query, $conn);
 	return mysql_num_rows($retval);
 }
 ?>

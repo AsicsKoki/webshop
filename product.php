@@ -207,7 +207,7 @@
 					}
 				}?></p>
 				<?php
-					if (hasLikes($commentId, $userId)) {
+					if (hasLikes($commentId, $userId, $conn)) {
 						echo '<a class="unlike" href="#" data-commentid="'.$comment_id.'" data-userid="'.$user_id.'">Unlike</a>';
 					} else {
 						echo '<a class="like" href="#" data-commentid="'.$comment_id.'" data-userid="'.$user_id.'">Like</a>';

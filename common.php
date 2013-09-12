@@ -126,12 +126,13 @@ function commentDelete($conn){
 	return 1;
 	}
 
-function hasLikes($commentId, $userId = null, $conn){
-		$like_query = "SELECT * FROM comment_likes WHERE comment_id = '$commentId'";
-	if ($commentId and $userId) {
-		$like_query = "SELECT * FROM comment_likes WHERE comment_id = '$commentId' AND user_id = '$userId'";
-	}
+function hasLikes($comment_id, $user_id = null, $conn){
+		$like_query = "SELECT COUNT(1) FROM comment_likes WHERE comment_id = '$comment_id' AND user_id = '$user_id'";
+	// if ($commentId and $userId) {
+	// } else {
+	// 	$like_query = "SELECT COUNT(*) FROM comment_likes WHERE comment_id = '$commentId'";
+	// }
 	$retval = mysql_query($like_query, $conn);
-	return mysql_num_rows($retval);
-}
+	return mysql_result($retval, 0, 0);
+	}
 ?>

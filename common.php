@@ -131,22 +131,15 @@ function hasLikes($comment_id, $user_id = null){
 
 	if ($comment_id and $user_id) {
 		$like_query = "SELECT COUNT(1) FROM comment_likes WHERE comment_id = '$comment_id' AND user_id = '$user_id'";
-	} else {
-		$like_query = "SELECT COUNT(1) FROM comment_likes WHERE comment_id = '$commentId'";
 	}
 	$retval = mysql_query($like_query, $conn);
 	return mysql_result($retval, 0, 0);
 }
-
-/*	function hasLiked($comment_id, $user_id = null, $conn){
-		// $like_query = "SELECT COUNT(1) FROM comment_likes WHERE comment_id = '$commentId'";
-	$like_query = "SELECT COUNT(1) FROM comment_likes WHERE comment_id = '$comment_id' AND user_id = '$user_id'";
-	$retval = mysql_query($like_query, $conn);
-	return mysql_result($retval, 0, 0);
-	}
-function numberOfLikes($comment_id, $user_id = null, $conn){
-	$like_query = "SELECT COUNT(1) FROM comment_likes WHERE comment_id = '$commentId'";
-	$retval = mysql_query($like_query, $conn);
-	return mysql_result($retval, 0, 0);
-}*/
+function countLikes($comment_id){
+	global $conn;
+	$sql = "SELECT COUNT(1) FROM comment_likes WHERE comment_id = '$comment_id'";
+	$retval = mysql_query($sql, $conn);
+	$count = mysql_result($retval, 0, 0);
+	return $count;
+}
 ?>

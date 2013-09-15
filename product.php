@@ -213,6 +213,9 @@
 					} else {
 						echo '<a class="like" href="#" data-commentid="'.$commentId.'" data-userid="'.$userId.'">Like</a>';
 					}
+					if($count = countLikes($commentId)){
+						echo ' '.$count.' people like this.';
+					}
 				 ?>
 				</div>
 				<?php } ?>

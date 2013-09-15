@@ -223,13 +223,14 @@
 					<a href="#">Liked by:</a>
 				<div>
 					<ul style="plain">
-						<?php $likedBy = mysql_fetch_assoc(usersThatLiked($commentId))
+						<?php while($likedBy = mysql_fetch_assoc(usersThatLiked($commentId))){
 						 ?>
 						<li> <?php echo $likedBy['username'] ?> </li>
 					</ul>
 					<?php } ?>
 				</div>
 				</div>
+				<?php } ?>
 			</div>
 			<div class='pull-left comment_input'>
 				<form id="post_comment_form" action="">

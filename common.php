@@ -152,6 +152,11 @@ function countLikes($comment_id){
 	$count = mysql_result($retval, 0, 0);
 	return $count;
 }
+/**
+ * Reads the names of the useres that liked a comment.
+ * @param  [type] $comment_id [comment id from the comment likes table]
+ * @return [type]             [description]
+ */
 function usersThatLiked($comment_id){
 	global $conn;
 	$sqlPeople = "SELECT * FROM comment_likes LEFT JOIN users ON comment_likes.user_id = users.id WHERE comment_id = '$comment_id'";

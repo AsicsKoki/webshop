@@ -222,12 +222,12 @@
 				 ?>
 					<a href="#">Liked by:</a>
 				<div>
-					<ul style="plain">
 						<?php while($likedBy = mysql_fetch_assoc(usersThatLiked($commentId))){
 						 ?>
+					<ul style="plain">
 						<li> <?php echo $likedBy['username'] ?> </li>
 					</ul>
-					<?php } ?>
+						<?php } ?>
 				</div>
 				</div>
 				<?php } ?>

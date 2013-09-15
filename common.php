@@ -125,7 +125,12 @@ function commentDelete($conn){
 	mysql_query( $sql, $conn );
 	return 1;
 	}
-
+/**
+ * Identifies whether something is liked, and decides what to render.
+ * @param  [type]  $comment_id [Comment id from comment_likes table]
+ * @param  [type]  $user_id    [User id from comment likes]
+ * @return boolean             [Resault, if 1(both id's match) returns true and renders "unlike".]
+ */
 function hasLikes($comment_id, $user_id = null){
 	global $conn;
 
@@ -135,11 +140,22 @@ function hasLikes($comment_id, $user_id = null){
 	$retval = mysql_query($like_query, $conn);
 	return mysql_result($retval, 0, 0);
 }
+/**
+ * Counts the number of likes per comment.
+ * @param  [type] $comment_id [comment id from comment likes, the ammoun of this occurring is the number of likes.]
+ * @return [type]             [returns the number of likes]
+ */
 function countLikes($comment_id){
 	global $conn;
 	$sql = "SELECT COUNT(1) FROM comment_likes WHERE comment_id = '$comment_id'";
 	$retval = mysql_query($sql, $conn);
 	$count = mysql_result($retval, 0, 0);
 	return $count;
+}
+function usersThatLiked($comment_id){
+	global $conn;
+	$sqlPeople = "SELECT * FROM comment_likes LEFT JOIN users ON comment_likes.user_id = users.id WHERE comment_id = '$comment_id'";
+	$retvalPeopole = mysql_query($sqlPeople, $conn);
+	return $retvalPeopole;
 }
 ?>

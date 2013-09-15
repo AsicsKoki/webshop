@@ -99,6 +99,9 @@
 	$user_name  = $userData['username'];
 	$role       = $userData['role_id'];
 	$userId     = $userData['id'];
+	//PEOPLE WHO LIKED
+	// $sqlPeople = "SELECT * FROM comment_likes LEFT JOIN users ON comment_likes.user_id = users.id WHERE comment_id = '$comment_id'";
+	// $retvalPeopole = mysql_query($sqlPeople, $conn);
 
  ?>
 <!doctype html>
@@ -217,8 +220,16 @@
 						echo ' '.$count.' people like this.';
 					}
 				 ?>
+					<a href="#">Liked by:</a>
+				<div>
+					<ul style="plain">
+						<?php $likedBy = mysql_fetch_assoc(usersThatLiked($commentId))
+						 ?>
+						<li> <?php echo $likedBy['username'] ?> </li>
+					</ul>
+					<?php } ?>
 				</div>
-				<?php } ?>
+				</div>
 			</div>
 			<div class='pull-left comment_input'>
 				<form id="post_comment_form" action="">

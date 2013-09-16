@@ -49,6 +49,10 @@
 	shuffle($bannerNames);
 	$banners  = array_slice($bannerNames, 0,3);
 	$banners2 = array_slice($bannerNames, 3,6);
+	//LIKES
+	$sqlLikes = "SELECT comment_id, username, comment FROM comment_likes LEFT JOIN comments ON comment_likes.comment_id = comments.id LEFT JOIN users ON comments.user_id = users.id WHERE comment_likes.user_id = $id";
+	$retvalLikes = mysql_query($sqlLikes, $conn);
+
 
  ?>
 <!doctype html>
@@ -64,12 +68,10 @@
 	<div id="mainElement">
 		<header id="header">Konstantin's web shop
 		</header>
-		<div class="pull-right">
-			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
-		</div>
+		<div class="pull-right"><a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></div>
 		<div class="navbar">
 			<div class="navbar-inner">
-		    		<a class="brand" href="index.php">Home</a>
+		    	<a class="brand" href="index.php">Home</a>
 		    	<ul class="nav">
 		    		<li><a href="#">Products</a></li>
 		    		<li><a href="#">About us</a></li>
@@ -80,38 +82,60 @@
 		</div>
 		<div id="elementOne">
 			<div class="side"><img id="banner" src=""></div>
-			<div id="central">
-				<header><h4> <?php echo $username ?>'s profile </h4></header>
-				<?php
-				//ERROR/success CHECK AND POPUP
-					include 'notice.php';
-						 ?>
-				<div class="columnLeft">
-					<ul class="plain">
-						<li><h4>First name:</h4> <?php echo $first_name; ?></li>
-						<li><h4>Last name:</h4>  <?php echo $last_name ?> </li>
-						<li><h4>Email:</h4>  <?php echo $email ?> </li>
-						<li><h4>About me:</h4></li>
+				<div id="central">
+					<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+						<li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+						<li><a href="#likes" data-toggle="tab">Likes</a></li>
 					</ul>
-					<div>
-						<?php echo $about; ?>
-					</div>
-				</div>
-				<div class="columnRight">
-					<div id="slider1">
-						<a class="buttons prev" href="#">left</a>
-						<div class="viewport">
-							<ul class="overview">
-								<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
-								<li><img src="files/<?php echo $image['image_name'] ?>"></img></li>
+					<header><h4> <?php echo $username ?>'s profile </h4></header>
+					<?php include 'notice.php';//error check and popup?>
+					<div id="my-tab-content" class="tab-content">
+						<div class="tab-pane active" id="profile">
+							<div class="columnLeft">
+								<ul class="plain">
+									<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
+									<li><img src="files/<?php echo $image['image_name'] ?>"></img></li>
 									<?php } ?>
-							</ul>
+								</ul>
+								<a class="buttons next" href="#">right</a>
+								<input id="checkbox" type="checkbox">rotate banners
+							</div>
+							<div class="columnRight">
+								<ul class="plain">
+									<li><h4>First name:</h4> <?php echo $first_name; ?></li>
+									<li><h4>Last name:</h4>  <?php echo $last_name ?> </li>
+									<li><h4>Email:</h4>  <?php echo $email ?> </li>
+									<li><h4>About me:</h4></li>
+								</ul>
+								<div><?php echo $about; ?></div>
+							</div>
 						</div>
-					    <a class="buttons next" href="#">right</a>
+						<div class="tab-pane" id="likes">
+							<table id="like_table" class="table table-hover display">
+								<thead>
+									<th>Comment id</th>
+									<th>Posted by</th>
+									<th>Comment</th>
+									<th>Delete like</th>
+								</thead>
+								<tbody>
+									<?php
+										while($info = mysql_fetch_assoc($retvalLikes)) {
+									?>
+									<tr>
+										<th><?php echo $info["comment_id"]; ?></th>
+										<th><?php echo $info["username"]; ?></th>
+										<th><?php echo $info['comment']; ?></th>
+										<th><a href="#" class="btn">Delete</a></th>
+									</tr>
+									<?php
+										}
+									 ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
-						<input id="checkbox" type="checkbox">rotate banners
 				</div>
-			</div>
 			<div class="side"><img id="banner2" src=""></div>
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>

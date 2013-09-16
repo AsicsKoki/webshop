@@ -193,5 +193,10 @@ $(document).ready(function() {
 				$(self).text('Like').removeClass('unlike').addClass('like');
 			}
 		});
+	});
+	//OPEN AND CLOSE THE "LIKED BY" SECTION ON PRODUCT VIEW
+	$('a.open_likes').click(function(e){
+		e.preventDefault();
+		$(this).siblings('.show_liked_by').slideToggle();
 	})
 })

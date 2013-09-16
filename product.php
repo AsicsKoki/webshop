@@ -218,17 +218,20 @@
 					}
 					if($count = countLikes($commentId)){
 						echo ' '.$count.' people like this.';
-					}
-				 ?>
-					<a href="#">Liked by:</a>
-				<div>
-						<?php while($likedBy = mysql_fetch_assoc(usersThatLiked($commentId))){
-						 ?>
-					<ul style="plain">
-						<li> <?php echo $likedBy['username'] ?> </li>
-					</ul>
+					}?>
+					<a class="open_likes" href="#">Liked by:</a>
+					<div class="hide show_liked_by">
+						<ul class="plain">
+						<?php
+							$i = 0;
+							$ress = usersThatLiked($commentId);
+							while($likedBy = mysql_fetch_assoc($ress) and i<10){
+								$i++;
+						?>
+							<li> <?php echo $likedBy['username'] ?> </li>
 						<?php } ?>
-				</div>
+						</ul>
+					</div>
 				</div>
 				<?php } ?>
 			</div>

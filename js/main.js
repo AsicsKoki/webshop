@@ -98,6 +98,7 @@ $(document).ready(function() {
 	if($('table').length) {
 		$('#productsTable').dataTable();
 		$('#usersTable').dataTable();
+		$('#like_table').dataTable();
 	}
 	//COMMENT BOX(SUBMIT)
 	$('input#post_comment').click(function(e){

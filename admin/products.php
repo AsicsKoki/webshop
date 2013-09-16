@@ -78,7 +78,6 @@
 </div>
 	<script src="../js/jquery-1.10.2.min.js"></script>
 	<script src="../js/bootstrap.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/main.js"></script>
 	<script src="../js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript">

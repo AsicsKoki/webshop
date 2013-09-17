@@ -163,4 +163,7 @@ function usersThatLiked($comment_id){
 	$retvalPeopole = mysql_query($sqlPeople, $conn);
 	return $retvalPeopole;
 }
+function renderRating($calculateRating()){
+	
+}
 ?>

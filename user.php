@@ -125,10 +125,10 @@
 										while($info = mysql_fetch_assoc($retvalLikes)) {
 									?>
 									<tr>
-										<th><?php echo $info["comment_id"]; ?></th>
-										<th><?php echo $info["username"]; ?></th>
-										<th><?php echo $info['comment']; ?></th>
-										<th><a href="#" class="btn">Delete</a></th>
+										<th><?php echo $info["comment_id"]?></th>
+										<th><?php echo $info["username"]?></th>
+										<th><?php echo $info['comment']?></th>
+										<th><a href="#" class="btn delete_like" data-commentid='<?php echo $info['comment_id'] ?>' data-userid='<?php echo $id ?>'>Delete</a></th>
 									</tr>
 									<?php
 										}

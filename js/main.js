@@ -200,4 +200,24 @@ $(document).ready(function() {
 		e.preventDefault();
 		$(this).siblings('.show_liked_by').slideToggle();
 	})
+	//remove like on profile page
+	$('.delete_like').click(function(e){
+		e.preventDefault();
+		var userId = $(this).data('userid');
+		var commentId = $(this).data('commentid');
+		var self = this;
+		$.ajax({
+			url: "unLike.php",
+			type: "POST",
+			data: {
+				userId: userId,
+				commentId: commentId
+			},
+		success: function(data){
+			if (data){
+				$(self).parents('tr').remove();
+				}
+			}
+		});
+	});
 })

@@ -141,6 +141,7 @@
 							<?php } ?>
 						</ul>
 					</div>
+					<?php include "partials/rating.php"; ?>
 				</div>
 				<!-- PAGE CONTENT -->
 				<div class="span6">
@@ -253,6 +254,18 @@
 	$(window).load(function() {
 		$('.flexslider').flexslider();
 	});
-</script>
+$('.ratings_stars').hover(
+	// Handles the mouseover
+	function() {
+		$(this).prevAll().andSelf().addClass('ratings_over');
+		$(this).nextAll().removeClass('ratings_vote');
+		},
+	// Handles the mouseout
+	function() {
+		$(this).prevAll().andSelf().removeClass('ratings_over');
+		set_votes($(this).parent());
+		}
+	);
+	</script>
 </body>
 </html>

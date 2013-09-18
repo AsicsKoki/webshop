@@ -99,9 +99,10 @@
 	$user_name  = $userData['username'];
 	$role       = $userData['role_id'];
 	$userId     = $userData['id'];
-	//PEOPLE WHO LIKED
-	// $sqlPeople = "SELECT * FROM comment_likes LEFT JOIN users ON comment_likes.user_id = users.id WHERE comment_id = '$comment_id'";
-	// $retvalPeopole = mysql_query($sqlPeople, $conn);
+	//RATING INFO
+	$ratingQuery = "SELECT * FROM product_ratings WHERE product_id = $id";
+	$retvalRating = mysql_query($ratingQuery, $conn);
+	$ratingInfo   = mysql_fetch_assoc($retvalRating);
 
  ?>
 <!doctype html>
@@ -262,8 +263,10 @@
 			},
 		// Handles the mouseout
 		function() {
+			if($('#r1').data('rated')== 1 ){
+				return 0;
+			}
 			$(this).prevAll().andSelf().removeClass('ratings_over');
-			set_votes($(this).parent());
 		}
 	);
 	</script>

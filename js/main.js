@@ -220,19 +220,23 @@ $(document).ready(function() {
 			}
 		});
 	});
-	$('rating_stars').click(function(e){
-		e.preventDefault();
+	$('div.ratings_stars').on('click', function(){
 		var rating = $(this).data('rating');
+		var userid = $(this).data('userid');
+		var productid = $(this).data('productid');
 		var self = this;
 		$.ajax({
 			url: "ratingSubmit.php",
 			type: "POST",
 			data: {
-				rating: rating
+				rating: rating,
+				userid: userid,
+				productid: productid
 			},
 		success: function(data){
 			if (data){
-				
+				$("#r1").data('rated','1');
+				$(self).prevAll().andSelf().addClass('ratings_over');
 				}
 			}
 		});

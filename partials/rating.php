@@ -1,10 +1,10 @@
 <div id="r1" class="rate_widget">
-	<div class="star_1 ratings_stars" data-rating="1"></div>
-	<div class="star_2 ratings_stars" data-rating="2"></div>
-	<div class="star_3 ratings_stars" data-rating="3"></div>
-	<div class="star_4 ratings_stars" data-rating="4"></div>
-	<div class="star_5 ratings_stars" data-rating="5"></div>
-	<div class="total_votes">vote data</div>
+	<div class="ratings_stars" data-rating="1" data-productid="<?php echo $id; ?>" data-userid="<?php echo $userId; ?>"></div>
+	<div class="ratings_stars" data-rating="2" data-productid="<?php echo $id; ?>" data-userid="<?php echo $userId; ?>"></div>
+	<div class="ratings_stars" data-rating="3" data-productid="<?php echo $id; ?>" data-userid="<?php echo $userId; ?>"></div>
+	<div class="ratings_stars" data-rating="4" data-productid="<?php echo $id; ?>" data-userid="<?php echo $userId; ?>"></div>
+	<div class="ratings_stars" data-rating="5" data-productid="<?php echo $id; ?>" data-userid="<?php echo $userId; ?>"></div>
+	<div class='pull-right'>Current rating: <?php echo calculateRating($id); ?></div>
 </div>
 <!-- http://net.tutsplus.com/tutorials/html-css-techniques/building-a-5-star-rating-system-with-jquery-ajax-and-php/ -->
 

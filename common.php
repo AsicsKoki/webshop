@@ -163,7 +163,12 @@ function usersThatLiked($comment_id){
 	$retvalPeopole = mysql_query($sqlPeople, $conn);
 	return $retvalPeopole;
 }
-function renderRating($calculateRating()){
-	
+function calculateRating($productId){
+	global $conn;
+	$sql     = "SELECT rating FROM product_ratings WHERE product_id = $productId";
+	$retval  = mysql_query($sql, $conn);
+	$ratings = mysql_fetch_array($retval);
+	$resault = array_sum($ratings) / count(array_filter($ratings));
+	return $resault;
 }
 ?>

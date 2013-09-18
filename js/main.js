@@ -220,4 +220,21 @@ $(document).ready(function() {
 			}
 		});
 	});
+	$('rating_stars').click(function(e){
+		e.preventDefault();
+		var rating = $(this).data('rating');
+		var self = this;
+		$.ajax({
+			url: "ratingSubmit.php",
+			type: "POST",
+			data: {
+				rating: rating
+			},
+		success: function(data){
+			if (data){
+				
+				}
+			}
+		});
+	})
 })

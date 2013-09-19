@@ -181,6 +181,13 @@ function calculateRating($productId){
 	}
 
 }
+/**
+ * Renders the stars according to the rating of the product.
+ * @param  [type] $result    [average product rating]
+ * @param  [type] $productId [product id]
+ * @param  [type] $userId    [user id]
+ * @return [type]            [html containing the stars]
+ */
 function renderStars($result, $productId, $userId){
 	$html = '';
 	$id = $productId;

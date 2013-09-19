@@ -52,6 +52,9 @@
 	//LIKES
 	$sqlLikes = "SELECT comment_id, username, comment FROM comment_likes LEFT JOIN comments ON comment_likes.comment_id = comments.id LEFT JOIN users ON comments.user_id = users.id WHERE comment_likes.user_id = $id";
 	$retvalLikes = mysql_query($sqlLikes, $conn);
+	//RATINGS
+	$sqlRating = "SELECT rating, rated_at, name, product_id FROM product_ratings LEFT JOIN products ON product_ratings.product_id = products.id WHERE product_ratings.user_id = $id";
+	$retvalRating = mysql_query($sqlRating, $conn);
 
 
  ?>
@@ -88,6 +91,7 @@
 					<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 						<li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
 						<li><a href="#likes" data-toggle="tab">Likes</a></li>
+						<li><a href="#rates" data-toggle="tab">Ratings</a></li>
 					</ul>
 					<header><h4> <?php echo $username ?>'s profile </h4></header>
 					<?php include 'notice.php';//error check and popup?>
@@ -129,6 +133,32 @@
 										<th><?php echo $info["username"]?></th>
 										<th><?php echo $info['comment']?></th>
 										<th><a href="#" class="btn delete_like" data-commentid='<?php echo $info['comment_id'] ?>' data-userid='<?php echo $id ?>'>Delete</a></th>
+									</tr>
+									<?php
+										}
+									 ?>
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane" id="rates">
+							<table id="like_table" class="table table-hover display">
+								<thead>
+									<th>Item:</th>
+									<th>Rated:</th>
+									<th>At:</th>
+									<th>Delete rating</th>
+								</thead>
+								<tbody>
+									<?php
+										while($info = mysql_fetch_assoc($retvalRating)) {
+									?>
+									<tr>
+										<th><?php echo $info["name"]?></th>
+										<th><?php echo $info["rating"]?></th>
+										<th><?php echo $info['rated_at']?></th>
+										<?php if ($data['role_id']==1) { ?>
+											<th><a href="#" class="btn delete_rate" data-productid='<?php echo $info['product_id'] ?>' data-userid='<?php echo $id ?>'>Delete</a></th>
+										<?php	} ?>
 									</tr>
 									<?php
 										}

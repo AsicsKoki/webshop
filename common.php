@@ -170,11 +170,31 @@ function calculateRating($productId){
 	global $conn;
 	$sql     = "SELECT rating FROM product_ratings WHERE product_id = $productId";
 	$retval  = mysql_query($sql, $conn);
-	$ratings = mysql_fetch_array($retval);
-	$resault = array_sum($ratings) / count(array_filter($ratings));
-	return $resault;
+	$rows = mysql_num_rows($retval);
+	if ($rows != 0){
+		$ratings = mysql_fetch_array($retval);
+		$resault = array_sum($ratings) / count(array_filter($ratings));
+		return $resault;
+	} else {
+		$resault = 0;
+		return $resault;
+	}
+
 }
-function renderStars(calculateRating()){
-	
+function renderStars($result, $productId, $userId){
+	$html = '';
+	$id = $productId;
+	$userId = $userId;
+	$html = '';
+	$mark = $result;
+	$rest = 5 - $mark;
+
+	for ($i=0; $i < $mark ; $i++) {
+		$html .= '<div class="ratings_stars ratings_over" data-productid="'.$id.'" data-userid="'.$userId.'"></div>';
+	}
+	for ($i=0; $i < $rest; $i++) {
+		$html .= '<div class="ratings_stars" data-productid="'.$id.'" data-userid="'.$userId.'"></div>';
+	}
+	return $html;
 }
 ?>

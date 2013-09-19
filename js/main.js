@@ -220,8 +220,28 @@ $(document).ready(function() {
 			}
 		});
 	});
+	$('.delete_rate').click(function(e){
+		e.preventDefault();
+		var userId = $(this).data('userid');
+		var productId = $(this).data('productid');
+		var self = this;
+		$.ajax({
+			url: "deleteRating.php",
+			type: "POST",
+			data: {
+				userId: userId,
+				productId: productId
+			},
+		success: function(data){
+			if (data){
+				$(self).parents('tr').remove();
+				}
+			}
+		});
+	});
 	$('div.ratings_stars').on('click', function(){
-		var rating = $(this).data('rating');
+		var rating = $(this).index();
+		var rating = rating + 1;
 		var userid = $(this).data('userid');
 		var productid = $(this).data('productid');
 		var self = this;

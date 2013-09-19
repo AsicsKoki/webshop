@@ -163,6 +163,9 @@ function usersThatLiked($comment_id){
 	$retvalPeopole = mysql_query($sqlPeople, $conn);
 	return $retvalPeopole;
 }
+ /**
+  * Calcutales the average rating of a product, only the product id is passed down.
+  */
 function calculateRating($productId){
 	global $conn;
 	$sql     = "SELECT rating FROM product_ratings WHERE product_id = $productId";
@@ -170,5 +173,8 @@ function calculateRating($productId){
 	$ratings = mysql_fetch_array($retval);
 	$resault = array_sum($ratings) / count(array_filter($ratings));
 	return $resault;
+}
+function renderStars(calculateRating()){
+	
 }
 ?>

@@ -12,13 +12,11 @@
 
 
 	$full = "SELECT * FROM categories";
+	$retval = mysql_query( $full, $conn );
 
+	$full2 = "SELECT * FROM categories";
+	$retval2 = mysql_query( $full2, $conn );
 
-	mysql_select_db('webshop');
-		$retval2 = mysql_query( $full, $conn );
-	if(! $retval2 ) {
-		die('Could not get data: ' . mysql_error());
-	}
 
  ?>
 
@@ -41,6 +39,7 @@
 		<?php include 'sidebar.php'; ?>
 			  </div>
 			<div id="central">
+				<a href="addCategory.php" class="btn pull-left">Add category</a>
 				<table id="categoryTable" class="table table-hover" class="display">
 					<thead>
 						<th>Id</th>

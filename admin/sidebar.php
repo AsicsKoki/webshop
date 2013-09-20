@@ -5,4 +5,5 @@
   <li><a href="panel.php"><i class="icon-chevron-right"></i> Panel home </a></li>
   <li><a href="products.php"><i class="icon-chevron-right"></i> Products </a></li>
   <li><a href="Users.php"><i class="icon-chevron-right"></i> Users </a></li>
+  <li><a href="categories.php"><i class="icon-chevron-right"></i> Categories </a></li>
 </ul>

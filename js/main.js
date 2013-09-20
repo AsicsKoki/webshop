@@ -99,6 +99,7 @@ $(document).ready(function() {
 		$('#productsTable').dataTable();
 		$('#usersTable').dataTable();
 		$('#like_table').dataTable();
+		$('#categoryTable').dataTable();
 	}
 	//COMMENT BOX(SUBMIT)
 	$('input#post_comment').click(function(e){
@@ -220,6 +221,25 @@ $(document).ready(function() {
 			}
 		});
 	});
+	//delete a category
+	$('.delete_category').click(function(e){
+		e.preventDefault();
+		var categoryId = $(this).data('categoryId');
+		var self = this;
+		$.ajax({
+			url: "deleteCategory.php",
+			type: "POST",
+			data: {
+				categoryId: categoryId
+			},
+		success: function(data){
+			if (data){
+				$(self).parents('tr').remove();
+				}
+			}
+		});
+	});
+	//remove a user rating of an item
 	$('.delete_rate').click(function(e){
 		e.preventDefault();
 		var userId = $(this).data('userid');

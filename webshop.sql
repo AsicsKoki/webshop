@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2013 at 01:05 AM
--- Server version: 5.6.11
--- PHP Version: 5.5.1
+-- Generation Time: Sep 20, 2013 at 11:52 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -45,6 +45,43 @@ INSERT INTO `banners` (`banner_id`, `banner`) VALUES
 (4, 'side21.jpg'),
 (5, 'side22.jpg'),
 (6, 'side23.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `parent_id` (`parent_id`),
+  KEY `name` (`name`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `parent_id`) VALUES
+(1, 'Cars and car parts', NULL),
+(2, 'Cell phone & tablet', NULL),
+(3, 'Computer parts', NULL),
+(4, 'Sports', NULL),
+(5, 'Clothes', NULL),
+(6, 'Antiques', NULL),
+(7, 'Books', NULL),
+(8, 'Health and beauty', NULL),
+(9, 'Home decoration', NULL),
+(10, 'Other', NULL),
+(11, 'car tires', 1),
+(12, 'suspension', 1),
+(13, 'engine mods', 1),
+(14, 'cpu', 3),
+(15, 'Hard drives', 3);
 
 -- --------------------------------------------------------
 
@@ -251,6 +288,12 @@ INSERT INTO `users` (`id`, `role_id`, `first_name`, `last_name`, `username`, `em
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `comments`

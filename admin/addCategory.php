@@ -3,9 +3,6 @@ include '../common.php';
 include '../notice.php';
 
 
-$full = "SELECT * FROM categories";
-$retval = mysql_query( $full, $conn );
-
 if (!empty($_POST)) {
 	$name = $_POST['category_name'];
 	$parent = $_POST['parent'];
@@ -44,9 +41,8 @@ if (!empty($_POST)) {
 			                <div class="controls">
 								<select name="parent">
 								<?php
-									while($info = mysql_fetch_assoc($retval)) { ?>
-									<option value="<?php echo $info["parent_id"]?>"><?php echo $info['name']; ?></option>
-								<?php } ?>
+									echo renderCategories(0, 0);
+									?>
 							</select>
 			                </div>
 			        </div>

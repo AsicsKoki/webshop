@@ -204,4 +204,17 @@ function renderStars($result, $productId, $userId){
 	}
 	return $html;
 }
+function renderCategories($parent_id, $level){
+	global $conn;
+	$html = "";
+	$query = mysql_query("SELECT * FROM categories WHERE parent_id = $parent_id", $conn);
+
+		while($res = mysql_fetch_assoc($query)){
+			foreach ($res as $category) {
+				$html .= "<option>".$category['name']."</option>";
+				$html .= renderCategories($category['id'], $level+1);
+			}
+		}
+	return $html;
+}
 ?>

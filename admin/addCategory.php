@@ -2,6 +2,9 @@
 include '../common.php';
 include '../notice.php';
 
+$full = "SELECT * FROM categories";
+$retval = mysql_query( $full, $conn );
+
 
 if (!empty($_POST)) {
 	$name = $_POST['category_name'];
@@ -41,9 +44,8 @@ if (!empty($_POST)) {
 			                <div class="controls">
 								<select name="parent">
 								<?php
-									echo renderCategories(0, 0);
-									?>
-							</select>
+									echo renderCategories(0, 0); ?>
+								</select>
 			                </div>
 			        </div>
 			        <input type="submit" name"submit" class="btn" value="Add">

@@ -222,9 +222,9 @@ $(document).ready(function() {
 		});
 	});
 	//delete a category
-	$('.delete_category').click(function(e){
-		e.preventDefault();
-		var categoryId = $(this).data('categoryId');
+	$('#categoryTable').on('click','a.delete_category',function(e){
+		e.preventDefault(e);
+		var categoryId = $(this).data('categoryid');
 		var self = this;
 		$.ajax({
 			url: "deleteCategory.php",

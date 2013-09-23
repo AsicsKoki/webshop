@@ -1,10 +1,10 @@
 <?php
-include 'common.php';
-include 'notice.php';
+include '../common.php';
+include '../notice.php';
 
-	$categoryId   = $_POST['categoryId'];
-	$sql  = "DELETE FROM categories WHERE id = '$categoryId'";
-	$res = mysql_query( $sql, $conn );
-	var_dump($res);
+	$categoryId = $_POST['categoryId'];
+	$sql  = "DELETE FROM categories WHERE id = $categoryId";
+	$res = mysql_query($sql, $conn);
+	return $res;
 
 ?>

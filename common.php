@@ -204,17 +204,28 @@ function renderStars($result, $productId, $userId){
 	}
 	return $html;
 }
-function renderCategories($parent_id, $level){
+/**
+ * Renders the categories parent when adding a new category.
+ * @param  [type]  $parentId [parent id passed as 0, decleres where the iteration starts]
+ * @param  integer $level    [level of subcategory]
+ * @return [type]            [colection of option tags to use in select tag]
+ */
+function renderCategories($parentId, $level = 0){
 	global $conn;
 	$html = "";
-	$query = mysql_query("SELECT * FROM categories WHERE parent_id = $parent_id", $conn);
+	if($parentId)
+		$sql = "SELECT * FROM categories WHERE parent_id = $parentId";
+	else
+		$sql = "SELECT * FROM categories WHERE ISNULL(parent_id)";
 
-		while($res = mysql_fetch_assoc($query)){
-			foreach ($res as $category) {
-				$html .= "<option>".$category['name']."</option>";
-				$html .= renderCategories($category['id'], $level+1);
-			}
-		}
+	$query = mysql_query($sql, $conn);
+	while($res = mysql_fetch_assoc($query)){
+		$currentId = $res['id'];
+		$html .= "<option value=".$currentId.">";
+ 		$html .= str_repeat("-", $level);
+		$html .= $res['name']."</option>";
+		$html .= renderCategories($currentId, $level+1);
+	}
 	return $html;
 }
 ?>

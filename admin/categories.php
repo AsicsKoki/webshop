@@ -1,8 +1,6 @@
 <?php
-
-		include '../common.php';
-		include '../notice.php';
-
+	include '../common.php';
+	include '../notice.php';
 
 	if (!loginCheck($conn)) {
 		$msg = "You do not have permissions to enter this page.";
@@ -10,18 +8,14 @@
 		header("Location: login.php");
 	}
 
-
 	$full = "SELECT * FROM categories";
 	$retval = mysql_query( $full, $conn );
 
 	$full2 = "SELECT * FROM categories";
 	$retval2 = mysql_query( $full2, $conn );
-
-
- ?>
-
- <!doctype HTML>
- <html>
+?>
+<!doctype HTML>
+<html>
 <head>
 	<link rel ="stylesheet" href="../css/styles.css">
 	<link rel ="stylesheet" href="../css/bootstrap.css">
@@ -55,7 +49,9 @@
 							<th><?php echo $info["id"]?></th>
 							<th><?php echo $info["name"]?></th>
 							<th><?php echo $info['parent_id']?></th>
-							<th><a href="#" class="btn delete_category" data-categoryId='<?php echo $info['id'] ?>'>Delete</a></th>
+							<th>
+								<a href="#" class="btn delete_category" data-categoryid='<?php echo $info['id'] ?>'>Delete</a>
+							</th>
 						</tr>
 						<?php
 							}

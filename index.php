@@ -68,6 +68,7 @@ $retval = mysql_query( $sql, $conn );
 					    	<ul class="nav">
 					    		<li><a href="index.php">Products</a></li>
 					    		<li><a href="users.php">Users</a></li>
+					    		<li><a href="newProduct.php">Sell item</a></li>
 					    		<li><a href="#">Contact</a></li>
 					    	</ul>
 						</div>

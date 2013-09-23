@@ -15,7 +15,7 @@
 		float: left;
 	}
 	#central{
-		 width: 800px;
+		 width: 1000px;
 		 border: 1px solid black;
 		 float: left;
 	}
@@ -38,6 +38,11 @@
 		font-size: 60%;
 		background-color: #660066;
 	}
+  #elementOneNewProduct{
+     width: 1200px;
+     border: 1px solid black;
+     float: left;
+  }
 	#elementOne{
 		 float: right;
 		 width: 100%;

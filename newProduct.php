@@ -41,6 +41,10 @@
 		foreach ($_POST['category'] as $categoryId) {
 			mysql_query("INSERT INTO categorized_products (product_id, category_id) VALUES ('$productId', '$categoryId')", $conn);
 		}
+		if ($_FILES["image"]["name"]) {
+			$fileName = fileUpload($conn);
+			mysql_query("INSERT INTO images (image_name, entity_id, entity_type) VALUES ('$fileName', '$productId', 'product')", $conn);
+		}
 		header('Location: index.php');
 	}
 	// COLOR SELECTION

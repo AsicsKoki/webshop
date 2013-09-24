@@ -7,15 +7,13 @@
 	    background-repeat: no-repeat;
 	    background-attachment: fixed;
 	}
-
-
 	 div.side{
 		width: 97px;
 		border: 1px solid black;
 		float: left;
 	}
 	#central{
-		 width: 1000px;
+		 width: 800px;
 		 border: 1px solid black;
 		 float: left;
 	}
@@ -38,11 +36,6 @@
 		font-size: 60%;
 		background-color: #660066;
 	}
-  #elementOneNewProduct{
-     width: 1200px;
-     border: 1px solid black;
-     float: left;
-  }
 	#elementOne{
 		 float: right;
 		 width: 100%;
@@ -207,4 +200,11 @@
   }
   .ratings_over {
     background: url('../img/star_highlight.png') no-repeat;
+  }
+  #categorySelect{
+    width: 265px;
+    height: 329px;
+    float: right;
+    left: -42%;
+    position: relative;
   }

@@ -30,26 +30,18 @@
 		$image       = $_FILES['image']['name'];
 		if(is_numeric($quantity) AND $quantity > 0){
 
-		mysql_query("INSERT INTO products (user_id, name, colorid, price, quantity, description) VALUES ('$id', '$name', '$color', '$price', '$quantity', '$description')",$conn);
+			mysql_query("INSERT INTO products (user_id, name, colorid, price, quantity, description) VALUES ('$id', '$name', '$color', '$price', '$quantity', '$description')",$conn);
+			$productId =  mysql_insert_id();
 			$msg = "Saved";
 			messageSuccess($msg);
 		} else {
 			$msg = "Enter valid quantity.";
 			messageError($msg);
 		}
-		if ($_FILES["image"]["name"]) {
-			$fileName = fileUpload($conn);
-			mysql_query("INSERT INTO images (image_name, entity_id, entity_type) VALUES ('$fileName', '$id', 'product')", $conn);
+		foreach ($_POST['category'] as $categoryId) {
+			mysql_query("INSERT INTO categorized_products (product_id, category_id) VALUES ('$productId', '$categoryId')", $conn);
 		}
 		header('Location: index.php');
-	}
-
-	//IMAGE QUERY
-	$imgQuery = "SELECT * FROM images WHERE entity_type = 'product' and entity_name = '$productName'";
-
-	$retvalImg = mysql_query( $imgQuery, $conn );
-	if(! $retval ) {
-		die('Could not get data: ' . mysql_error());
 	}
 	// COLOR SELECTION
 	$boje= "SELECT * FROM colors";
@@ -77,19 +69,20 @@
 		</div>
 		<div class="navbar">
 			<div class="navbar-inner">
-					<a class="brand" href="index.php">Home</a>
+			<a class="brand" href="index.php">Home</a>
 				<ul class="nav">
-					<li><a href="#">Products</a></li>
-					<li><a href="#">About us</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="index.php">Products</a></li>
 					<li><a href="users.php">Users</a></li>
+					<li><a href="newProduct.php">Sell item</a></li>
+					<li><a href="#">Contact</a></li>
 				</ul>
 			</div>
 		</div>
 		<div id="elementOne">
-			<div id="elementOneNewProduct">
+			<div>
 				<!-- SUBMISION FORM -->
 		<form class="form-horizontal pull-left" method="post" data-validate="parsley" enctype="multipart/form-data">
+		<div>
 	        <div class="control-group">
 	            <label class="control-label" for="productName">Product Name:</label>
 	                <div class="controls">
@@ -130,13 +123,14 @@
 					</select>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-lable ctr_group" for="file">Filename:</label>
-	                <div class="controls">
-	                    <input class="fileNamePadding" type="file" name="image">
-	            	</div>
-	        </div>
 	        <input type="submit" name"submit" class="btn" value="Save">
+		</div>
+		<div id="categorySelect">
+			<ul style='list-style: none; text-align: left;'>
+			<h4>Please select item category:</h4>
+			<?php echo renderCategorySelection(0,0); ?>
+			</ul>
+		</div>
 		</form>
 		</div>
 	</div>

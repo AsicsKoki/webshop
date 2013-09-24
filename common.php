@@ -204,7 +204,7 @@ function renderStars($result, $productId, $userId){
 	}
 	return $html;
 }
-/**
+/**BACK END
  * Renders the categories parent when adding a new category.
  * @param  [type]  $parentId [parent id passed as 0, decleres where the iteration starts]
  * @param  integer $level    [level of subcategory]
@@ -225,6 +225,30 @@ function renderCategories($parentId, $level = 0){
  		$html .= str_repeat("-", $level);
 		$html .= $res['name']."</option>";
 		$html .= renderCategories($currentId, $level+1);
+	}
+	return $html;
+}
+/**FRONT END
+ * Renders the categories parent when selecting a new category.
+ * @param  [type]  $parentId [description]
+ * @param  integer $level    [description]
+ * @return [type]            [front end render html]
+ */
+function renderCategorySelection($parentId, $level = 0){
+	global $conn;
+	$html = "";
+	if($parentId)
+		$sql = "SELECT * FROM categories WHERE parent_id = $parentId";
+	else
+		$sql = "SELECT * FROM categories WHERE ISNULL(parent_id)";
+
+	$query = mysql_query($sql, $conn);
+	while($res = mysql_fetch_assoc($query)){
+		$currentId = $res['id'];
+		$html .= "<li><input type='checkbox' name='category[]' value=".$currentId.">";
+ 		$html .= str_repeat(" - ", $level);
+		$html .= $res['name']."</li>";
+		$html .= renderCategorySelection($currentId, $level+1);
 	}
 	return $html;
 }

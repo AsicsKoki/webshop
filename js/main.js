@@ -260,6 +260,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	//Rating stars controll
 	$('div.ratings_stars').on('click', function(){
 		var rating = $(this).index();
 		var rating = rating + 1;

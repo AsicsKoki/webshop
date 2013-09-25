@@ -128,12 +128,12 @@
 				</div>
 			</div>
 	        <input type="submit" name"submit" class="btn" value="Save">
-		</div>
 		<div id="categorySelect">
 			<ul style='list-style: none; text-align: left;'>
-			<h4>Please select item category:</h4>
-			<?php echo renderCategorySelection(0,0); ?>
+				<h4>Please select item category:</h4>
+				<?php echo renderCategorySelection(0,0); ?>
 			</ul>
+		</div>
 		</div>
 		</form>
 		</div>

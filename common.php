@@ -234,21 +234,28 @@ function renderCategories($parentId, $level = 0){
  * @param  integer $level    [description]
  * @return [type]            [front end render html]
  */
-function renderCategorySelection($parentId, $level = 0){
+function renderCategorySelection($parentId, $level = 0, $productId = NULL){
 	global $conn;
 	$html = "";
-	if($parentId)
-		$sql = "SELECT * FROM categories WHERE parent_id = $parentId";
+	if($productId)
+		$join = "LEFT JOIN categorized_products ON categories.id = categorized_products.category_id";
 	else
-		$sql = "SELECT * FROM categories WHERE ISNULL(parent_id)";
+		$join = "";
+
+
+	if($parentId)
+		$sql = "SELECT * FROM categories $join WHERE parent_id = $parentId";
+	else
+		$sql = "SELECT * FROM categories $join WHERE ISNULL(parent_id)";
 
 	$query = mysql_query($sql, $conn);
 	while($res = mysql_fetch_assoc($query)){
+		$checked = $res['product_id']? "checked = checked": "";
 		$currentId = $res['id'];
-		$html .= "<li><input type='checkbox' name='category[]' value=".$currentId.">";
+		$html .= "<li><input type='checkbox'".$checked." name='category[]' class='categoryCheck' data-productId=".$productId." data-categoryId=".$currentId." value=".$currentId.">";
  		$html .= str_repeat(" - ", $level);
 		$html .= $res['name']."</li>";
-		$html .= renderCategorySelection($currentId, $level+1);
+		$html .= renderCategorySelection($currentId, $level+1, $productId);
 	}
 	return $html;
 }

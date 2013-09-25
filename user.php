@@ -56,7 +56,14 @@
 	$sqlRating = "SELECT rating, rated_at, name, product_id FROM product_ratings LEFT JOIN products ON product_ratings.product_id = products.id WHERE product_ratings.user_id = $id";
 	$retvalRating = mysql_query($sqlRating, $conn);
 
+	$sql = "SELECT * FROM products where user_id= '$id'";
 
+	$retvalProducts = mysql_query( $sql, $conn );
+	if(! $retval )
+	{
+		die('Could not get data: ' . mysql_error());
+	}
+	$row = mysql_fetch_assoc($retval);
  ?>
 <!doctype html>
 <html>
@@ -92,6 +99,7 @@
 						<li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
 						<li><a href="#likes" data-toggle="tab">Likes</a></li>
 						<li><a href="#rates" data-toggle="tab">Ratings</a></li>
+						<li><a href="#Posts" data-toggle="tab">Posts</a></li>
 					</ul>
 					<header><h4> <?php echo $username ?>'s profile </h4></header>
 					<?php include 'notice.php';//error check and popup?>
@@ -103,7 +111,6 @@
 									<li><img src="files/<?php echo $image['image_name'] ?>"></img></li>
 									<?php } ?>
 								</ul>
-								<a class="buttons next" href="#">right</a>
 								<input id="checkbox" type="checkbox">rotate banners
 							</div>
 							<div class="columnRight">
@@ -156,6 +163,32 @@
 										<th><?php echo $info["name"]?></th>
 										<th><?php echo $info["rating"]?></th>
 										<th><?php echo $info['rated_at']?></th>
+										<?php if ($data['role_id']==1) { ?>
+											<th><a href="#" class="btn delete_rate" data-productid='<?php echo $info['product_id'] ?>' data-userid='<?php echo $id ?>'>Delete</a></th>
+										<?php	} ?>
+									</tr>
+									<?php
+										}
+									 ?>
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane" id="Posts">
+							<table id="product_table_user" class="table table-hover display">
+								<thead>
+									<th>Item:</th>
+									<th>Posted at:</th>
+									<th>Price</th>
+									<th>Delete</th>
+								</thead>
+								<tbody>
+									<?php
+										while($row = mysql_fetch_assoc($retvalProducts)) {
+									?>
+									<tr>
+										<th><?php echo $row["name"]?></th>
+										<th><?php echo $row["rating"]?></th>
+										<th><?php echo $row['rated_at']?></th>
 										<?php if ($data['role_id']==1) { ?>
 											<th><a href="#" class="btn delete_rate" data-productid='<?php echo $info['product_id'] ?>' data-userid='<?php echo $id ?>'>Delete</a></th>
 										<?php	} ?>

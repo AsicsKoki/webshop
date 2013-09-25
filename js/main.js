@@ -100,6 +100,7 @@ $(document).ready(function() {
 		$('#usersTable').dataTable();
 		$('#like_table').dataTable();
 		$('#categoryTable').dataTable();
+		$('#product_table_user').dataTable();
 	}
 	//COMMENT BOX(SUBMIT)
 	$('input#post_comment').click(function(e){

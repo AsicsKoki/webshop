@@ -208,3 +208,10 @@
     left: -42%;
     position: relative;
   }
+  .row{
+    width: 1000px;
+  }
+  .user-box{
+    left: -3%;
+    position: relative;
+  }

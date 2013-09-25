@@ -1,48 +1,37 @@
 <?php
-
 include 'logincheck.php';
 include 'common.php';
-
 
 if (!userLogin($conn)) {
 	$msg = "Please log in.";
 	messageError($msg);
 	header("Location: login.php");
 	}
-
-	$username = $_SESSION['username'];
-
+$username = $_SESSION['username'];
 //SELECT TABLE INFO
 $sql = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id WHERE active = 1";
 
 mysql_select_db('webshop');
 
 $retval = mysql_query( $sql, $conn );
-	if(! $retval ) {
-		die('Could not get data: ' . mysql_error());
-	}
+if(! $retval ) {
+	die('Could not get data: ' . mysql_error());
+}
+//BANNERS
+$banners = 'SELECT banner FROM banners';
 
-
-		//BANNERS
-
-	$banners = 'SELECT banner FROM banners';
-
-	$banners = mysql_query($banners, $conn);
-	if(! $banners) {
-		die('Could not get data: ' . mysql_error());
-	}
-
-	$bannerNames = [];
-	while ($bannerName= mysql_fetch_assoc($banners)) {
-		$bannerNames[] = 'images/'.$bannerName["banner"];
-	}
-	shuffle($bannerNames);
-	$banners  = array_slice($bannerNames, 0,3);
-	$banners2 = array_slice($bannerNames, 3,6);
-
-
-	 ?>
-
+$banners = mysql_query($banners, $conn);
+if(! $banners) {
+	die('Could not get data: ' . mysql_error());
+}
+$bannerNames = [];
+while ($bannerName= mysql_fetch_assoc($banners)) {
+	$bannerNames[] = 'images/'.$bannerName["banner"];
+}
+shuffle($bannerNames);
+$banners  = array_slice($bannerNames, 0,3);
+$banners2 = array_slice($bannerNames, 3,6);
+?>
 <!doctype html>
 <html>
 <head>
@@ -87,7 +76,6 @@ $retval = mysql_query( $sql, $conn );
 					<tbody>
 						<?php
 							while($row = mysql_fetch_assoc($retval)) {
-
 						 ?>
 						<tr>
 							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["name"]; ?></a></td>

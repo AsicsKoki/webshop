@@ -17,23 +17,24 @@
 		die('Could not get data: ' . mysql_error());
 	}
 	$row = mysql_fetch_assoc($retval2);
-
 	if(!$row){
 		$msg = "Product not found";
 		messageError($msg);
 		header("Location: index.php");
 	}
-
-
 	$description = $row['description'];
-	$name = $row['name'];
-	$price = $row['price'];
-	$quantity = $row['quantity'];
-	$active = $row['active'];
+	$name        = $row['name'];
+	$price       = $row['price'];
+	$quantity    = $row['quantity'];
+	$active      = $row['active'];
+	$user_id     = $row['user_id'];
 	if ($active == 0){
 		header("Location: index.php");
 	}
-
+	//USER SELECT(selects the user that posted the product)
+	$sqlPoster = "SELECT username, image_name FROM users LEFT JOIN images ON users.id = images.entity_id WHERE users.id= $user_id";
+	$retvalPoster = mysql_query($sqlPoster, $conn);
+	$poster = mysql_fetch_assoc($retvalPoster);
 	// COLOR SELECTION
 	$boje= "SELECT * FROM colors";
 
@@ -132,6 +133,11 @@
 			include "partials/navbar.php";
 		?>
 		<div id="elementOne">
+		<div class="user-box pull-right">
+			<header>Posted by :</header>
+			<img src="files/<?php echo $poster['image_name'] ?>" alt="">
+			<h5><a href="user.php?id=<?php echo $user_id ?>"><?php echo $poster['username'] ?></a></h5>
+		</div>
 			<div class="row">
 				<!-- IMAGE SLIDER AND COMMENTS -->
 				<div class="span4">
@@ -170,20 +176,20 @@
 	        			</div>
 	        			<div class="control-group">
 	            		<label class="control-label">Select color:</label>
-	               		<div class="controls">
-						<select class="pull-left">
-							<?php while ($color= mysql_fetch_assoc($retvalColor)) {
-							if ($row['colorid'] == $color["color_id"]) { ?>
-								<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
-							<?php
-							} else { ?>
-								<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
-							<?php
-							}
-						}
-							?>
-						</select>
-	                	</div>
+		               		<div class="controls">
+								<select class="pull-left">
+									<?php while ($color= mysql_fetch_assoc($retvalColor)) {
+									if ($row['colorid'] == $color["color_id"]) { ?>
+										<option selected="selected"  value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
+									<?php
+									} else { ?>
+										<option value="<?php echo $color["color_id"]?>"><?php echo $color["color_name"] ?></option>
+									<?php
+									}
+								}
+									?>
+								</select>
+		                	</div>
 				 		</div>
 	      				<input type="submit" value="purchase">
 					</form>

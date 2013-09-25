@@ -24,7 +24,8 @@
 	$last_name  = $data['last_name'];
 	$username   = $data['username'];
 	$email      = $data['email'];
-	$about      = $data['bio'];
+	$about      = $data['bio'];;
+	$id         = $data['id'];
 
 	//IMAGE SELECTION
 	$imgSql = "SELECT * FROM images WHERE entity_type = 'user' and entity_name = '$username'";
@@ -47,6 +48,22 @@
 	$banners  = array_slice($bannerNames, 0,3);
 	$banners2 = array_slice($bannerNames, 3,6);
 
+
+	//LIKES
+	$sqlLikes = "SELECT comment_id, username, comment FROM comment_likes LEFT JOIN comments ON comment_likes.comment_id = comments.id LEFT JOIN users ON comments.user_id = users.id WHERE comment_likes.user_id = $id";
+	$retvalLikes = mysql_query($sqlLikes, $conn);
+	//RATINGS
+	$sqlRating = "SELECT rating, rated_at, name, product_id FROM product_ratings LEFT JOIN products ON product_ratings.product_id = products.id WHERE product_ratings.user_id = $id";
+	$retvalRating = mysql_query($sqlRating, $conn);
+
+	$sql = "SELECT * FROM products where user_id= '$id'";
+
+	$retvalProducts = mysql_query( $sql, $conn );
+	if(! $retval )
+	{
+		die('Could not get data: ' . mysql_error());
+	}
+	$row = mysql_fetch_assoc($retval);
  ?>
 <!doctype html>
 <html>
@@ -56,6 +73,8 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" href="css/jquery.dataTables.css">
+	<link rel="stylesheet" href="css/jquery.dataTables_themeroller.css">
 	<link rel="stylesheet" href="css/website.css" type="text/css" media="screen"/>
     <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/jquery.tinycarousel.min.js"></script>
@@ -87,38 +106,123 @@
 		<div id="elementOne">
 			<div class="side"><img id="banner" src=""></div>
 			<div id="central">
+				<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+						<li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+						<li><a href="#likes" data-toggle="tab">Likes</a></li>
+						<li><a href="#rates" data-toggle="tab">Ratings</a></li>
+						<li><a href="#Posts" data-toggle="tab">Posts</a></li>
+					</ul>
 				<header><h4> <?php echo $username ?>'s profile </h4></header>
 				<?php
 				//ERROR/success CHECK AND POPUP
 					include 'notice.php';
 						 ?>
-				<div class="columnLeft">
-					<ul style="list-style: none;">
-						<li><h4>First name:</h4> <?php echo $first_name; ?></li>
-						<li><h4>Last name:</h4>  <?php echo $last_name ?> </li>
-						<li><h4>Email:</h4>  <?php echo $email ?> </li>
-						<li><h4>About me:</h4></li>
-					</ul>
-					<div>
-						<?php echo $about; ?>
-					</div>
-					<a href="profileEdit.php" class="btn">Edit profile</a>
-				</div>
-				<div class="columnRight">
-					<div id="slider1">
-						<a class="buttons prev" href="#">left</a>
-						<div class="viewport">
-							<ul class="overview">
-								<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
-								<li><img src="files/<?php echo $image['image_name'] ?>"></img></li>
-									<?php } ?>
+				<div id="my-tab-content" class="tab-content">
+					<div class="tab-pane active" id="profile">
+						<div class="columnLeft">
+							<ul style="list-style: none;">
+								<li><h4>First name:</h4> <?php echo $first_name; ?></li>
+								<li><h4>Last name:</h4>  <?php echo $last_name ?> </li>
+								<li><h4>Email:</h4>  <?php echo $email ?> </li>
+								<li><h4>About me:</h4></li>
 							</ul>
+							<div>
+								<?php echo $about; ?>
+							</div>
+							<a href="profileEdit.php" class="btn">Edit profile</a>
 						</div>
-					    <a class="buttons next" href="#">right</a>
+						<div class="columnRight">
+							<div id="slider1">
+								<a class="buttons prev" href="#">left</a>
+								<div class="viewport">
+									<ul class="overview">
+										<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
+										<li><img src="files/<?php echo $image['image_name'] ?>"></img></li>
+											<?php } ?>
+									</ul>
+								</div>
+							    <a class="buttons next" href="#">right</a>
+							</div>
+						</div>
 					</div>
-						<input id="checkbox" type="checkbox">rotate banners
+					<div class="tab-pane" id="likes">
+						<table id="like_table" class="table table-hover display">
+							<thead>
+								<th>Comment id</th>
+								<th>Posted by</th>
+								<th>Comment</th>
+								<th>Delete like</th>
+							</thead>
+							<tbody>
+								<?php
+									while($info = mysql_fetch_assoc($retvalLikes)) {
+								?>
+								<tr>
+									<th><?php echo $info["comment_id"]?></th>
+									<th><?php echo $info["username"]?></th>
+									<th><?php echo $info['comment']?></th>
+									<th><a href="#" class="btn delete_like" data-commentid='<?php echo $info['comment_id'] ?>' data-userid='<?php echo $id ?>'>Delete</a></th>
+								</tr>
+								<?php
+									}
+								 ?>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane" id="rates">
+						<table id="like_table" class="table table-hover display">
+							<thead>
+								<th>Item:</th>
+								<th>Rated:</th>
+								<th>At:</th>
+								<th>Delete rating</th>
+							</thead>
+							<tbody>
+								<?php
+									while($info = mysql_fetch_assoc($retvalRating)) {
+								?>
+								<tr>
+									<th><?php echo $info["name"]?></th>
+									<th><?php echo $info["rating"]?></th>
+									<th><?php echo $info['rated_at']?></th>
+									<?php if ($data['role_id']==1) { ?>
+										<th><a href="#" class="btn delete_rate" data-productid='<?php echo $info['product_id'] ?>' data-userid='<?php echo $id ?>'>Delete</a></th>
+									<?php	} ?>
+								</tr>
+								<?php
+									}
+								 ?>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane" id="Posts">
+						<table id="product_table_user" class="table table-hover display">
+							<thead>
+								<th>Item:</th>
+								<th>Posted at:</th>
+								<th>Price</th>
+								<th>Delete</th>
+							</thead>
+							<tbody>
+								<?php
+									while($row = mysql_fetch_assoc($retvalProducts)) {
+								?>
+								<tr>
+									<th><?php echo $row["name"]?></th>
+									<th><?php echo $row["rating"]?></th>
+									<th><?php echo $row['rated_at']?></th>
+									<?php if ($data['role_id']==1) { ?>
+										<th><a href="#" class="btn delete_rate" data-productid='<?php echo $info['product_id'] ?>' data-userid='<?php echo $id ?>'>Delete</a></th>
+									<?php	} ?>
+								</tr>
+								<?php
+									}
+								 ?>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
+		</div>
 			<div class="side"><img id="banner2" src=""></div>
 		</div>
 		<footer id="footer">(2013) All rights reserved</footer>

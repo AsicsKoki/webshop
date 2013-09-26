@@ -215,3 +215,8 @@
     left: -3%;
     position: relative;
   }
+  div.menu{
+    width: 200px;
+    border: 1px solid black;
+    float: left;
+  }

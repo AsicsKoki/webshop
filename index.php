@@ -31,6 +31,8 @@ while ($bannerName= mysql_fetch_assoc($banners)) {
 shuffle($bannerNames);
 $banners  = array_slice($bannerNames, 0,3);
 $banners2 = array_slice($bannerNames, 3,6);
+//SELECTS CATEGORIES
+$retvalCat = mysql_query("SELECT * FROM categories");
 ?>
 <!doctype html>
 <html>
@@ -63,7 +65,13 @@ $banners2 = array_slice($bannerNames, 3,6);
 						</div>
 					</div>
 		<div id="elementOne">
-			<div class="side"><img id="banner" src=""></div>
+			<div class="menu">
+				<ul class="menu"  role="menu" aria-labelledby="dLabel">
+					<?php while($categories = mysql_fetch_assoc($retvalCat)){ ?>
+					<li><a tabindex="-1" href="#"><?php echo $categories['name']; ?></a></li>
+				<?php } ?>
+				</ul>
+			</div>
 				<div id="central">
 				<table id="productsTable" class="table table-hover" class="display">
 					<thead>

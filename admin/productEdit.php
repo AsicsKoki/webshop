@@ -207,8 +207,8 @@
 			var productId = $(this).data('productId');
 			var categoryId = $(this).data('categoryId');
 			$.ajax({
-				url: "changeState.php",
-				type: "get",
+				url: "assignCategory.php",
+				type: "POST",
 				data: {
 					productId: productId,
 					categoryId: categoryId

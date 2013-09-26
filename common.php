@@ -259,4 +259,28 @@ function renderCategorySelection($parentId, $level = 0, $productId = NULL){
 	}
 	return $html;
 }
+/**
+ * [renderCategories description]
+ * @param  [type]  $parentId [description]
+ * @param  integer $level    [description]
+ * @return [type]            [description]
+ */
+function renderCategoryMenu($parentId, $level = 0){
+	global $conn;
+	$html = "";
+	if($parentId)
+		$sql = "SELECT * FROM categories WHERE parent_id = $parentId";
+	else
+		$sql = "SELECT * FROM categories WHERE ISNULL(parent_id)";
+
+	$query = mysql_query($sql, $conn);
+	while($res = mysql_fetch_assoc($query)){
+		$currentId = $res['id'];
+		$html .= "<li><a href='products.php?id=".$currentId."'>";
+ 		$html .= str_repeat(" - ", $level);
+		$html .= $res['name']."</a></li>";
+		$html .= renderCategoryMenu($currentId, $level+1);
+	}
+	return $html;
+}
 ?>

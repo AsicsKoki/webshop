@@ -18,12 +18,16 @@
 		$image       = $_FILES['image']['name'];
 		if(is_numeric($quantity) AND $quantity >= 0){
 
+			mysql_query("DELETE FROM categorized_products WHERE product_id = $id", $conn);
 			mysql_query("UPDATE products SET quantity = '$quantity', name = '$name', price = '$price', description = '$description', colorid = '$color' WHERE id = '$id'",$conn);
 				$msg = "Saved";
 				messageSuccess($msg);
 		} else {
 				$msg = "Enter valid quantity.";
 				messageError();
+		}
+		foreach ($_POST['category'] as $categoryId) {
+			mysql_query("INSERT INTO categorized_products (product_id, category_id) VALUES ('$id', '$categoryId')", $conn);
 		}
 		if ($_FILES["image"]["name"]) {
 
@@ -160,11 +164,11 @@
 				<?php } ?>
 			</div>
 			<div id="categorySelect">
-			<ul style='list-style: none; text-align: left;'>
-			<h4>Please select item category:</h4>
-			<?php echo renderCategorySelection(0,0, $id); ?>
-			</ul>
-		</div>
+				<ul style='list-style: none; text-align: left;'>
+				<h4>Please select item category:</h4>
+				<?php echo renderCategorySelection(0,0, $id); ?>
+				</ul>
+			</div>
 		</form>
 			<ul class="plain">
 				<?php while ($image = mysql_fetch_assoc($retvalImg)){ ?>
@@ -192,26 +196,6 @@
 				data: {
 					id: id,
 					approved: approved?1:0
-				},
-				success: function(data){
-					if (!data){
-						e.preventDefault();
-					}
-				}
-			});
-		});
-	</script>
-	<script type="text/javascript">
-		//AJAX CATEGORY SELECT CONTROLS
-		$('.categoryCheck').click(function(e){
-			var productId = $(this).data('productId');
-			var categoryId = $(this).data('categoryId');
-			$.ajax({
-				url: "assignCategory.php",
-				type: "POST",
-				data: {
-					productId: productId,
-					categoryId: categoryId
 				},
 				success: function(data){
 					if (!data){

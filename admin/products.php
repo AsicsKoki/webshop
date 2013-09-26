@@ -1,29 +1,21 @@
 <?php
+include '../common.php';
+include '../notice.php';
 
-		include '../common.php';
-		include '../notice.php';
-
-
-	if (!loginCheck($conn)) {
-		$msg = "You do not have permissions to enter this page.";
-		messageError($msg);
-		header("Location: login.php");
-	}
-
-
-	$full = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id";
-
-
-	mysql_select_db('webshop');
-		$retval2 = mysql_query( $full, $conn );
-	if(! $retval2 ) {
-		die('Could not get data: ' . mysql_error());
-	}
-
- ?>
-
- <!doctype HTML>
- <html>
+if (!loginCheck($conn)) {
+	$msg = "You do not have permissions to enter this page.";
+	messageError($msg);
+	header("Location: login.php");
+}
+$full = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id";
+mysql_select_db('webshop');
+	$retval2 = mysql_query( $full, $conn );
+if(! $retval2 ) {
+	die('Could not get data: ' . mysql_error());
+}
+?>
+<!doctype HTML>
+<html>
 <head>
 	<link rel ="stylesheet" href="../css/styles.css">
 	<link rel ="stylesheet" href="../css/bootstrap.css">

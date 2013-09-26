@@ -6,13 +6,11 @@ if (!userLogin($conn)) {
 	$msg = "Please log in.";
 	messageError($msg);
 	header("Location: login.php");
-	}
+}
+$categoryId = $_GET['id'];
 $username = $_SESSION['username'];
 //SELECT TABLE INFO
-$sql = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id WHERE active = 1";
-
-mysql_select_db('webshop');
-
+$sql = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id LEFT JOIN categorized_products ON products.id = categorized_products.product_id WHERE active = '1' and category_id = $categoryId";
 $retval = mysql_query( $sql, $conn );
 if(! $retval ) {
 	die('Could not get data: ' . mysql_error());
@@ -53,7 +51,7 @@ $banners2 = array_slice($bannerNames, 3,6);
 		</div>
 		<div class="navbar">
 						<div class="navbar-inner">
-								<a class="brand" href="index.php">Home</a>
+								<a class="brand" href="#">Home</a>
 							<ul class="nav">
 								<li><a href="index.php">Products</a></li>
 								<li><a href="users.php">Users</a></li>
@@ -88,7 +86,7 @@ $banners2 = array_slice($bannerNames, 3,6);
 							<td class="column4"><a class="btn btn-info" target="_blank" href="product.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>More info</a></td>
 							<td class="column5"><?php echo $row["quantity"] ?></td>
 						</tr>
-						<?php
+						<?php 
 							}
 						 ?>
 					</tbody>

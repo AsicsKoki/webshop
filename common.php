@@ -118,7 +118,18 @@ function getUserPhoto($user_id){
 		return "default.jpg";
 	}
 }
-//DELETES COMMENTS BACKEND
+function getProductPhoto($id){
+	$sql      = "SELECT count(*) FROM images WHERE entity_type = 'product' and entity_id = '$id'";
+	global $conn;
+	$retval   = mysql_query( $sql, $conn );
+	$data = mysql_result($retval, 0);
+	if($data > 0){
+		return 1;
+	} else {
+		return 0;
+	}
+}
+// DELETES COMMENTS BACKEND
 function commentDelete($conn){
 	$id  = $_GET['id'];
 	$sql = "DELETE FROM comments WHERE id = $id";

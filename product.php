@@ -143,9 +143,14 @@
 				<div class="span4">
 					<div class="flexslider">
 						<ul class="slides">
-							<?php while($image = mysql_fetch_assoc($retvalImg)){ ?>
-							<li><img src="files/<?php echo $image['image_name'] ?>"/></li>
-							<?php } ?>
+							<?php
+							if(getProductPhoto($id) == 1){
+								while($image = mysql_fetch_assoc($retvalImg)){ ?>
+									<li><img src="files/<?php echo $image['image_name'] ?>"/></li>
+							<?php }
+								} else {?>
+									<li><img src="files/defaultProduct.jpg"/></li>
+							<?php }?>
 						</ul>
 					</div>
 					<?php include "partials/rating.php"; ?>

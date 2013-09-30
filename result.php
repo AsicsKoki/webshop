@@ -2,21 +2,15 @@
 include 'logincheck.php';
 include 'common.php';
 
-if (!userLogin($conn)) {
-	$msg = "Please log in.";
-	messageError($msg);
-	header("Location: login.php");
-	}
-$username = $_SESSION['username'];
-//SELECT TABLE INFO
-$sql = "SELECT * FROM products LEFT JOIN colors ON products.colorid = colors.color_id WHERE active = 1";
+$search = $_POST['search'];
 
-mysql_select_db('webshop');
-
-$retval = mysql_query( $sql, $conn );
-if(! $retval ) {
-	die('Could not get data: ' . mysql_error());
+if (!empty($_POST)){
+	$sql = "SELECT * FROM products WHERE name LIKE '%$search%' and description LIKE '%$search%'";
+	$retval = mysql_query($sql, $conn);
+	$data = mysql_fetch_assoc($retval);
+	var_dump($data);
 }
+
 //BANNERS
 $banners = 'SELECT banner FROM banners';
 
@@ -56,31 +50,19 @@ $banners2 = array_slice($bannerNames, 3,6);
 					<?php echo renderCategoryMenu(0, 0); ?>
 				</ul>
 			</div>
-				<div id="central">
-				<table id="productsTable" class="table table-hover" class="display">
-					<thead>
-						<th>Product name</th>
-						<th>Color</th>
-						<th>Price</th>
-						<th>Action</th>
-						<th>Quantity</th>
-					</thead>
-					<tbody>
-						<?php
-							while($row = mysql_fetch_assoc($retval)) {
-						 ?>
-						<tr>
-							<td class="column1"><a href="product.php?id=<?php echo $row["id"]; ?>" target="_blank"><?php echo $row["name"]; ?></a></td>
-							<td class="column2"><?php echo $row["color_name"]; ?></td>
-							<td class="column3"><i class="icon-tag"></i><?php echo $row["price"]; ?></td>
-							<td class="column4"><a class="btn btn-info" target="_blank" href="product.php?id=<?php echo $row["id"]; ?>"><i class="icon-info-sign"></i>More info</a></td>
-							<td class="column5"><?php echo $row["quantity"] ?></td>
-						</tr>
-						<?php
-							}
-						 ?>
-					</tbody>
-				</table>
+			<div id="central">
+				<?php while($data){ ?>
+					<ul class="thumbnails">
+						<li>
+						<div class="thumbnail">
+							<img data-src="holder.js/300x200" alt="">
+							<h3><?php echo $data['name']; ?></h3>
+							<p><?php echo $data['description']; ?></p>
+							<a class="btn btn-info" target="_blank" href="product.php?id=<?php echo $data["id"]; ?>"><i class="icon-info-sign"></i>More info</a>
+						</div>
+					</li>
+					</ul>
+				<?php } ?>
 			</div>
 			<div class="side"><img id="banner2" src=""></div>
 			<input id="checkbox" type="checkbox">rotate banners

@@ -2,6 +2,7 @@
 	include 'logincheck.php';
 	include 'common.php';
 
+	session_start();
 	if (!userLogin($conn)) {
 		$msg = "Please log in.";
 		messageError($msg);
@@ -64,26 +65,33 @@
 	$banners  = array_slice($bannerNames, 0,3);
 	$banners2 = array_slice($bannerNames, 3,6);
 
-	//QUANTITY SUBMIT
-	if (isset($_POST['quantity'])){
-		$amount = 'SELECT quantity FROM products WHERE id = ' . $id;
-		$current = mysql_query( $amount, $conn);
-		if(! $current )
-		{
-			 die('Could not get data: ' . mysql_error());
-		}
+	//PURCHASE AND ADDING TO CART
+	if(isset($_POST)) {
+ 		$_SESSION['quantity'] = $_POST['quantity'];
+ 		$_SESSION['name'] = $name;
+ 		$_SESSION['price'] = $price;
+ 	}
 
-		while ($val= mysql_fetch_assoc($current))
-			$value = $val['quantity'];
+	// //QUANTITY SUBMIT
+	// if (isset($_POST['quantity'])){
+	// 	$amount = 'SELECT quantity FROM products WHERE id = ' . $id;
+	// 	$current = mysql_query( $amount, $conn);
+	// 	if(! $current )
+	// 	{
+	// 		 die('Could not get data: ' . mysql_error());
+	// 	}
 
-		if ($value >= $_POST['quantity']){
-			$quantity = $_POST['quantity'];
-			mysql_query("UPDATE products SET quantity= quantity - '$quantity' WHERE id = '$id'",$conn);
-			$success = "Purchase successfull";
-		} else {
-			$error = "Amount is too high";
-		}
-	}
+	// 	while ($val= mysql_fetch_assoc($current))
+	// 		$value = $val['quantity'];
+
+	// 	if ($value >= $_POST['quantity']){
+	// 		$quantity = $_POST['quantity'];
+	// 		mysql_query("UPDATE products SET quantity= quantity - '$quantity' WHERE id = '$id'",$conn);
+	// 		$success = "Purchase successfull";
+	// 	} else {
+	// 		$error = "Amount is too high";
+	// 	}
+	// }
 
 	//COMMENT SECTION
 	$query = "SELECT *, users.id as user_id, comments.id as comment_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
@@ -105,7 +113,7 @@
 	$retvalRating = mysql_query($ratingQuery, $conn);
 	$ratingInfo   = mysql_fetch_assoc($retvalRating);
 
- ?>
+?>
 <!doctype html>
 <html>
 <head>
@@ -196,7 +204,7 @@
 								</select>
 		                	</div>
 				 		</div>
-	      				<input type="submit" value="purchase">
+	      				<input type="submit" value="Add to cart">
 					</form>
 				</div>
 			</div>

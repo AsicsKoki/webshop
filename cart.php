@@ -2,27 +2,6 @@
 include 'logincheck.php';
 include 'common.php';
 
-$search = $_POST['search'];
-
-if (!empty($_POST)){
-	$sql = "SELECT * FROM products  WHERE name LIKE '%$search%' OR description LIKE '%$search%'";
-	$retval = mysql_query($sql, $conn);
-}
-
-//BANNERS
-$banners = 'SELECT banner FROM banners';
-
-$banners = mysql_query($banners, $conn);
-if(! $banners) {
-	die('Could not get data: ' . mysql_error());
-}
-$bannerNames = [];
-while ($bannerName= mysql_fetch_assoc($banners)) {
-	$bannerNames[] = 'images/'.$bannerName["banner"];
-}
-shuffle($bannerNames);
-$banners  = array_slice($bannerNames, 0,3);
-$banners2 = array_slice($bannerNames, 3,6);
 ?>
 <!doctype html>
 <html>
@@ -43,11 +22,6 @@ $banners2 = array_slice($bannerNames, 3,6);
 			include "partials/loginLogout.php";
 			include "partials/navbar.php"; ?>
 		<div id="elementOne">
-			<div class="menu">
-				<ul class="plain"  role="menu" aria-labelledby="dLabel">
-					<?php echo renderCategoryMenu(0, 0); ?>
-				</ul>
-			</div>
 			<div id="central">
 				<?php while($data = mysql_fetch_assoc($retval)){ ?>
 				<div style="width=400px">

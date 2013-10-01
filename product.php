@@ -180,7 +180,7 @@
 							<dd class='text-left'> <?php echo $quantity ?> </dd>
 						</dl>
 					</div>
-					<form data-validate="parsley" class="form-horizontal" method="post" enctype="multipart/form-data">
+					<form action="cart.php" data-validate="parsley" class="form-horizontal" method="post" enctype="multipart/form-data">
 						<div class="control-group">
 	           			<label class="control-label" for="name">Quantity: </label>
 	               			<div class="controls">

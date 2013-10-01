@@ -2,6 +2,13 @@
 include 'logincheck.php';
 include 'common.php';
 
+
+
+	$_SESSION['quantity'] = $quantity;
+	$_SESSION['name'] = $name;
+	$_SESSION['price'] = $price;
+
+
 ?>
 <!doctype html>
 <html>
@@ -23,16 +30,13 @@ include 'common.php';
 			include "partials/navbar.php"; ?>
 		<div id="elementOne">
 			<div id="central">
-				<?php while($data = mysql_fetch_assoc($retval)){ ?>
-				<div style="width=400px">
-					<div class="thumbnail pull-left" style="width: 300px;">
-						<img src="files/<?php echo $data['image_name']; ?>" alt="">
-						<h3><?php echo $data['name']; ?></h3>
-						<p><?php echo $data['description']; ?></p>
-						<a class="btn btn-info" target="_blank" href="product.php?id=<?php echo $data["id"]; ?>"><i class="icon-info-sign"></i>More info</a>
-					</div>
-				</div>
-				<?php } ?>
+				<table>
+					<thead>
+						<th>Name</th>
+						<th>Quantity</th>
+						<th>Price</th>
+					</thead>
+				</table>
 			</div>
 			<div class="side"><img id="banner2" src=""></div>
 			<input id="checkbox" type="checkbox">rotate banners

@@ -294,4 +294,42 @@ function renderCategoryMenu($parentId, $level = 0){
 	}
 	return $html;
 }
+/**
+ * Shopping cart item add.
+ * @param [type] $id [Product id passed via post]
+ * @param [type] $quantity  [Quantity of an item]
+ */
+function addToCart($id, $quantity){
+	if($quantity < 1) return;
+	session_start();
+//Checks if the cart exists, if not, sets it.
+	if (!isset($_SESSION['cart']))
+		$_SESSION['cart']=array();
+//Checks if the cart items exists, of not creates it,
+	if (!isset($_SESSION['cart'][$id])) {
+		$_SESSION['cart'][$id] = $quantity;
+	} else {
+//if it does, it updates quantity.
+		$_SESSION['cart'][$id] += $quantity;
+	}
+}
+/**
+ * Prints out the rows for the shopping cart.
+ * @return [type] [Full set of html rows]
+ */
+function readFromCart(){
+	global $conn;
+	foreach ($_SESSION['cart'] as $id => $quantity) {
+		$html = "<tr>";
+		$sql = "SELECT * FROM products WHERE id = $id";
+		$query = mysql_query($sql, $conn);
+		$data  = mysql_fetch_assoc($query);
+		$html .= "<td>".$data['name']."</td>";
+		$html .= "<td>".$quantity."</td>";
+		$html .= "<td>".$data['price']."</td>";
+		$html .= "<td><a href=# class='delete btn' data-id=".$id.">Remove</a></td>";
+		$html .= "</tr>";
+	}
+	return $html;
+}
 ?>

@@ -66,10 +66,9 @@
 	$banners2 = array_slice($bannerNames, 3,6);
 
 	//PURCHASE AND ADDING TO CART
-	if(isset($_POST)) {
- 		$_SESSION['quantity'] = $_POST['quantity'];
- 		$_SESSION['name'] = $name;
- 		$_SESSION['price'] = $price;
+	if(!empty($_POST)) {
+		echo addToCart($_GET['id'],$_POST['quantity']);
+		header("Location: cart.php");
  	}
 
 	// //QUANTITY SUBMIT
@@ -180,7 +179,7 @@
 							<dd class='text-left'> <?php echo $quantity ?> </dd>
 						</dl>
 					</div>
-					<form action="cart.php" data-validate="parsley" class="form-horizontal" method="post" enctype="multipart/form-data">
+					<form data-validate="parsley" class="form-horizontal" method="post" enctype="multipart/form-data">
 						<div class="control-group">
 	           			<label class="control-label" for="name">Quantity: </label>
 	               			<div class="controls">

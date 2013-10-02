@@ -2,11 +2,7 @@
 include 'logincheck.php';
 include 'common.php';
 
-
-
-	$_SESSION['quantity'] = $quantity;
-	$_SESSION['name'] = $name;
-	$_SESSION['price'] = $price;
+session_start();
 
 
 ?>
@@ -30,12 +26,16 @@ include 'common.php';
 			include "partials/navbar.php"; ?>
 		<div id="elementOne">
 			<div id="central">
-				<table>
+				<table id="productsTable" class="table table-hover" class="display">
 					<thead>
 						<th>Name</th>
 						<th>Quantity</th>
 						<th>Price</th>
+						<th>Action</th>
 					</thead>
+					<tbody>
+						<?php echo readFromCart();  ?>
+					</tbody>
 				</table>
 			</div>
 			<div class="side"><img id="banner2" src=""></div>
@@ -51,6 +51,23 @@ include 'common.php';
 	<script>
 		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;
+	</script>
+		<script type="text/javascript">
+		$('.delete').click(function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+		var self = this;
+		$.ajax({
+			url: "cartDelete.php",
+			type: "get",
+			data: {
+				id: id
+			},
+			success: function(data){
+				$(self).parents("tr").remove();
+				}
+			});
+		});
 	</script>
 </body>
 </html>

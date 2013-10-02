@@ -59,7 +59,7 @@ session_start();
 		var self = this;
 		$.ajax({
 			url: "cartDelete.php",
-			type: "get",
+			type: "POST",
 			data: {
 				id: id
 			},

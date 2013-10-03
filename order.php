@@ -1,8 +1,17 @@
 <?php
 include 'logincheck.php';
 include 'common.php';
+	session_start();
+	$_SESSION['username'] = $username;
+	if(!isset($_SESSION['cart']))
+		header("Location: index.php");
 
-session_start();
+	foreach ($_SESSION['cart'] as $id => $quantity) {
+		mysql_query("UPDATE products SET quantity= quantity - '$quantity' WHERE id = '$id'",$conn);
+	}
+
+	mysql_query("INSERT INTO orders (user_name) VALUES ($username)",$conn);
+
 
 
 ?>
@@ -19,26 +28,26 @@ session_start();
 </head>
 <body id="background">
 	<div id="mainElement">
-		<header id="header">Konstantin's web shop
-		</header>
+		<header id="header">Konstantin's web shop</header>
 		<?php
 			include "partials/loginLogout.php";
 			include "partials/navbar.php"; ?>
 		<div id="elementOne">
 			<div id="central">
-				<table id="productsTable" class="table table-hover" class="display">
+				<table class="table table-hover pull-left" class="display">
 					<thead>
 						<th>Name</th>
 						<th>Quantity</th>
 						<th>Price per item</th>
-						<th>Action</th>
 						<th>Total price</th>
 					</thead>
 					<tbody>
-						<?php echo readFromCart();  ?>
+						<?php echo printOrder();  ?>
 					</tbody>
 				</table>
-				<a class="btn" href="order.php">Checkout!</a>
+				<div>
+					
+				</div>
 			</div>
 			<div class="side"><img id="banner2" src=""></div>
 			<input id="checkbox" type="checkbox">rotate banners
@@ -73,4 +82,5 @@ session_start();
 	</script>
 </body>
 </html>
-<?php mysql_close($conn); ?>
+<?php mysql_close($conn);
+unset($_SESSION['cart']); ?>\

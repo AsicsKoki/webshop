@@ -319,17 +319,51 @@ function addToCart($id, $quantity){
  */
 function readFromCart(){
 	global $conn;
-	foreach ($_SESSION['cart'] as $id => $quantity) {
+	if($_SESSION['cart']){
+		$totalPrice = 0;
 		$html = "<tr>";
-		$sql = "SELECT * FROM products WHERE id = $id";
-		$query = mysql_query($sql, $conn);
-		$data  = mysql_fetch_assoc($query);
-		$html .= "<td>".$data['name']."</td>";
-		$html .= "<td>".$quantity."</td>";
-		$html .= "<td>".$data['price']."</td>";
-		$html .= "<td><a href=# class='delete btn' data-id=".$id.">Remove</a></td>";
-		$html .= "</tr>";
+		foreach ($_SESSION['cart'] as $id => $quantity) {
+			$sql = "SELECT * FROM products WHERE id = $id";
+			$query = mysql_query($sql, $conn);
+			$data  = mysql_fetch_assoc($query);
+			$price = $data['price'];
+			$sum   = $price*$quantity;
+			$totalPrice = $totalPrice + $sum;
+			$html .= "<td>".$data['name']."</td>";
+			$html .= "<td>".$quantity."</td>";
+			$html .= "<td>".$data['price']."</td>";
+			$html .= "<td><a href=# class='delete btn' data-id=".$id.">Remove</a></td>";
+			$html .= "<td>".$sum."</td>";
+			$html .= "</tr>";
+		}
+		$html .= "<div><h4>Total price: ".$totalPrice."</h4></div>";
+		return $html;
+	} else {
+		return "Empty!";
 	}
-	return $html;
+}
+function printOrder(){
+global $conn;
+	if($_SESSION['cart']){
+		$totalPrice = 0;
+		$html = "<tr>";
+		foreach ($_SESSION['cart'] as $id => $quantity) {
+			$sql = "SELECT * FROM products WHERE id = $id";
+			$query = mysql_query($sql, $conn);
+			$data  = mysql_fetch_assoc($query);
+			$price = $data['price'];
+			$sum   = $price*$quantity;
+			$totalPrice = $totalPrice + $sum;
+			$html .= "<td>".$data['name']."</td>";
+			$html .= "<td>".$quantity."</td>";
+			$html .= "<td>".$data['price']."</td>";
+			$html .= "<td>".$sum."</td>";
+			$html .= "</tr>";
+		}
+		$html .= "<div class='pull-right'><h4>Total price:</h4> ".$totalPrice."$</div>";
+		return $html;
+	} else {
+		return "Empty!";
+	}
 }
 ?>

@@ -68,30 +68,7 @@
 	//PURCHASE AND ADDING TO CART
 	if(!empty($_POST)) {
 		echo addToCart($_GET['id'],$_POST['quantity']);
-		header("Location: cart.php");
  	}
-
-	// //QUANTITY SUBMIT
-	// if (isset($_POST['quantity'])){
-	// 	$amount = 'SELECT quantity FROM products WHERE id = ' . $id;
-	// 	$current = mysql_query( $amount, $conn);
-	// 	if(! $current )
-	// 	{
-	// 		 die('Could not get data: ' . mysql_error());
-	// 	}
-
-	// 	while ($val= mysql_fetch_assoc($current))
-	// 		$value = $val['quantity'];
-
-	// 	if ($value >= $_POST['quantity']){
-	// 		$quantity = $_POST['quantity'];
-	// 		mysql_query("UPDATE products SET quantity= quantity - '$quantity' WHERE id = '$id'",$conn);
-	// 		$success = "Purchase successfull";
-	// 	} else {
-	// 		$error = "Amount is too high";
-	// 	}
-	// }
-
 	//COMMENT SECTION
 	$query = "SELECT *, users.id as user_id, comments.id as comment_id FROM comments LEFT JOIN users ON comments.user_id = users.id WHERE product_id = $id";
 	$retvalCom = mysql_query( $query, $conn );

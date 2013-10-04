@@ -11,6 +11,7 @@ include 'common.php';
 	}
 
 	mysql_query("INSERT INTO orders (user_name) VALUES ($username)",$conn);
+	
 
 
 

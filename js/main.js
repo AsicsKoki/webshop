@@ -1,3 +1,15 @@
+//CART COMMANDS
+$("#showCart").on('click',function(){
+	if($("#cart").css('top')=="-290px"){
+		$("#cart").animate({
+			top: "0px"
+		});
+	} else {
+		$("#cart").animate({
+			top: "-290px"
+		});
+	}
+});
 function toTitleCase(str) {
 	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
@@ -138,7 +150,6 @@ $(document).ready(function() {
 	  	}
 	  });
 	});
-
 	//COMMENT EDIT-BACKEND-TOGGLE
 	$(".editComment").click(function(){
 		$(this).parent().siblings(".editForm").slideToggle();

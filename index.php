@@ -45,7 +45,12 @@ $banners2 = array_slice($bannerNames, 3,6);
 </head>
 <body id="background">
 	<div id="mainElement">
-		<header id="header">Konstantin's web shop
+		<header id="header">
+			<p>Konstantin's web shop</p>
+			<div id="cart">
+				<div id="content">123</div>
+				<a style="position: relative; bottom: -269px;" href="#" id="showCart" class="btn pull-left">Open Cart</a>
+			</div>
 		</header>
 		<?php
 			include "partials/loginLogout.php";

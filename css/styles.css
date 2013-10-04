@@ -238,3 +238,12 @@
        -moz-background-clip: padding;
             background-clip: padding-box;
   }
+  #cart{
+    width: 530px;
+    height: 288px;
+    background-color: blue;
+    position: fixed;
+    border-radius: 6px;
+    z-index: 1;
+    top: -290px;
+  }

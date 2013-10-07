@@ -47,10 +47,7 @@ $banners2 = array_slice($bannerNames, 3,6);
 	<div id="mainElement">
 		<header id="header">
 			<p>Konstantin's web shop</p>
-			<div id="cart">
-				<div id="content">123</div>
-				<a style="position: relative; bottom: -269px;" href="#" id="showCart" class="btn pull-left">Open Cart</a>
-			</div>
+			<?php include "cartHtml.php" ?>
 		</header>
 		<?php
 			include "partials/loginLogout.php";
@@ -100,6 +97,23 @@ $banners2 = array_slice($bannerNames, 3,6);
 	<script>
 		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;
+	</script>
+	<script type="text/javascript">
+		$('.delete').click(function(e){
+			e.preventDefault();
+			var id = $(this).data('id');
+			var self = this;
+			$.ajax({
+				url: "cartDelete.php",
+				type: "POST",
+				data: {
+					id: id
+				},
+				success: function(data){
+					$(self).parents("tr").remove();
+				}
+			});
+		});
 	</script>
 </body>
 </html>

@@ -51,9 +51,11 @@ if (!userLogin($conn)) {
 </head>
 <body id="background">
 	<div id="mainElement">
-		<header id="header">Konstantin's web shop
-			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
+		<header id="header">
+			<p>Konstantin's web shop</p>
+			<?php include "cartHtml.php" ?>
 		</header>
+			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>
 		<div class="navbar">
 						<div class="navbar-inner">
 					    		<a class="brand" href="#">Home</a>

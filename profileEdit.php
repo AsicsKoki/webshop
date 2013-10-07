@@ -85,7 +85,10 @@
 </head>
 <body id="background">
 	<div id="mainElement">
-		<header id="header">Konstantin's web shop</header>
+		<header id="header">
+			<p>Konstantin's web shop</p>
+			<?php include "cartHtml.php" ?>
+		</header>
 		<div style="float: right;">
 			<a href="profile.php"><button class="btn-info">Profile</button></a>
 			<a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a>

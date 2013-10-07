@@ -97,10 +97,6 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/flexslider.css">
-    <script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/parsley.js"></script>
 	<script type="text/template" id="comment_box_temp">
 	<div class="comment_thumbnail"><img class="image_thumb" src="<?php echo 'files/'.getUserPhoto($user_id)?>"></div>
 		<div class="well">
@@ -111,7 +107,10 @@
 </head>
 <body id="background">
 	<div id="mainElement">
-		<header id="header">Konstantin's web shop</header>
+		<header id="header">
+			<p>Konstantin's web shop</p>
+			<?php include "cartHtml.php" ?>
+		</header>
 		<?php
 			include "partials/loginLogout.php";
 			include "partials/navbar.php";
@@ -180,7 +179,7 @@
 								</select>
 		                	</div>
 				 		</div>
-	      				<input type="submit" value="Add to cart">
+	      				<input id="submit" type="submit" value="Add to cart">
 					</form>
 				</div>
 			</div>
@@ -245,6 +244,10 @@
 		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;
 	</script>
+    <script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/parsley.js"></script>
 	<script src="js/jquery.flexslider-min.js"></script>
 	<script type="text/javascript" charset="utf-8">
 	$(window).load(function() {
@@ -264,6 +267,9 @@
 			$(this).prevAll().andSelf().removeClass('ratings_over');
 		}
 	);
+		$("#submit").on("click", function(){
+			$("#cart").load("cart.php #central");
+		});
 	</script>
 </body>
 </html>

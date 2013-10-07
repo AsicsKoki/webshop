@@ -78,7 +78,9 @@
 </head>
 <body id="background">
 	<div id="mainElement">
-		<header id="header">Konstantin's web shop
+		<header id="header">
+			<p>Konstantin's web shop</p>
+			<?php include "cartHtml.php" ?>
 		</header>
 		<div class="pull-right"><a href="logout.php"><button class="btn-danger" src="logout.php">Log out!</button></a></div>
 		<div class="navbar">

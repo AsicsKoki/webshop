@@ -107,7 +107,7 @@ $('.deleteComment').click(function(e){
 });
 //parsley initialization
 $(document).ready(function() {
-	if($('table').length) {
+	if($('table').not('.cart').length) {
 		$('#productsTable').dataTable();
 		$('#usersTable').dataTable();
 		$('#like_table').dataTable();
@@ -294,7 +294,8 @@ $(document).ready(function() {
 			}
 		});
 	});
-	$('body').on("click", ".deleteCartEntry",function(e){
+
+	$('div#content').on("click", ".deleteCartEntry",function(e){
 		e.preventDefault();
 		var id = $(this).data('id');
 		var self = this;
@@ -309,4 +310,4 @@ $(document).ready(function() {
 			}
 		});
 	});
-})
+});

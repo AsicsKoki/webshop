@@ -1,6 +1,6 @@
 <div id="cart">
 	<div id="content">
-		<table class="table table-hover" class="display">
+		<table class="table table-hover cart" class="display">
 		<thead>
 			<th>Name</th>
 			<th>Quantity</th>

@@ -155,11 +155,11 @@
 							<dd class='text-left'> <?php echo $quantity ?> </dd>
 						</dl>
 					</div>
-					<form data-validate="parsley" class="form-horizontal" method="post" enctype="multipart/form-data">
+					<form id="formData" data-validate="parsley" class="form-horizontal" method="post" enctype="multipart/form-data">
 						<div class="control-group">
 	           			<label class="control-label" for="name">Quantity: </label>
 	               			<div class="controls">
-								<input class="pull-left" name="quantity" data-range="[1, <?php echo $quantity ?>]" type="text" size="2" placeholder="Enter quantity here!">
+								<input class="pull-left" id="quantity" name="quantity" data-range="[1, <?php echo $quantity ?>]" type="text" size="2" placeholder="Enter quantity here!">
 							</div>
 	        			</div>
 	        			<div class="control-group">
@@ -179,7 +179,7 @@
 								</select>
 		                	</div>
 				 		</div>
-	      				<input id="submit" type="submit" value="Add to cart">
+	      				<a id="submit" data-id='<?php echo $row["id"];?>' class="btn">Add to cart</a>
 					</form>
 				</div>
 			</div>
@@ -258,7 +258,7 @@
 		function() {
 			$(this).prevAll().andSelf().addClass('ratings_over');
 			$(this).nextAll().removeClass('ratings_vote');
-			},
+		},
 		// Handles the mouseout
 		function() {
 			if($('#r1').data('rated')== 1 ){
@@ -267,9 +267,24 @@
 			$(this).prevAll().andSelf().removeClass('ratings_over');
 		}
 	);
-		$("#submit").on("click", function(){
-			$("#cart").load("cart.php #central");
+	$('#submit').click(function(e){
+		e.preventDefault();
+		var quantity = $("#quantity").val();
+		var id = $(this).data('id');
+		var self = this
+		$.ajax({
+			url: "cartSave.php",
+			type: "POST",
+			data: {
+				id: id,
+				quantity: quantity
+			},
+			success: function(data){
+				$("#content").load("cart.php #central");
+				alert('Added to cart!');
+			}
 		});
+	});
 	</script>
 </body>
 </html>

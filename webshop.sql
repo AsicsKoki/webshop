@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2013 at 03:21 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.16
+-- Generation Time: Oct 07, 2013 at 01:48 PM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -86,29 +86,6 @@ INSERT INTO `categories` (`id`, `name`, `parent_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorized_products`
---
-
-CREATE TABLE IF NOT EXISTS `categorized_products` (
-  `product_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  KEY `product_id` (`product_id`),
-  KEY `category_id` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `categorized_products`
---
-
-INSERT INTO `categorized_products` (`product_id`, `category_id`) VALUES
-(11, 1),
-(11, 11),
-(11, 12),
-(11, 13);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `colors`
 --
 
@@ -150,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `comment` (`comment`),
   KEY `rating` (`rating`),
   KEY `approved` (`approved`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
 -- Dumping data for table `comments`
@@ -159,7 +136,8 @@ CREATE TABLE IF NOT EXISTS `comments` (
 INSERT INTO `comments` (`id`, `product_id`, `user_id`, `posted_at`, `comment`, `rating`, `approved`) VALUES
 (36, 1, 14, '2013-09-06 10:55:23', 'kole1236', 0, 1),
 (38, 1, 14, '2013-09-10 08:02:55', 'proba 123ffff', 0, 1),
-(39, 1, 14, '2013-09-10 08:03:00', 'proba234aaaaaaaaaa', 0, 1);
+(39, 1, 14, '2013-09-10 08:03:00', 'proba234aaaaaaaaaa', 0, 1),
+(40, 7, 14, '2013-09-23 18:41:17', '123333', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -201,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `entity_type` varchar(100) NOT NULL,
   `entity_name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `images`
@@ -211,7 +189,10 @@ INSERT INTO `images` (`id`, `image_name`, `entity_id`, `entity_type`, `entity_na
 (6, 'technics-q-c-250-200-7.jpg', '1', 'product', ''),
 (7, 'sports-q-c-250-200-3.jpg', '1', 'product', ''),
 (9, 'side1.jpg', '16', 'user', 'mile'),
-(10, 'side4.jpg', '14', 'user', 'AsicsKoki');
+(10, 'side4.jpg', '14', 'user', 'AsicsKoki'),
+(11, 'image2.jpg', '14', 'product', ''),
+(12, 'image2.jpg', '14', 'product', ''),
+(13, 'image2.jpg', '14', 'product', '');
 
 -- --------------------------------------------------------
 
@@ -227,23 +208,20 @@ CREATE TABLE IF NOT EXISTS `products` (
   `price` float NOT NULL,
   `quantity` int(11) NOT NULL,
   `description` text NOT NULL,
-  `posted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `active` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `user_id`, `name`, `colorid`, `price`, `quantity`, `description`, `posted_at`, `active`) VALUES
-(1, 14, 'Product1', 4, 45, 25, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, repudiandae, cumque iusto laudantium animi itaque ullam error ipsam ex delectus architecto necessitatibus nostrum rem saepe nulla quod amet iure dignissimos.', '0000-00-00 00:00:00', 1),
-(3, 15, 'product3', 1, 62100, 14, ' nostrud exercitation ullamco laboris nisi ut al   \r\niquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncill', '0000-00-00 00:00:00', 1),
-(4, 14, 'Product4', 1, 322, 24, 'd oiwaoma iwmawvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv', '0000-00-00 00:00:00', 1),
-(5, 14, 'product2', 1, 40000, 4, ' nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0000-00-00 00:00:00', 1),
-(9, 14, 'Proba', 3, 11, 322, '11111111111111111111111111111111', '2013-09-26 09:22:05', 1),
-(10, 14, 'Proba123', 2, 22, 22, '1111111111111111111111111111111111111111111111111', '2013-09-26 09:22:06', 1),
-(11, 14, 'Kategorije test', 3, 2222, 22, '2222222222222222222222222222222222222222222222', '2013-09-26 09:22:05', 1);
+INSERT INTO `products` (`id`, `user_id`, `name`, `colorid`, `price`, `quantity`, `description`, `active`) VALUES
+(1, 14, 'Product1', 4, 45, 23, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, repudiandae, cumque iusto laudantium animi itaque ullam error ipsam ex delectus architecto necessitatibus nostrum rem saepe nulla quod amet iure dignissimos.', 1),
+(3, 15, 'product3', 1, 62100, 14, ' nostrud exercitation ullamco laboris nisi ut al   \r\niquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncill', 1),
+(4, 14, 'Product4', 1, 322, 24, 'd oiwaoma iwmawvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv', 1),
+(5, 14, 'product2', 1, 40000, 4, ' nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0),
+(7, 14, '11111111', 1, 111, 111, '111111111111111111111111', 1);
 
 -- --------------------------------------------------------
 
@@ -322,13 +300,6 @@ INSERT INTO `users` (`id`, `role_id`, `first_name`, `last_name`, `username`, `em
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `categorized_products`
---
-ALTER TABLE `categorized_products`
-  ADD CONSTRAINT `categorized_products_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `categorized_products_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `comments`

@@ -293,5 +293,20 @@ $(document).ready(function() {
 				}
 			}
 		});
-	})
+	});
+	$('body').on("click", ".deleteCartEntry",function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+		var self = this;
+		$.ajax({
+			url: "cartDelete.php",
+			type: "POST",
+			data: {
+				id: id
+			},
+			success: function(data){
+				$(self).parents("tr").remove();
+			}
+		});
+	});
 })

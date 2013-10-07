@@ -26,19 +26,21 @@ session_start();
 			include "partials/navbar.php"; ?>
 		<div id="elementOne">
 			<div id="central">
-				<table id="productsTable" class="table table-hover" class="display">
-					<thead>
-						<th>Name</th>
-						<th>Quantity</th>
-						<th>Price per item</th>
-						<th>Action</th>
-						<th>Total price</th>
-					</thead>
-					<tbody>
-						<?php echo readFromCart();  ?>
-					</tbody>
-				</table>
-				<a class="btn" href="order.php">Checkout!</a>
+				<div id="result">
+					<table id="productsTable" class="table table-hover" class="display">
+						<thead>
+							<th>Name</th>
+							<th>Quantity</th>
+							<th>Price per item</th>
+							<th>Action</th>
+							<th>Total price</th>
+						</thead>
+						<tbody>
+							<?php echo readFromCart();  ?>
+						</tbody>
+					</table>
+					<a class="btn" href="order.php">Checkout!</a>
+				</div>
 			</div>
 			<div class="side"><img id="banner2" src=""></div>
 			<input id="checkbox" type="checkbox">rotate banners
@@ -53,23 +55,6 @@ session_start();
 	<script>
 		var banners  = <?php echo json_encode($banners); ?>;
 		var banners2 = <?php echo json_encode($banners2); ?>;
-	</script>
-		<script type="text/javascript">
-		$('.delete').click(function(e){
-		e.preventDefault();
-		var id = $(this).data('id');
-		var self = this;
-		$.ajax({
-			url: "cartDelete.php",
-			type: "POST",
-			data: {
-				id: id
-			},
-			success: function(data){
-				$(self).parents("tr").remove();
-				}
-			});
-		});
 	</script>
 </body>
 </html>

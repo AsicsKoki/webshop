@@ -332,7 +332,7 @@ function readFromCart(){
 			$html .= "<td>".$data['name']."</td>";
 			$html .= "<td>".$quantity."</td>";
 			$html .= "<td>".$data['price']."</td>";
-			$html .= "<td><a href=# class='delete btn' data-id=".$id.">Remove</a></td>";
+			$html .= "<td><a href=# class='deleteCartEntry btn' data-id=".$id.">Remove</a></td>";
 			$html .= "<td>".$sum."</td>";
 			$html .= "</tr>";
 		}

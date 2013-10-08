@@ -247,3 +247,8 @@
     z-index: 10;
     top: -290px;
   }
+  #content{
+    width: 500px;
+    height: 230px;
+    overflow-y: scroll;
+  }

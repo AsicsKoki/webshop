@@ -50,7 +50,7 @@ $banners2 = array_slice($bannerNames, 3,6);
 			</div>
 			<div id="central">
 				<?php while($data = mysql_fetch_assoc($retval)){ ?>
-				<div style="width=400px">
+				<div class="resThumb">
 					<div class="thumbnail pull-left" style="width: 300px;">
 						<img src="files/<?php echo $data['image_name']; ?>" alt="">
 						<h3><?php echo $data['name']; ?></h3>
@@ -58,7 +58,10 @@ $banners2 = array_slice($bannerNames, 3,6);
 						<a class="btn btn-info" target="_blank" href="product.php?id=<?php echo $data["id"]; ?>"><i class="icon-info-sign"></i>More info</a>
 					</div>
 				</div>
-				<?php } ?>
+				<?php } 
+					if($data == 0)
+						echo "No results";
+				?>
 			</div>
 			<div class="side"><img id="banner2" src=""></div>
 			<input id="checkbox" type="checkbox">rotate banners

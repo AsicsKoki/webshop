@@ -9,12 +9,11 @@
 	}
 	 div.side{
 		width: 97px;
-		border: 1px solid black;
 		float: left;
 	}
 	#central{
 		 width: 800px;
-		 border: 1px solid black;
+		 margin-left: 5px;
 		 float: left;
 	}
 	#header{
@@ -37,8 +36,10 @@
 		background-color: #660066;
 	}
 	#elementOne{
-		 float: right;
-		 width: 100%;
+    float: right;
+    left: 5px;
+    position: relative;
+    width: 100%;
 	}
 	#mainElement{
 		width:1200px; 
@@ -252,3 +253,10 @@
     height: 230px;
     overflow-y: scroll;
   }
+  .resThumb{
+    width: 400px;
+  }
+  .btnStyle{
+    position: relative; 
+    bottom: -60px;
+  };

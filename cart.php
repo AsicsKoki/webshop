@@ -39,7 +39,7 @@ session_start();
 							<?php echo readFromCart();  ?>
 						</tbody>
 					</table>
-					<a class="btn" href="order.php">Checkout!</a>
+					<a class="btn" href="order.php">Checkout</a>
 				</div>
 			</div>
 			<div class="side"><img id="banner2" src=""></div>

@@ -1,13 +1,12 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 
+$conn = mysql_connect("localhost","root","","webshop");
+if(! $conn ) {
+  	die('Could not connect: ' . mysql_error());
+}
 
-	$conn = mysql_connect("localhost","root","","webshop");
-	if(! $conn ) {
-	  	die('Could not connect: ' . mysql_error());
-	}
-
-	mysql_select_db('webshop');
+mysql_select_db('webshop');
 //LOGIN CHECK FUNCTION
 function loginCheck($connectionParam){
 	if (!isset($_SESSION['username']))
@@ -33,7 +32,6 @@ function addInfix($name, $infix){
 	if ($_FILES["file"]["error"] > 0) {
 		return false;
 	}
-
 	$infix = "";
 	while(file_exists("../files/" . addInfix($_FILES["image"]["name"], $infix) )){
 		if($infix == ""){
@@ -43,7 +41,6 @@ function addInfix($name, $infix){
 		}
 	}
 	$str = addInfix($_FILES["image"]["name"], $infix);
-
 	move_uploaded_file($_FILES["image"]["tmp_name"], "../files/" . $str);
 	return $str;
 }
@@ -61,44 +58,38 @@ function fileDelete($conn){
 	$id     = $_GET['id'];
 	$sql    = "SELECT * FROM images where id= '$id'";
 	$retval = mysql_query( $sql, $conn );
-
 		if(! $retval ) {
 			die('Could not get data: ' . mysql_error());
 		}
-
 	$row   = mysql_fetch_assoc($retval);
 	$image = $row['image_name'];
-
-		if ($image) {
-			unlink('../files/' . $image);
-			mysql_query("DELETE FROM images WHERE id = '$id'",$conn);
-			echo 1;
-			return;
-		}
-		echo 0;
+	if ($image) {
+		unlink('../files/' . $image);
+		mysql_query("DELETE FROM images WHERE id = '$id'",$conn);
+		echo 1;
+		return;
 	}
+	echo 0;
+}
 
 //FILE DELETE FRONT END
 	function imageDelete($conn){
 	$username = $_SESSION['username'];
 	$sql      = "SELECT * FROM images where entity_name= '$username'";
 	$retval   = mysql_query( $sql, $conn );
-
-		if(! $retval ) {
-			die('Could not get data: ' . mysql_error());
-		}
-
+	if(! $retval ) {
+		die('Could not get data: ' . mysql_error());
+	}
 	$row   = mysql_fetch_assoc($retval);
 	$image = $row['image_name'];
-
-		if ($image) {
-			unlink('files/' . $image);
-			mysql_query("DELETE FROM images WHERE entity_name = '$username'",$conn);
-			echo 1;
-			return;
-		}
-		echo 0;
+	if ($image) {
+		unlink('files/' . $image);
+		mysql_query("DELETE FROM images WHERE entity_name = '$username'",$conn);
+		echo 1;
+		return;
 	}
+	echo 0;
+}
 //MESSAGE ERROR/SUCCESS
 function messageError($msg){
 	$_SESSION['messageError'] = $msg;
@@ -135,7 +126,7 @@ function commentDelete($conn){
 	$sql = "DELETE FROM comments WHERE id = $id";
 	mysql_query( $sql, $conn );
 	return 1;
-	}
+}
 /**
  * Identifies whether something is liked, and decides what to render.
  * @param  [type]  $comment_id [Comment id from comment_likes table]
@@ -190,7 +181,6 @@ function calculateRating($productId){
 		$resault = 0;
 		return $resault;
 	}
-
 }
 /**
  * Renders the stars according to the rating of the product.
@@ -206,7 +196,6 @@ function renderStars($result, $productId, $userId){
 	$html = '';
 	$mark = $result;
 	$rest = 5 - $mark;
-
 	for ($i=0; $i < $mark ; $i++) {
 		$html .= '<div class="ratings_stars ratings_over" data-productid="'.$id.'" data-userid="'.$userId.'"></div>';
 	}

@@ -13,5 +13,5 @@
 		</tbody>
 	</table>
 	</div>
-		<div><a style="position: relative; bottom: -60px;" href="#" id="showCart" class="btn pull-left">Open Cart</a></div>
+		<div><a href="#" id="showCart" class="btn btnStyle pull-left">Open Cart</a></div>
 </div>

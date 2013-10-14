@@ -89,6 +89,9 @@
 	$retvalRating = mysql_query($ratingQuery, $conn);
 	$ratingInfo   = mysql_fetch_assoc($retvalRating);
 
+ 	$sqlRating = "SELECT rating FROM product_ratings WHERE product_id = $id and user_id = $userId";
+ 	$rating = mysql_query($sqlRating, $conn);
+
 ?>
 <!doctype html>
 <html>
@@ -253,6 +256,9 @@
 	$(window).load(function() {
 		$('.flexslider').flexslider();
 	});
+	</script>
+		<?php if(!$rating){ ?>
+		<script type="text/javascript">
 	$('.ratings_stars').hover(
 		// Handles the mouseover
 		function() {
@@ -267,6 +273,10 @@
 			$(this).prevAll().andSelf().removeClass('ratings_over');
 		}
 	);
+	</script> <?php } else { ?>
+	123
+	<?php } ?>
+	<script type="text/javascript" charset="utf-8">
 	$('#submit').click(function(e){
 		e.preventDefault();
 		var quantity = $("#quantity").val();

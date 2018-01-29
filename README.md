@@ -1,4 +1,4 @@
 webshop
 =======
 
-webShop
+Learning project, procedural PHP
